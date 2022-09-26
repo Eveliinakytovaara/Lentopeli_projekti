@@ -24,7 +24,7 @@ def get_from_database():
 yhteys = open_database()
 
 
-def flight_game(starting_airport):
+def flight_game(starting_airport, sceen_name):
     #Tallenetaan aloitus lentokenttä muuttjaan
     lentoasema = starting_airport
     while True:
@@ -43,17 +43,20 @@ def flight_game(starting_airport):
 
         #Tulostetaan valittavana olevat lentoasemat (for loop)
         print(aiports)
+        weather_modifier = get_weather_modifier()
 
         choice = input("Valitse lentoasema, minne lentää: ")
 
+        plane_modifier = get_distance(starting_airport, get_airport(choice))
         #lennetään
         calculate_consumption(distance, weather_modifier, plane_modifier)
 
         #Katsotaan onko kaikissa maanosissa käyty
         if get_from_database(continents_visited()) >= 7:
-            main_menu()
             break
 
         #Päivitetään tiedot keskeneräisenä tietokantaan
-        update_database()
+        update_database(sceen_name)
+
+    end_screen()
 
