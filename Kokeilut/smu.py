@@ -1,51 +1,30 @@
-import mysql.connector
+# Haetaan lentoasemien indet-koodeja listaan valitusta maanosasta
+airports = ["a", "b", "c", "d"]
+# Luodaan muuttuja for loopin ulkopuolelle, jotta muistetaan käytettävä säätila
+weather_name = ""
+# Luodaan lista, joka pitää sisällään kaiken tulostettavan datan lentoasemista
+airport_data = []
 
-from Peli.main_game import flight_game
+for i in range(len(airports)):
+    # Luodaan tilapäinen lista, joka sisältää ykittäisiä arvoja lentoasemasta
+    temp = []
+    # Haetaan lentoaseman nimi
+    temp.append(airports[i])
+    # Haetaan satunnainen säätilan nimi
+    weather_name = "windy"
+    temp.append("wind blows hard")
+    # Lasketaan etäisyys
+    temp_distance = 1000
+    # Lisätään etäisyys listaan
+    temp.append(str(temp_distance))
+    # Haetaan lentokoneen koko nimenä etäisyyden perusteella
+    temp.append("big")
+    # Lisätään tilapäinen lista airport_data listaan
+    airport_data.append(temp)
 
-
-def check_if_int(value):
-    if value.isdigit():
-        return True
-    return False
-
-
-def open_database():
-    connection = mysql.connector.connect(
-        host='localhost',
-        port=3306,
-        database='flight_game',
-        user='root',
-        password='Nevermindme',
-        autocommit=True)
-    return connection
-
-
-def get_from_database(connection):
-    sql = ""
-    cursor = connection.cursor()
-    cursor.execute(sql)
-    values = cursor.fetchall()
-    return values
-
-
-def main_menu():
-    connection = open_database()
-    print("Tervetuloa lenopeliin!")
-    print("1. Uusi peli")
-    print("2. Jatka peliä")
-    print("3. Katso ennätyksiä")
-    print("4. Poistu pelistä")
-
-    while True:
-        choice = input("Valitse mitä haluat tehdä (1 - 3): ")
-        if not check_if_int(choice):
-            print("Virhe syöttö...")
-            continue
-        elif int(choice) == 1:
-            screen_name = input("Syötä nimesi: ")
-            # TODO pelaaja valitsee aloitus lentoaseman
-
-            flight_game("", screen_name)
-
-
-main_menu()
+# Tulostetaan listan arvot
+for i in range(len(airport_data)):
+    print(i)
+    for o in airport_data[i]:
+        print(o)
+    print("")

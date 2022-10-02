@@ -1,17 +1,23 @@
 import geopy.distance
 from geopy import distance
 
+from Peli.end_screen import end_screen
 
-def get_from_database(connection, column, table, where):
-    sql = "SELECT " + column + " FROM " + table + " " + where
+
+def execute_sql(connection, sql):
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
     return values
 
 
-def update_player_data(player_index, co2_consumed, travel_distance, plane_type, continent):
-    plane = ""
+def get_from_database(connection, column, table, where, distinct):
+    sql = "SELECT " + distinct + " " + column + " FROM " + table + " " + where
+    values = execute_sql(connection, sql)
+    return values
+
+
+def update_player_data(connection, player_index, co2_consumed, travel_distance, plane_type, continents_visited):
     if plane_type == "small plane":
         plane = "s_planes_used"
     elif plane_type == "medium plane":
@@ -20,63 +26,82 @@ def update_player_data(player_index, co2_consumed, travel_distance, plane_type, 
         plane = "l_planes_used"
 
     sql = "UPDATE player SET co2_consumed = co2_consumed + " + \
-          co2_consumed + ", travel_distance = travel_distance + " + travel_distance + \
-          ", " + plane + " = " + plane + " + 1, "
-    print(sql)
+          str(co2_consumed) + ", travel_distance = travel_distance + " + str(travel_distance) + \
+          ", " + plane + " = " + plane + " + 1, continents_visited = " + str(continents_visited) + \
+          " WHERE id = " + str(player_index)
+    execute_sql(connection, sql)
     return
 
 
 def flight_game(starting_airport, player_index, connection):
     # Tallenetaan aloitus lentokenttä muuttjaan (ident)
     current_airport = starting_airport
+    # Luodaan joukko, jolla pidetään muistissa maanosat, jossa pelaaja on käynyt
+    continents_visited = set()
     while True:
-        # Kaikki muutujat, joiden tietoja tallennetaan tietokantaan per lento
-        co2_consumed = 0
-        travel_distance = 0
-        plane_modifier = 0
 
         # Haetaan naapuri maanosat listaan aloitus lentoaseman maanosan perusteella
-        # TODO neighbours = get_neighbour(current_airport)
+        neighbours = get_neighbour(connection, current_airport)
 
         # Tulostetaan naapuri maanosat (for loop)
         # TODO
 
         # Pelaaja valitsee numerolla maanosan, mistä haetaan lentoasemia
         choice = input("Valitse maanosa, minne lentää (1 - X): ")
-        # TODO continent_choice = neighbours[choice]
+        continent_choice = neighbours[choice]
 
-        # Haetaan lentoasemia listaan valitusta maanosasta
-        # TODO airports = get_airports(continent_choice, count)
-        # Haetaan yhtä iso lista säätilojen nimiä, mutta tulostetaan kuvauksia (for loop)
-        # TODO weathers.append(get_weather("name", ""))
-        # Haetaan yhtä iso lista matkan pituusksia (for loop)
-        # TODO distances.append(get_distance(current_airport, airports[i]))
-        # Haetaan yhtä iso lista koneen kokoja matkojen perusteella
-        # TODO planes.append(get_plane(current_airport, airports[i]))
+        # Haetaan lentoasemien indet-koodeja listaan valitusta maanosasta
+        airports = get_airports(connection, continent_choice, 5, "ident", "")
+        # Luodaan muuttuja for loopin ulkopuolelle, jotta muistetaan käytettävä säätila
+        weather_name = ""
+        # Luodaan lista, joka pitää sisällään kaiken tulostettavan datan lentoasemista
+        airport_data = []
+        for i in range(len(airports)):
+            # Luodaan tilapäinen lista, joka sisältää ykittäisiä arvoja lentoasemasta
+            temp = []
+            # Haetaan lentoaseman nimi
+            temp.append(get_airports(connection, "", 1, "name", airports[i]))
+            # Haetaan satunnainen säätilan nimi
+            weather_name = get_weather(connection, "name", "")
+            temp.append(get_weather(connection, "desc", weather_name))
+            # Lasketaan etäisyys
+            temp_distance = get_distance(connection, current_airport, airports[i])
+            # Lisätään etäisyys listaan
+            temp.append(str(temp_distance))
+            # Haetaan lentokoneen koko nimenä etäisyyden perusteella
+            temp.append(get_plane(temp_distance, "size"))
+            # Lisätään tilapäinen lista airport_data listaan
+            airport_data.append(temp)
 
-        # Tulostetaan tieto kaikista listoista (for loop)
-        # TODO print()
+        # Tulostetaan listan arvot
+        for i in range(len(airport_data)):
+            for o in airport_data[i]:
+                print(o)
+            print("")
 
         # Pelaaja valisee lentoaseman minne, lentää listasta numerolla
-        # Tallennetaan muutujiin tieto kaikista ylläolevista listoista
         choice = input("Valitse current_airport, minne lentää (1 - X): ")
-        # TODO airport_choice = airports[choice]
-        # TODO weather = weathers[choice]
-        # TODO distance = distances[choice]
-        # TODO plane
 
         # Haetaan arvot muuttujille, jotka vaikuttavat lennon kulutukseen
-        weather_modifier = get_weather_modifier("mod", weathers[choice])
-        travel_distance = distances[choice]
+        travel_distance = get_distance(connection, current_airport, airports[choice])
         plane_modifier = get_plane(travel_distance, "mod")
+        weather_modifier = get_weather(connection, "mod", weather_name)
+
         # Lasketaan lopullinen kulutus
-        co2_consumed = calculate_consumption(distance, weather_modifier, plane_modifier)
+        co2_consumed = calculate_consumption(travel_distance, weather_modifier, plane_modifier)
+
+        # Lisätään maanosa, jonne lennettiin, joukkoon (kopioita ei lisätä)
+        current_continent = get_from_database(connection, "continent", "airport",
+                                              "WHERE ident = " + current_airport, "DISTINCT")
+        continents_visited.add(current_continent[0])
+
+        # Päivitetään tiedot tietokantaan
+        update_player_data(player_index, co2_consumed, travel_distance, len(continents_visited))
+        # Päivitetään nykyinen lentoasema
+        current_airport = airports[choice]
 
         # Katsotaan onko kaikissa maanosissa käyty
-        if get_from_database(connection, "continents_visited", "player", "where screen_name = " + sceen_name) >= 7:
+        if len(continents_visited) >= 7:
             break
-
-        # Päivitetään tiedot keskeneräisenä tietokantaan
-        update_database(sceen_name, co2_consumed, travel_distance)
 
     end_screen()

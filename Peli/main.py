@@ -19,6 +19,7 @@ def check_if_int(value):
         return True
     return False
 
+
 def print_main_menu():
     print("Tervetuloa lenopeliin!")
     print("1. Uusi peli")
@@ -40,7 +41,7 @@ def main_menu():
             screen_name = input("Syötä nimesi: ")
             # TODO pelaaja valitsee aloitus lentoaseman
             player_index = 0
-            flight_game("", screen_name, player_index, connection)
+            flight_game("", player_index, connection)
             print_main_menu()
         elif int(choice) == 2:
             screen_name = input("Syötä nimi: ")
