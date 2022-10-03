@@ -1,3 +1,5 @@
+# kommentti
+
 import mysql.connector
 
 from Peli.main_game import flight_game
