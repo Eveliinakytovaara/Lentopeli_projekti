@@ -33,6 +33,22 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     return
 
 
+def calculate_distance(connection, airport_code):
+    sql1 = 'select latitude_deg, longitude_deg from airport where ident = "' + airport_code + '"'
+    cursor = connection.cursor()
+    cursor.execute(sql1)
+    response = cursor.fetchall()
+    return response
+
+
+def get_distance(connection, current_airport, airport_choice):
+    loc1 = calculate_distance(connection, current_airport)
+    loc2 = calculate_distance(connection, airport_choice)
+    gap = distance.distance(loc1, loc2).km
+    return gap
+
+
+
 def flight_game(starting_airport, player_index, connection):
     # Tallenetaan aloitus lentokenttä muuttjaan (ident)
     current_airport = starting_airport

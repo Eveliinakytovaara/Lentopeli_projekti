@@ -6,6 +6,7 @@ import mysql.connector
 from geopy import distance
 from Peli.main_game import flight_game
 
+
 def open_database():
     connection = mysql.connector.connect(
         host='localhost',
@@ -17,19 +18,21 @@ def open_database():
     return connection
 
 
-def get_distance(connection, airport_code):
-
+def calculate_distance(connection, airport_code):
     sql1 = 'select latitude_deg, longitude_deg from airport where ident = "' + airport_code + '"'
     cursor = connection.cursor()
     cursor.execute(sql1)
     response = cursor.fetchall()
     return response
 
-current_airport = input("Enter your current airport, please: ")
-airport = input("Enter your next destination, please: ")
-connection = open_database()
-loc1= get_distance(connection, current_airport)
-loc2 = get_distance(connection, airport)
-gap = distance.distance(loc1, loc2).km
 
-print(f"Distance between {current_airport} and {airport} is {gap:.3f} km")
+def get_distance(connection, current_airport, airport_choice):
+    loc1 = calculate_distance(connection, current_airport)
+    loc2 = calculate_distance(connection, airport_choice)
+    gap = distance.distance(loc1, loc2).km
+    return gap
+
+
+connection = open_database()
+distance = get_distance(connection, "EFHK", "OMAF")
+print(f"Distance between airports is {distance:.3f} km")
