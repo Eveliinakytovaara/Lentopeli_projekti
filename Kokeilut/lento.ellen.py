@@ -1,52 +1,60 @@
 import random
 import mysql.connector
 
+
 def open_database():
-    connection = mysql.connector.connect(
+    _connection = mysql.connector.connect(
         host='localhost',
         port=3306,
         database='flight_game',
         user='root',
-        password='ellenonerva',
+        password='Nevermindme',
         autocommit=True)
-    return connection
+    return _connection
 
-def execute_sql(connection, sql):
+
+def execute_sql(_connection, sql):
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
     return values
 
-def get_from_database(connection, column, table, where, distinct):
-    sql = "SELECT " + distinct + " " + column + " FROM " + table + " " + where
-    values = execute_sql(connection, sql)
+
+def get_from_database(_connection, column, table, where):
+    sql = "SELECT " + column + " FROM " + table + " " + where
+    values = execute_sql(_connection, sql)
     return values
+
+
 def cleanup_list(s):
     for i in range(len(s)):
-        s[i] = str(s[i]).replace("('", "")
-        s[i] = str(s[i]).replace("',)", "")
+        s[i] = str(s[i]).replace("'", "")
+        s[i] = str(s[i]).replace("(", "")
+        s[i] = str(s[i]).replace(")", "")
+        s[i] = str(s[i]).replace(",", "")
     return s
-def get_weather(connection, type, is_random):
-    if type == "name":
+
+
+def get_weather(_connection, _type, weather_name):
+    if _type == "name":
         data_type = "name"
-    elif type == "mod":
-        data_type = "mod"
+    elif _type == "mod":
+        data_type = "modifier"
     else:
-        data_type = "desc"
+        data_type = "description"
 
-    if is_random == "":
-        index = random.randint(0, 10)
+    if weather_name == "":
+        index = random.randint(1, 11)
     else:
-        temp_index = get_from_database(connection, "id",
-                                  "weather", "where name = '" + is_random + "'", "")
-
+        temp_index = get_from_database(_connection, "id",
+                                       "weather", "where name = '" + weather_name + "'")
         temp_index = cleanup_list(temp_index)
-        print(temp_index)
         index = int(temp_index[0])
+    values = get_from_database(_connection, data_type, "weather", "where id = '" + str(index) + "'")
+    values = cleanup_list(values)
+    return values[0]
 
-    value = get_from_database(connection, data_type, "weather", "where id = '" + str(index) + "'", "")
-    return cleanup_list(value)
 
 connection = open_database()
-weather = get_weather(connection, "mod", "sunny")
+weather = get_weather(connection, "desc", "")
 print(weather)

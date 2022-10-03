@@ -4,7 +4,6 @@
 
 from geopy import distance
 import mysql
-from Peli.main_game import flight
 
 def open_database():
     connection = mysql.connector.connect(

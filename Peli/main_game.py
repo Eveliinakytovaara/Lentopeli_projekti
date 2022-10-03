@@ -1,6 +1,5 @@
-import geopy.distance
+from random import random
 from geopy import distance
-
 from Peli.end_screen import end_screen
 
 
@@ -11,10 +10,19 @@ def execute_sql(connection, sql):
     return values
 
 
-def get_from_database(connection, column, table, where, distinct):
-    sql = "SELECT " + distinct + " " + column + " FROM " + table + " " + where
+def get_from_database(connection, column, table, where):
+    sql = "SELECT " + " " + column + " FROM " + table + " " + where
     values = execute_sql(connection, sql)
     return values
+
+
+def remove_pointless(s):
+    for i in range(len(s)):
+        s[i] = str(s[i]).replace("'", "")
+        s[i] = str(s[i]).replace("(", "")
+        s[i] = str(s[i]).replace(")", "")
+        s[i] = str(s[i]).replace(",", "")
+    return s
 
 
 def update_player_data(connection, player_index, co2_consumed, travel_distance, plane_type, continents_visited):
@@ -34,10 +42,8 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
 
 
 def calculate_distance(connection, airport_code):
-    sql1 = 'select latitude_deg, longitude_deg from airport where ident = "' + airport_code + '"'
-    cursor = connection.cursor()
-    cursor.execute(sql1)
-    response = cursor.fetchall()
+    sql = get_from_database(connection, "latitude_deg, longitude_deg", "airport", "where ident '" + airport_code + "'")
+    response = execute_sql(connection, sql)
     return response
 
 
@@ -47,6 +53,30 @@ def get_distance(connection, current_airport, airport_choice):
     gap = distance.distance(loc1, loc2).km
     return gap
 
+
+def get_weather(_connection, _type, weather_name):
+    if _type == "name":
+        data_type = "name"
+    elif _type == "mod":
+        data_type = "modifier"
+    else:
+        data_type = "description"
+
+    if weather_name == "":
+        index = random.randint(1, 11)
+    else:
+        temp_indexes = get_from_database(_connection, "id",
+                                         "weather", "where name = '" + weather_name + "'")
+        temp_indexes = remove_pointless(temp_indexes)
+        index = int(temp_indexes[0])
+    values = get_from_database(_connection, data_type, "weather", "where id = '" + str(index) + "'")
+    values = remove_pointless(values)
+    return values[0]
+
+
+def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
+    calc = travel_distance * weather_modifier * plane_modifier
+    return calc
 
 
 def flight_game(starting_airport, player_index, connection):
@@ -61,6 +91,8 @@ def flight_game(starting_airport, player_index, connection):
 
         # Tulostetaan naapuri maanosat (for loop)
         # TODO
+        for x in neighbours:
+            print(x)
 
         # Pelaaja valitsee numerolla maanosan, mistä haetaan lentoasemia
         choice = input("Valitse maanosa, minne lentää (1 - X): ")
@@ -100,15 +132,15 @@ def flight_game(starting_airport, player_index, connection):
 
         # Haetaan arvot muuttujille, jotka vaikuttavat lennon kulutukseen
         travel_distance = get_distance(connection, current_airport, airports[choice])
-        plane_modifier = get_plane(travel_distance, "mod")
-        weather_modifier = get_weather(connection, "mod", weather_name)
+        plane_modifier = float(get_plane(travel_distance, "mod"))
+        weather_modifier = float(get_weather(connection, "mod", weather_name))
 
         # Lasketaan lopullinen kulutus
         co2_consumed = calculate_consumption(travel_distance, weather_modifier, plane_modifier)
 
         # Lisätään maanosa, jonne lennettiin, joukkoon (kopioita ei lisätä)
         current_continent = get_from_database(connection, "continent", "airport",
-                                              "WHERE ident = " + current_airport, "DISTINCT")
+                                              "WHERE ident = " + current_airport)
         continents_visited.add(current_continent[0])
 
         # Päivitetään tiedot tietokantaan
