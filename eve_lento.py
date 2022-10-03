@@ -35,4 +35,4 @@ def get_distance(connection, current_airport, airport_choice):
 
 connection = open_database()
 distance = get_distance(connection, "EFHK", "OMAF")
-print(f"Distance between airports is {distance:.3f} km")
+print(f"Distance between airports is {distance} km")
