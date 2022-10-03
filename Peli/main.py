@@ -1,6 +1,6 @@
 import mysql.connector
 
-from Peli.main_game import flight_game
+from Peli.main_game import flight_game, execute_sql
 
 
 def open_database():
@@ -29,6 +29,12 @@ def print_main_menu():
     return
 
 
+def create_player(connection, screen_name, starting_airport):
+    sql = "Insert Into player (" + screen_name + ", 0, 0, " + starting_airport + ", 0, 0, 0, 0, 0)"
+    execute_sql(connection, sql)
+    return
+
+
 def main_menu():
     connection = open_database()
     print_main_menu()
@@ -40,8 +46,18 @@ def main_menu():
         elif int(choice) == 1:
             screen_name = input("Syötä nimesi: ")
             # TODO pelaaja valitsee aloitus lentoaseman
-            player_index = 0
-            flight_game("", player_index, connection)
+
+            print("Mistä haluat aloittaa lentopelin?")
+            airports = get_airports(connection, "", 5, "name", "")
+            for i in airports:
+                print("")
+                print(i)
+            while not check_if_int(choice):
+                choice = input(f"1 - {len(airports)}: ")
+
+            create_player(connection, screen_name, airports[choice])
+
+            flight_game(airports[choice], player_index, connection)
             print_main_menu()
         elif int(choice) == 2:
             screen_name = input("Syötä nimi: ")
