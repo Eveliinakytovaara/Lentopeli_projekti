@@ -36,16 +36,25 @@ min_distance = 1200
 max_distance = 2500
 
 if distance <= min_distance:
-    print("plane small")
+    if type == "name":
+    return "small plane"
+        else:
+    return "0.75"
 
 elif distance < max_distance and distance > min_distance:
-    print("medium plane")
+    if type == "name":
+        return "medium plane"
+    else:
+        return "1.5"
 
 else:
-    print("big plane")
+    if type == "name":
+        return "big plane"
+    else:
+        return "2.0"
 
 #part2
-
+'''
 distance = int(input("type distance: "))
 
 if ?? <= distance < 1200:
@@ -54,3 +63,7 @@ if distance >= 1200 or (distance>=?? and input_distance>=1200):
     print("you can fly.")
 else:
     print("you cant fly.")
+'''
+
+
+
