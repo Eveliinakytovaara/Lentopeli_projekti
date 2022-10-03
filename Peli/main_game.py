@@ -102,6 +102,11 @@ def flight_game(starting_airport, player_index, connection):
 
         # Haetaan lentoasemien indet-koodeja listaan valitusta maanosasta
         airports = get_airports(connection, continent_choice, 5, "ident", "")
+        def get_airports(connection, continent, count, airport, type):
+            list_of_airports = set(get_from_database(connection, "name", "type", "airport", "where continent '" + continent_choice + "'"))
+            for a in list_of_airports[0:5]:
+               print(a)
+               return
         # Luodaan muuttuja for loopin ulkopuolelle, jotta muistetaan käytettävä säätila
         weather_name = ""
         # Luodaan lista, joka pitää sisällään kaiken tulostettavan datan lentoasemista
