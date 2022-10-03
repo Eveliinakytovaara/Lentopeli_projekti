@@ -1,8 +1,22 @@
-#get_plane(distance, type)
-#Palauttaa muuttjuan matkan perusteella. “type” määrittää mitä palautetaan (lentokoneen koko vai kerroin)
-#Parametri distance on float (kahden lentoaseman välinen matka) ja type string,
-# joka määrittää mitä palautetaan ("size”, “mod”)
+# calculate_consumption(distance, weather_modifier, plane_modifier)
+# Palauttaa lopullisen kulutuksen float arvona
+# Parametrit ovat float (matka), float(sään kerroin), float (lentokoneen koon kerroin)
 
+from geopy import distance
 import mysql
-from Peli.main_game import flight_game
+from Peli.main_game import flight
 
+def open_database():
+    connection = mysql.connector.connect(
+        host='localhost',
+        port=3306,
+        database='flight_game',
+        user='root',
+        password='root',
+        autocommit=True)
+    return connection
+
+
+def calculate_consumption(distance, weather_modifyer, plane_modifyer)
+    calc = distance * weather_modifyer * plane_modifyer
+    return calc
