@@ -90,10 +90,12 @@ def flight_game(starting_airport, player_index, connection):
         neighbours = get_neighbour(connection, current_airport)
 
         # Tulostetaan naapuri maanosat (for loop)
-        # TODO
-        for x in neighbours:
+        def get_neighbour(connection, current_airport):
+            neighbours = set(get_from_database(connection, "continent", "airport", "where not ident '" + current_airport + "'"))
+            for x in neighbours:
             print(x)
-
+            return
+  
         # Pelaaja valitsee numerolla maanosan, mistä haetaan lentoasemia
         choice = input("Valitse maanosa, minne lentää (1 - X): ")
         continent_choice = neighbours[choice]
