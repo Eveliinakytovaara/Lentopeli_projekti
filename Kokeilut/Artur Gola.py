@@ -37,9 +37,9 @@ max_distance = 2500
 
 if distance <= min_distance:
     if type == "name":
-    return "small plane"
-        else:
-    return "0.75"
+        return "small plane"
+    else:
+        return "0.75"
 
 elif distance < max_distance and distance > min_distance:
     if type == "name":
