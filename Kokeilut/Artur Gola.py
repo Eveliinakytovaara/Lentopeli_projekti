@@ -30,30 +30,32 @@ for line in result:
     print(f"{line[0]}, {line[1]}")
 """
 
-#part 1
+# part 1
 distance = int(input("Enter travel distance in km thousands: "))
 min_distance = 1200
 max_distance = 2500
 
-if distance <= min_distance:
-    if type == "name":
-        return "small plane"
-    else:
-        return "0.75"
 
-elif distance < max_distance and distance > min_distance:
-    if type == "name":
-        return "medium plane"
-    else:
-        return "1.5"
+def get_plane(_distance, _type):
+    if _distance <= min_distance:
+        if _type == "name":
+            return "small plane"
+        else:
+            return "0.75"
 
-else:
-    if type == "name":
-        return "big plane"
-    else:
-        return "2.0"
+    elif max_distance > _distance > min_distance:
+        if _type == "name":
+            return "medium plane"
+        else:
+            return "1.5"
 
-#part2
+    else:
+        if _type == "name":
+            return "big plane"
+        else:
+            return "2.0"
+
+# part2
 '''
 distance = int(input("type distance: "))
 
@@ -64,6 +66,3 @@ if distance >= 1200 or (distance>=?? and input_distance>=1200):
 else:
     print("you cant fly.")
 '''
-
-
-
