@@ -16,11 +16,11 @@ def open_database():
 
 def print_main_menu():
     print("")
-    print("Tervetuloa lenopeliin!")
-    print("1. Uusi peli")
-    print("2. Jatka peliä")
-    print("3. Katso ennätyksiä")
-    print("4. Poistu pelistä")
+    print("Welcome to the flight game!")
+    print("1. New game")
+    print("2. Continue the game")
+    print("3. Show the records")
+    print("4. Finish the game")
     return
 
 
@@ -43,14 +43,14 @@ def main_menu():
     connection = open_database()
     print_main_menu()
     while True:
-        choice = input("Valitse mitä haluat tehdä (1 - 4): ")
+        choice = input("Choose what you want to do (1 - 4): ")
         if not check_if_int(choice):
-            print("Virhe syöttö...")
+            print("Incorrect input...")
             continue
         elif int(choice) == 1:
-            screen_name = input("Syötä nimesi: ")
+            screen_name = input("Enter your name: ")
 
-            # print("Mistä haluat aloittaa lentopelin?")
+            # print("Where would you like to start the game?")
             # airports = get_airports(connection, "", 5, "name", "")
             # for i in airports:
             #     print("")
@@ -71,16 +71,16 @@ def main_menu():
             print(get_from_database(connection, "*", "player", "where continents_visited = 7"))
             print("")
             while True:
-                yes_no = input("Haluatko tyhjentää ennätykset (y/n)? ")
+                yes_no = input("Would you like to delete the records (y/n)? ")
                 if yes_no == "y":
                     clear_player_data(connection)
                 elif yes_no == "n":
                     break
                 else:
-                    print("virhe syöttö...")
+                    print("Incorrect input...")
             print_main_menu()
         else:
-            print("Kiitos, että pelasit!")
+            print("Thank you for playing!")
             break
 
 
