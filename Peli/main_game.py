@@ -60,14 +60,14 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
 # Suorittaa pelaajan valinnan
 def player_input(min_input, max_input):
     while True:
-        choice = input(f"Valitse({min_input} - {max_input}): ")
+        choice = input(f"Choose({min_input} - {max_input}): ")
         if check_if_int(choice):
             if min_input <= int(choice) <= max_input:
                 return int(choice) - 1
             else:
-                print(f"syötä numero {min_input} - {max_input}")
+                print(f"Enter the number {min_input} - {max_input}")
         else:
-            print("virhe syöttö...")
+            print("Incorrect input...")
 
 
 # Hakee maanosan naapurit
@@ -195,7 +195,7 @@ def flight_game(starting_airport, player_index, connection):
             print(f"{x}: {i}")
 
         # Pelaaja valitsee numerolla maanosan, mistä haetaan lentoasemia
-        print("Minne maanosaan haluat lentää?")
+        print("Which continent would you like to fly to?")
         print("")
         choice = player_input(1, len(neighbours))
         continent_choice = neighbours[int(choice)]
@@ -237,7 +237,7 @@ def flight_game(starting_airport, player_index, connection):
             print("")
 
         # Pelaaja valisee lentoaseman minne, lentää listasta numerolla
-        print("Minne haluat lentää?")
+        print("Where would you like to fly?")
         choice = player_input(1, len(airport_data))
 
         # Haetaan arvot muuttujille, jotka vaikuttavat lennon kulutukseen
@@ -268,7 +268,7 @@ def flight_game(starting_airport, player_index, connection):
             break
         else:
             # jos ei, jatketaan peliä ilmoittamalla, että missä on käynyt
-            print("Olet käynyt seuraavissa maanosissa: ")
+            print("You have visited the following continents: ")
             for i in continents_visited:
                 print(i)
 
