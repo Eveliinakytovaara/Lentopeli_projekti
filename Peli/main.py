@@ -15,6 +15,7 @@ def open_database():
 
 
 def print_main_menu():
+    print("")
     print("Tervetuloa lenopeliin!")
     print("1. Uusi peli")
     print("2. Jatka peliä")

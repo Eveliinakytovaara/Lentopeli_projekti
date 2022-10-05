@@ -52,7 +52,7 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     sql = "UPDATE player SET co2_consumed = co2_consumed + " + \
           str(co2_consumed) + ", travel_distance = travel_distance + " + str(travel_distance) + \
           ", " + plane + " = " + plane + " + 1, continents_visited = '" + str(continents_visited) + \
-          "', location = '" + location + "' WHERE id = " + str(player_index)
+          "', location = '" + location + "', number_of_flights = number_of_flights + 1 WHERE id = " + str(player_index)
     execute_sql(connection, sql)
     return
 
@@ -262,8 +262,6 @@ def flight_game(starting_airport, player_index, connection):
         # Päivitetään tiedot tietokantaan
         update_player_data(connection, player_index, co2_consumed, travel_distance,
                            get_plane(travel_distance, "name"), continent_str, airports[choice])
-        # Päivitetään nykyinen lentoasema
-        current_airport = airports[choice]
 
         # Katsotaan onko kaikissa maanosissa käyty
         if len(continents_visited) >= 7:
@@ -273,5 +271,8 @@ def flight_game(starting_airport, player_index, connection):
             print("Olet käynyt seuraavissa maanosissa: ")
             for i in continents_visited:
                 print(i)
+
+        # Päivitetään uusi lentoasema
+        current_airport = airports[choice]
 
     end_screen()
