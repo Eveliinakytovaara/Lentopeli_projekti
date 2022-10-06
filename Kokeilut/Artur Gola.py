@@ -66,3 +66,21 @@ if distance >= 1200 or (distance>=?? and input_distance>=1200):
 else:
     print("you cant fly.")
 '''
+
+# part3
+'''
+def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
+    calc = travel_distance * weather_modifier * plane_modifier
+    return calc
+
+# 3.61 tonnes co2 per big plane 1 fly in 1000km
+plane_modifier = 0,00361 per big plane, /2 per mid /4 smol plane
+'''
+
+print("           _")
+print("         -=\`\ ")
+print("     |\ ____\_\__")
+print("   -=\c`******* *`) ")
+print("      `~~~~~/ /~~`")
+print("        -==/ /")
+print("          '-'")
