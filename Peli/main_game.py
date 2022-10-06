@@ -47,7 +47,7 @@ def print_long_line():
 # Päivittää pelaajan tietoja tietokantaan
 def update_player_data(connection, player_index, co2_consumed, travel_distance, plane_type, continents_visited,
                        location):
-    if plane_type == "Turboprop":
+    if plane_type == "Light":
         plane = "s_planes_used"
     elif plane_type == "Mid-size":
         plane = "m_planes_used"
@@ -60,17 +60,22 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
           "', location = '" + location + "', number_of_flights = number_of_flights + 1 WHERE id = " + str(player_index)
     execute_sql(connection, sql)
     return
+
+
 def calculate_consumption(distance, weather_modifyer, plane_modifyer):
     calc = distance * weather_modifyer * plane_modifyer
     return calc
 
+
 # Suorittaa pelaajan valinnan
 def player_input(min_input, max_input):
     while True:
-        choice = input(f"Choose({min_input} - {max_input}): ")
+        choice = input(f"Choose({min_input} - {max_input} or 0 to quit to menu): ")
         if check_if_int(choice):
             if min_input <= int(choice) <= max_input:
                 return int(choice) - 1
+            elif int(choice) == 0:
+                return -1
             else:
                 print(f"Enter the number {min_input} - {max_input}")
         else:
@@ -158,31 +163,53 @@ def get_weather(_connection, _type, weather_name):
 
 # Hakee lentokoneen koon matkan perusteella ja palauttaa tietoa siitä
 def get_plane(_distance, _type):
-
-    min_distance = 1200
-    max_distance = 2500
+    min_distance = 3000
+    max_distance = 10000
 
     if _distance <= min_distance:
         if _type == "name":
-            return "Turboprop"
+            return "Light"
         else:
             return "0.75"
     elif max_distance > _distance > min_distance:
         if _type == "name":
             return "Mid-size"
         else:
-            return "1.5"
+            return "1"
     else:
         if _type == "name":
             return "Jumbo"
         else:
-            return "2.0"
+            return "1.5"
 
 
 # Laskee lopullisen kulutuksen matkalta
 def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
-    calc = travel_distance * weather_modifier * plane_modifier
+    calc = (travel_distance * 0.0018) * weather_modifier * plane_modifier
     return calc
+
+
+def print_vector_art():
+    i = random.randint(0, 1)
+    if i == 0:
+        print("           _")
+        print("         -=\`\ ")
+        print("     |\ ____\_\__")
+        print("   -=\c`******* *`) ")
+        print("      `~~~~~/ /~~`")
+        print("        -==/ /")
+        print("          '-'")
+    else:
+        print("                                    |")
+        print("                                    |")
+        print("                                    |")
+        print("                                  .-'-.")
+        print("                                 ' ___ '")
+        print("                       ---------'  .-.  '---------")
+        print("       _________________________'  '-'  '_________________________")
+        print("        ''''''-|---|--/    \==][^',_m_,'^][==/    \--|---|-''''''")
+        print("                      \    /  ||/   H   \||  \    /")
+        print("                       '--'   OO   O|O   OO   '--'")
 
 
 # Peli
@@ -224,7 +251,9 @@ def flight_game(starting_airport, player_index, connection):
             print(f"{x}: {get_continent_name(connection, i)}")
 
         # Pelaaja valitsee numerolla maanosan, mistä haetaan lentoasemia
-        choice = player_input(1, len(neighbours))
+        choice = player_input(0, len(neighbours))
+        if choice == -1:
+            break
         continent_choice = neighbours[int(choice)]
         print_long_line()
 
@@ -261,14 +290,18 @@ def flight_game(starting_airport, player_index, connection):
         i = 0
         for x in range(len(airport_data)):
             i += 1
+            print_long_line()
             print(f"{i}.")
             for o in airport_data[x]:
                 print(o)
-            print("")
+            print_long_line()
 
         # Pelaaja valisee lentoaseman minne, lentää listasta numerolla
+        print("")
         print("Where would you like to fly?")
-        choice = player_input(1, len(airport_data))
+        choice = player_input(0, len(airport_data))
+        if choice == -1:
+            break
         print_long_line()
 
         # Haetaan arvot muuttujille, jotka vaikuttavat lennon kulutukseen
@@ -278,6 +311,9 @@ def flight_game(starting_airport, player_index, connection):
 
         # Lasketaan lopullinen kulutus
         co2_consumed = calculate_consumption(travel_distance, weather_modifier, plane_modifier)
+
+        # Tulostetaan lentkone
+        print_vector_art()
 
         # Lisätään maanosa, jonne lennettiin, joukkoon (Joukoissa ei voi olla kopioita)
         current_continent = get_from_database(connection, "continent", "airport",
@@ -307,12 +343,13 @@ def flight_game(starting_airport, player_index, connection):
         current_airport = airports[choice]
         print_long_line()
 
-    screen_name = get_from_database(connection, "screen_name", "player", f"where id = '{player_index}'")
-    co2_consumed = get_from_database(connection, "co2_consumed", "player", f"where id = '{player_index}'")
-    travel_distance = get_from_database(connection, "travel_distance", "player", f"where id = '{player_index}'")
-    starting_location = get_from_database(connection, "starting_location", "player", f"where id = '{player_index}'")
-    s_planes_used = get_from_database(connection, "s_planes_used", "player", f"where id = '{player_index}'")
-    m_planes_used = get_from_database(connection, "m_planes_used", "player", f"where id = '{player_index}'")
-    l_planes_used = get_from_database(connection, "l_planes_used", "player", f"where id = '{player_index}'")
-    end_screen(screen_name[0], co2_consumed[0], travel_distance[0], starting_location[0],
-               s_planes_used[0], m_planes_used[0], l_planes_used[0])
+    if len(continents_visited) >= 7:
+        screen_name = get_from_database(connection, "screen_name", "player", f"where id = '{player_index}'")
+        co2_consumed = get_from_database(connection, "co2_consumed", "player", f"where id = '{player_index}'")
+        travel_distance = get_from_database(connection, "travel_distance", "player", f"where id = '{player_index}'")
+        starting_location = get_from_database(connection, "starting_location", "player", f"where id = '{player_index}'")
+        s_planes_used = get_from_database(connection, "s_planes_used", "player", f"where id = '{player_index}'")
+        m_planes_used = get_from_database(connection, "m_planes_used", "player", f"where id = '{player_index}'")
+        l_planes_used = get_from_database(connection, "l_planes_used", "player", f"where id = '{player_index}'")
+        end_screen(screen_name[0], co2_consumed[0], travel_distance[0], starting_location[0],
+                   s_planes_used[0], m_planes_used[0], l_planes_used[0])
