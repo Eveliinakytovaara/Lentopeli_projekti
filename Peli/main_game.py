@@ -156,11 +156,13 @@ def get_weather(_connection, _type, weather_name):
 
 # Hakee lentokoneen koon matkan perusteella ja palauttaa tietoa siitä
 def get_plane(_distance, _type):
+
     min_distance = 1200
     max_distance = 2500
+
     if _distance <= min_distance:
         if _type == "name":
-            return "Jumbo"
+            return "Turboprop"
         else:
             return "0.75"
     elif max_distance > _distance > min_distance:
@@ -170,7 +172,7 @@ def get_plane(_distance, _type):
             return "1.5"
     else:
         if _type == "name":
-            return "Turboprop"
+            return "Jumbo"
         else:
             return "2.0"
 

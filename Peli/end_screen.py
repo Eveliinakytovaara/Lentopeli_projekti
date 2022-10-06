@@ -1,4 +1,4 @@
-def end_screen():
+def end_screen(screen_name):
     # TODO näytä vanhat tiedot
-    print("")
+    print(f"Name: {screen_name}")
     return
