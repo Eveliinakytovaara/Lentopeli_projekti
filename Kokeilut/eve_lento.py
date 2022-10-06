@@ -1,3 +1,4 @@
+for luku in range
 # get_distance(connection, current_airport, airport_choice)
 # Palauttaa float arvon, joka on kahden lentoaseman välinen matka
 # Molemmat parametrit ovat string muuttujia (lentoasemien ident-koodi)

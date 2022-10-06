@@ -60,7 +60,9 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
           "', location = '" + location + "', number_of_flights = number_of_flights + 1 WHERE id = " + str(player_index)
     execute_sql(connection, sql)
     return
-
+def calculate_consumption(distance, weather_modifyer, plane_modifyer):
+    calc = distance * weather_modifyer * plane_modifyer
+    return calc
 
 # Suorittaa pelaajan valinnan
 def player_input(min_input, max_input):
@@ -305,4 +307,12 @@ def flight_game(starting_airport, player_index, connection):
         current_airport = airports[choice]
         print_long_line()
 
-    end_screen()
+    screen_name = get_from_database(connection, "screen_name", "player", f"where id = '{player_index}'")
+    co2_consumed = get_from_database(connection, "co2_consumed", "player", f"where id = '{player_index}'")
+    travel_distance = get_from_database(connection, "travel_distance", "player", f"where id = '{player_index}'")
+    starting_location = get_from_database(connection, "starting_location", "player", f"where id = '{player_index}'")
+    s_planes_used = get_from_database(connection, "s_planes_used", "player", f"where id = '{player_index}'")
+    m_planes_used = get_from_database(connection, "m_planes_used", "player", f"where id = '{player_index}'")
+    l_planes_used = get_from_database(connection, "l_planes_used", "player", f"where id = '{player_index}'")
+    end_screen(screen_name[0], co2_consumed[0], travel_distance[0], starting_location[0],
+               s_planes_used[0], m_planes_used[0], l_planes_used[0])
