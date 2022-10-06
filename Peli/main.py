@@ -25,10 +25,13 @@ def print_main_menu():
 
 
 def create_player(connection, screen_name, starting_airport):
-    sql = "Insert Into player (screen_name, co2_consumed, travel_distance, location, strating_location, " \
+    sql = "Insert Into player (screen_name, co2_consumed, travel_distance, location, starting_location, " \
           "number_of_flights, s_planes_used, m_planes_used, l_planes_used, continents_visited)"
-    sqll = " VALUES ('" + screen_name + "', 0, 0, '" + starting_airport + "', '" + starting_airport +\
-           "', 0, 0, 0, 0, null);"
+
+    starting_continent = get_from_database(connection, 'continent', 'airport', f'where ident = "{starting_airport}"')
+
+    sqll = f" VALUES ('{screen_name}', 0, 0, '{starting_airport}', '{starting_airport}', 0, 0, 0, 0, " \
+           f"'{starting_continent[0]}');"
     execute_sql(connection, sql + sqll)
     return
 
@@ -62,23 +65,30 @@ def main_menu():
 
             player_index = get_from_database(connection, "max(id)", "player", "")
             player_index = int(player_index[0])
-
+            print("")
             flight_game("EFHK", player_index, connection)
             print_main_menu()
         elif int(choice) == 2:
             print("")
-        elif int(choice) == 3:
-            print(get_from_database(connection, "*", "player", "where continents_visited = 7"))
+            print("Incomplete games:")
+            incomplete_games = get_from_database(connection, "id, screen_name, location", "player",
+                                                 "where CHAR_LENGTH(continents_visited) < 14")
+
+            for i in incomplete_games:
+                split_list = i.split()
+                index = 0
+                for obj in split_list:
+                    index += 1
+                    printed_string = ""
+                    if index == 2:
+                        printed_string = "Name: "
+                    elif index == 3:
+                        printed_string = "Current location: "
+                    print(printed_string + obj)
+                print("")
+
             print("")
-            while True:
-                yes_no = input("Would you like to delete the records (y/n)? ")
-                if yes_no == "y":
-                    clear_player_data(connection)
-                elif yes_no == "n":
-                    break
-                else:
-                    print("Incorrect input...")
-            print_main_menu()
+            input("")
         else:
             print("Thank you for playing!")
             break
