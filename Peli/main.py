@@ -1,15 +1,16 @@
 import mysql.connector
 
-from Peli.main_game import flight_game, execute_sql, get_from_database, check_if_int, player_input, get_airports, get_country
+from Peli.main_game import flight_game, execute_sql, get_from_database, check_if_int, player_input, get_airport, \
+    get_random_airports, get_country
 
 
 def open_database():
     _connection = mysql.connector.connect(
-        host='localhost',
+        host='127.0.0.1',
         port=3306,
         database='flight_game',
         user='root',
-        password='root',
+        password='EggAkkAnn22',
         autocommit=True)
     return _connection
 
@@ -92,12 +93,12 @@ def main_menu():
             continue
         elif int(choice) == 1:
             screen_name = input("Enter your name: ")
-            airports_codes = get_airports(connection, "EU", 5, "", "ident")
+            airports_codes = get_random_airports(connection, '', 'ident', 5)
             print("")
             print("Where would you like to start the game?")
             for i in range(len(airports_codes)):
                 print("")
-                print(f"{i + 1}.  {get_airports(connection, 'EU', 1, airports_codes[i], 'name')[0]}, {get_country(connection, airports_codes[i])}")
+                print(f"{i + 1}.  {get_airport(connection, airports_codes[i], 'name')}, {get_country(connection, airports_codes[i])}")
             print("")
             choice = player_input(1, len(airports_codes))
             if choice == -1:

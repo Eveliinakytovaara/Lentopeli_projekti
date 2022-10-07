@@ -5,7 +5,7 @@ from Peli.end_screen import end_screen
 
 # Suorittaa sql komennon
 def execute_sql(connection, sql):
-    # print(f"execute: [{sql}]")
+    print(f"execute: [{sql}]")
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
@@ -14,7 +14,7 @@ def execute_sql(connection, sql):
 
 # Hakee tietokannasta
 def get_from_database(connection, column, table, where):
-    sql = "SELECT " + " " + column + " FROM " + table + " " + where
+    sql = "SELECT " + column + " FROM " + table + " " + where
     values = execute_sql(connection, sql)
     values = remove_pointless(values)
     return values
@@ -103,20 +103,20 @@ def get_continent_name(_connection, continent):
 
 
 # Hakee lentoasemia tai tietoa tietystä lentoasemasta, mutta palauttaa aina listan
-def get_airports(_connection, continent, count, airport, _type):
-    if _type == "name":
-        data_type = "name"
-    else:
-        data_type = "ident"
+def get_airport(_connection, airport_code, _type):
+    temp_airport = get_from_database(_connection, _type, "airport", f"where ident = '{airport_code}'")
+    return temp_airport[0]
 
-    if airport == "":
-        temp_airports = get_from_database(_connection, data_type, "airport",
-                                          f"where continent = '{continent}' and type != 'heliport' and type != 'closed'"
-                                          f" ORDER BY RAND() LIMIT {count}")
-        return temp_airports
-    else:
-        temp_airport = get_from_database(_connection, data_type, "airport", f"where ident = '{airport}'")
-        return temp_airport
+
+def get_random_airports(_connection, continent_code, _type, count):
+    is_continent = ''
+    if continent_code != '':
+        is_continent = f"and continent = '{continent_code}'"
+
+    temp_airports = get_from_database(_connection, _type, "airport",
+                                      f"where type != 'heliport' and type != 'closed' {is_continent}"
+                                      f" ORDER BY RAND() LIMIT {count}")
+    return temp_airports
 
 
 # Hakee lentoaseman maan nimen ja palauttaa yhden str muutujan
@@ -237,7 +237,7 @@ def flight_game(starting_airport, player_index, connection):
     while True:
 
         # Tulostetaan missä pelaaja on
-        print(f"You are at {get_airports(connection, '', 1, current_airport, 'name')[0]}, "
+        print(f"You are at {get_airport(connection, current_airport, 'name')}, "
               f"{get_country(connection, current_airport)}")
 
         # Haetaan naapuri maanosat listaan aloitus lentoaseman maanosan perusteella
@@ -261,8 +261,8 @@ def flight_game(starting_airport, player_index, connection):
         airport_data = []
         # Luodaan erillinen tyhjä lista sään nimiä varten, joita ei tulosteta, jotta säätiloja voidaan hakea myöhemmin
         weather_name = []
-        # Luodaan toinen lista, jossa on lentoasemien ident-koodeja (ei tulosteta vaan käyetään hakemiseen)
-        airports = get_airports(connection, continent_choice, 5, "", "ident")
+        # Luodaan toinen lista, jossa on lentoasemien ident-koodeja (ei tulosteta vaan käytetään hakemiseen)
+        airports = get_random_airports(connection, continent_choice, 'ident', 5)
 
         # Luodaan sisäänrakennettu lista (listoja lisan sisällä)
         for x in range(len(airports)):
@@ -270,7 +270,7 @@ def flight_game(starting_airport, player_index, connection):
             # Tämä lista lisätään airport_data listan alkioksi
             temp = []
             # Haetaan lentoaseman nimi jo arvottujen lentoasemien koodien mukaan
-            temp_airports = get_airports(connection, "", 1, airports[x], "name")
+            temp_airports = get_airport(connection, airports[x], 'name')
             temp.append(f"{'Airport:':11s}{temp_airports[0]}")
             # Haetaan lentoaseman maan nimi
             temp.append(f"{'Country:':11s}{get_country(connection, airports[x])}")
