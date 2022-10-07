@@ -6,18 +6,28 @@ from Peli.main_game import flight_game, execute_sql, get_from_database, check_if
 
 def open_database():
     _connection = mysql.connector.connect(
-        host='127.0.0.1',
+        host='localhost',
         port=3306,
         database='flight_game',
         user='root',
-        password='EggAkkAnn22',
+        password='Nevermindme',
         autocommit=True)
     return _connection
 
 
 def print_main_menu():
     print("")
-    print("Welcome to the flight game!")
+    print("                                    |")
+    print("                                    |")
+    print("                                    |")
+    print("                                  .-'-.")
+    print("                                 ' ___ '")
+    print("                       ---------'  .-.  '---------")
+    print("       _________________________'  '-'  '_________________________")
+    print("        ''''''-|---|--/    \==][^',_m_,'^][==/    \--|---|-''''''")
+    print("                      \    /  ||/   H   \||  \    /")
+    print("                       '--'   OO   O|O   OO   '--'")
+    print("                       Welcome to the flight game!")
     print("1. New game")
     print("2. Continue the game")
     print("3. How to play?")
@@ -46,6 +56,7 @@ def clear_player_data(_connection):
 
 def show_games(games, _connection):
     if len(games) > 0:
+        number = 1
         for i in games:
             split_list = i.split()
             index = 0
@@ -53,7 +64,7 @@ def show_games(games, _connection):
                 index += 1
                 printed_string = ""
                 if index == 1:
-                    print(index)
+                    print(number)
                     continue
                 elif index == 2:
                     printed_string = "Name: "
@@ -77,6 +88,7 @@ def show_games(games, _connection):
                 print(printed_string + obj)
 
             print("")
+            number += 1
     else:
         print("No data found...")
     return
@@ -133,7 +145,6 @@ def main_menu():
             print("The lower your co2 consumption is the higher you place on the leaderboards!")
             print("Pay attention to the flight distance, weather and plane you have for flights.")
             print("They affect your co2 consumption!")
-            print("Good luck sucker!")
             input("Press enter to become a gamer...")
             print_main_menu()
         elif int(choice) == 4:

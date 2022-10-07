@@ -5,7 +5,7 @@ from Peli.end_screen import end_screen
 
 # Suorittaa sql komennon
 def execute_sql(connection, sql):
-    print(f"execute: [{sql}]")
+    # print(f"execute: [{sql}]")
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
@@ -190,26 +190,13 @@ def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
 
 
 def print_vector_art():
-    i = random.randint(0, 1)
-    if i == 0:
-        print("           _")
-        print("         -=\`\ ")
-        print("     |\ ____\_\__")
-        print("   -=\c`******* *`) ")
-        print("      `~~~~~/ /~~`")
-        print("        -==/ /")
-        print("          '-'")
-    else:
-        print("                                    |")
-        print("                                    |")
-        print("                                    |")
-        print("                                  .-'-.")
-        print("                                 ' ___ '")
-        print("                       ---------'  .-.  '---------")
-        print("       _________________________'  '-'  '_________________________")
-        print("        ''''''-|---|--/    \==][^',_m_,'^][==/    \--|---|-''''''")
-        print("                      \    /  ||/   H   \||  \    /")
-        print("                       '--'   OO   O|O   OO   '--'")
+    print("           _")
+    print("         -=\`\ ")
+    print("     |\ ____\_\__")
+    print("   -=\c`******* *`) ")
+    print("      `~~~~~/ /~~`")
+    print("        -==/ /")
+    print("          '-'")
 
 
 # Peli
@@ -271,7 +258,7 @@ def flight_game(starting_airport, player_index, connection):
             temp = []
             # Haetaan lentoaseman nimi jo arvottujen lentoasemien koodien mukaan
             temp_airports = get_airport(connection, airports[x], 'name')
-            temp.append(f"{'Airport:':11s}{temp_airports[0]}")
+            temp.append(f"{'Airport:':11s}{temp_airports}")
             # Haetaan lentoaseman maan nimi
             temp.append(f"{'Country:':11s}{get_country(connection, airports[x])}")
             # Haetaan satunnainen säätilan nimi, mutta vain kuvaus lisätään tulostettaviin
