@@ -6,11 +6,11 @@ from Peli.main_game import flight_game, execute_sql, get_from_database, check_if
 
 def open_database():
     _connection = mysql.connector.connect(
-        host='localhost',
+        host='127.0.0.1',
         port=3306,
         database='flight_game',
         user='root',
-        password='Nevermindme',
+        password='EggAkkAnn22',
         autocommit=True)
     return _connection
 
@@ -49,9 +49,13 @@ def create_player(connection, screen_name, starting_airport):
 
 
 def clear_player_data(_connection):
-    sql = "delete from player; ALTER TABLE player AUTO_INCREMENT = 1;"
+    sql = "delete from player"
+    sqql = "ALTER TABLE player AUTO_INCREMENT = 1"
     execute_sql(_connection, sql)
+    execute_sql(_connection, sqql)
     return
+
+
 
 
 def show_games(games, _connection):
