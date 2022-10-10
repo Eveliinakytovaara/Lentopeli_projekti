@@ -115,7 +115,7 @@ def show_the_high_score(connection):
                                                    " l_planes_used"
                                        , "player",
                                        "where CHAR_LENGTH(continents_visited) >= 14 "
-                                       "ORDER BY co2_consumed DESC")
+                                       "ORDER BY co2_consumed ASC")
 
     show_games(complete_games, connection)
     if len(complete_games) > 0:
