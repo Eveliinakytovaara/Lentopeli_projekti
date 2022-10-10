@@ -5,12 +5,13 @@ from Peli.main_game import flight_game, execute_sql, get_from_database, check_if
 
 
 def open_database():
+    password = input("Enter your mariaDB password:")
     _connection = mysql.connector.connect(
         host='127.0.0.1',
         port=3306,
         database='flight_game',
         user='root',
-        password='EggAkkAnn22',
+        password='password',
         autocommit=True)
     return _connection
 
