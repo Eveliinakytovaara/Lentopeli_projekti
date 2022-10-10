@@ -62,11 +62,6 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     return
 
 
-def calculate_consumption(distance, weather_modifyer, plane_modifyer):
-    calc = distance * weather_modifyer * plane_modifyer
-    return calc
-
-
 # Suorittaa pelaajan valinnan
 def player_input(min_input, max_input):
     while True:
