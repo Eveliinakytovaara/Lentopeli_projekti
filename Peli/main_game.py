@@ -5,7 +5,7 @@ from Peli.end_screen import end_screen
 
 # Suorittaa sql komennon
 def execute_sql(connection, sql):
-    # print(f"execute: [{sql}]")
+    #print(f"execute: [{sql}]")
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
@@ -143,22 +143,14 @@ def get_distance(connection, current_airport, airport_choice):
 
 
 # Hakee satunnaisen säätilan tai tietoa tietystä säätilasta
-def get_weather(_connection, _type, weather_name):
-    if _type == "name":
-        data_type = "name"
-    elif _type == "mod":
-        data_type = "modifier"
-    else:
-        data_type = "description"
+def get_random_weather(_connection, _type):
+    weather = get_from_database(_connection, _type, "weather", "ORDER BY RAND() LIMIT 1")
+    return weather[0]
 
-    if weather_name == "":
-        index = random.randint(1, 11)
-    else:
-        temp_indexes = get_from_database(_connection, "id",
-                                         "weather", "where name = '" + weather_name + "'")
-        index = int(temp_indexes[0])
-    values = get_from_database(_connection, data_type, "weather", "where id = '" + str(index) + "'")
-    return values[0]
+
+def get_weather(_connection, _type, weather):
+    weather = get_from_database(_connection, _type, "weather", "where name = '" + weather + "'")
+    return weather[0]
 
 
 # Hakee lentokoneen koon matkan perusteella ja palauttaa tietoa siitä
@@ -262,8 +254,8 @@ def flight_game(starting_airport, player_index, connection):
             # Haetaan lentoaseman maan nimi
             temp.append(f"{'Country:':11s}{get_country(connection, airports[x])}")
             # Haetaan satunnainen säätilan nimi, mutta vain kuvaus lisätään tulostettaviin
-            weather_name.append(get_weather(connection, "name", ""))
-            temp.append(f"{'Weather:':11s}{get_weather(connection, 'desc', weather_name[-1])}")
+            weather_name.append(get_random_weather(connection, "name"))
+            temp.append(f"{'Weather:':11s}{get_weather(connection, 'description', weather_name[-1])}")
             # Lasketaan etäisyys
             temp_distance = get_distance(connection, current_airport, airports[x])
             # Lisätään etäisyys listaan string muutujana
@@ -294,7 +286,7 @@ def flight_game(starting_airport, player_index, connection):
         # Haetaan arvot muuttujille, jotka vaikuttavat lennon kulutukseen
         travel_distance = get_distance(connection, current_airport, airports[choice])
         plane_modifier = float(get_plane(travel_distance, "mod"))
-        weather_modifier = float(get_weather(connection, "mod", weather_name[choice]))
+        weather_modifier = float(get_weather(connection, "modifier", weather_name[choice]))
 
         # Lasketaan lopullinen kulutus
         co2_consumed = calculate_consumption(travel_distance, weather_modifier, plane_modifier)
