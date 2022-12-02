@@ -1,0 +1,17 @@
+header{
+    font-size: xxx-large;
+    text-align: center;
+    padding: 5rem;
+    background-color:#1D3240;
+    color: #F2DAC4;
+    margin-bottom: -15px;
+    font-family: 'Bebas Neue', cursive;
+}
+p {
+    font-size: large;
+    text-align: center;
+    padding: 3rem;
+    background-color: #1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+}
