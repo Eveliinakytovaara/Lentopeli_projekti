@@ -1,8 +1,5 @@
-from Peli.main_game import check_if_int
-
-from Peli.funktiot.main_funktiot import open_database, start_a_new_game, continue_the_game, \
-    show_the_rules, show_the_high_score
-
+from Peli.kokeiluja.flight_game_and_functions import open_database, start_a_new_game, continue_the_game, \
+    show_the_rules, show_the_high_score, check_if_int
 
 def main_menu():
     connection = open_database()
