@@ -1,14 +1,19 @@
 import mysql.connector
 
+from Peli.funktiot.main_game_funktiot import *
+from Peli.main_game import flight_game
+
+def print_main_menu():
+    return
+
 
 def open_database():
-    password = input("Enter your mariaDB password: ")
     _connection = mysql.connector.connect(
         host='localhost',
         port=3306,
         database='flight_game',
         user='root',
-        password=password,
+        password='Nevermindme',
         autocommit=True)
     return _connection
 
@@ -23,6 +28,7 @@ def create_player(connection, screen_name, starting_airport):
            f"'{starting_continent[0]}');"
     execute_sql(connection, sql + sqll)
     return
+
 
 def clear_player_data(_connection):
     sql = "delete from player"
@@ -53,7 +59,6 @@ def start_a_new_game(connection):
     player_index = int(player_index[0])
     print("")
     flight_game(starting_airport, player_index, connection)
-    print_main_menu()
     return
 
 
@@ -146,5 +151,3 @@ def show_games(games, _connection):
     else:
         print("No data found...")
     return
-
-
