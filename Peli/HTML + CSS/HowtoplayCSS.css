@@ -1,0 +1,37 @@
+header{
+    font-size: x-large;
+    text-align: center;
+    padding: 4rem;
+    background-color:#1D3240;
+    color: #F2DAC4;
+    margin-bottom: -27px;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.container{
+    display: block;
+    max-block-size: auto;
+    text-align: center;
+    width: auto;
+    margin: auto;
+    line-height: 4rem;
+    font-size: 30px;
+    font-family: 'Bebas Neue', cursive;
+
+}
+ul{
+    display: inline-list-item;
+    margin: fill;
+    list-style-type: upper-roman;
+    list-style-position: inside;
+    text-align: center;
+    background-color: #1D3240;
+    padding: 4rem;
+    color: #F2DAC4;
+    line-height: 4rem;
+    width: auto;
+}
+li a{
+    font-size: x-large;
+    color: #F2DAC4;
+}
