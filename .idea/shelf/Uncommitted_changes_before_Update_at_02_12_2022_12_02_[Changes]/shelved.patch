@@ -1,0 +1,17 @@
+Index: Peli/main_game.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Peli/main_game.py b/Peli/main_game.py
+--- a/Peli/main_game.py	
++++ b/Peli/main_game.py	
+@@ -5,7 +5,7 @@
+ 
+ # Suorittaa sql komennon
+ def execute_sql(connection, sql):
+-    #print(f"execute: [{sql}]")
++    # print(f"execute: [{sql}]")
+     cursor = connection.cursor()
+     cursor.execute(sql)
+     values = cursor.fetchall()
