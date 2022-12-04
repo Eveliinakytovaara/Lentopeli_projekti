@@ -1,4 +1,6 @@
 import mysql.connector
+from Peli.funktiot.main_game_funktiot import *
+from Peli.main_game import flight_game
 
 
 def open_database():
@@ -43,9 +45,6 @@ def start_a_new_game(connection):
             f"{i + 1}.  {get_airport(connection, airports_codes[i], 'name')}, {get_country(connection, airports_codes[i])}")
     print("")
     choice = player_input(1, len(airports_codes))
-    if choice == -1:
-        print_main_menu()
-        return
     starting_airport = airports_codes[choice]
     create_player(connection, screen_name, starting_airport)
 
@@ -53,7 +52,6 @@ def start_a_new_game(connection):
     player_index = int(player_index[0])
     print("")
     flight_game(starting_airport, player_index, connection)
-    print_main_menu()
     return
 
 
@@ -68,7 +66,6 @@ def continue_the_game(connection):
             player_airport = get_from_database(connection, "location", "player",
                                                f"where id = {incomplete_games[choice][0]}")
             flight_game(player_airport[0], choice + 1, connection)
-            print_main_menu()
         else:
             print("Exiting")
             return
@@ -81,7 +78,6 @@ def show_the_rules():
     print("Pay attention to the flight distance, weather and plane you choose for flights.")
     print("They affect your co2 consumption!")
     input("Press enter to start your journey...")
-    print_main_menu()
     return
 
 
@@ -104,7 +100,6 @@ def show_the_high_score(connection):
                 break
             else:
                 break
-        print_main_menu()
         return
 
 

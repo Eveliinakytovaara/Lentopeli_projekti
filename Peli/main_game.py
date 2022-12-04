@@ -1,7 +1,7 @@
 from Peli.end_screen import end_screen
 from Peli.funktiot.main_game_funktiot import get_from_database, update_player_data, \
     calculate_consumption, player_input, get_neighbouring_continents, get_continent_name, \
-    get_airport, get_random_airports, get_country, get_distance, get_random_weather, get_weather, get_plane, check_if_int
+    get_airport, get_random_airports, get_country, get_distance, get_random_weather, get_weather, get_plane, check_if_int, ticket_check, firstclass_ticket
 
 
 # Peli
@@ -47,7 +47,6 @@ def flight_game(starting_airport, player_index, connection):
         if choice == -1:
             break
         continent_choice = neighbours[int(choice)]
-        print_long_line()
 
         # Luodaan lista, joka pitää sisällään kaiken tulostettavan datan lentoasemista
         airport_data = []
@@ -82,11 +81,9 @@ def flight_game(starting_airport, player_index, connection):
         i = 0
         for x in range(len(airport_data)):
             i += 1
-            print_long_line()
             print(f"{i}.")
             for o in airport_data[x]:
                 print(o)
-            print_long_line()
 
         # Pelaaja valisee lentoaseman minne, lentää listasta numerolla
         print("")
@@ -94,8 +91,8 @@ def flight_game(starting_airport, player_index, connection):
         choice = player_input(0, len(airport_data))
         if choice == -1:
             break
-        print_long_line()
-
+        ticket_check(airport_data)
+        firstclass_ticket()
         # Haetaan arvot muuttujille, jotka vaikuttavat lennon kulutukseen
         travel_distance = get_distance(connection, current_airport, airports[choice])
         plane_modifier = float(get_plane(travel_distance, "mod"))
@@ -103,9 +100,6 @@ def flight_game(starting_airport, player_index, connection):
 
         # Lasketaan lopullinen kulutus
         co2_consumed = calculate_consumption(travel_distance, weather_modifier, plane_modifier)
-
-        # Tulostetaan lentkone
-        print_vector_art()
 
         # Lisätään maanosa, jonne lennettiin, joukkoon (Joukoissa ei voi olla kopioita)
         current_continent = get_from_database(connection, "continent", "airport",
@@ -133,7 +127,6 @@ def flight_game(starting_airport, player_index, connection):
 
         # Päivitetään uusi lentoasema
         current_airport = airports[choice]
-        print_long_line()
 
     if len(continents_visited) >= 7:
         screen_name = get_from_database(connection, "screen_name", "player", f"where id = '{player_index}'")
