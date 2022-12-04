@@ -2,16 +2,16 @@ import mysql.connector
 import random
 from geopy import distance
 
+
 # MAIN FUNKTIOT
 
 def open_database():
-    password = input("Enter your mariaDB password: ")
     _connection = mysql.connector.connect(
         host='localhost',
         port=3306,
         database='flight_game',
         user='root',
-        password=password,
+        password='Nevermindme',
         autocommit=True)
     return _connection
 
@@ -156,7 +156,7 @@ def end_screen(screen_name, co2_consumed, travel_distance, starting_location,
     print(f"Player {screen_name} travelled {travel_distance}km.")
     print(f"Player {screen_name} started game from {starting_location}.")
     print(f"Player {screen_name} used {s_planes_used} light planes.")
-    print(f"Player {screen_name } used {m_planes_used} mid-size planes.")
+    print(f"Player {screen_name} used {m_planes_used} mid-size planes.")
     print(f"Player {screen_name} used {l_planes_used} Jumbo jets.")
     return
 
@@ -165,7 +165,7 @@ def end_screen(screen_name, co2_consumed, travel_distance, starting_location,
 
 # Suorittaa sql komennon
 def execute_sql(connection, sql):
-    #print(f"execute: [{sql}]")
+    # print(f"execute: [{sql}]")
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
@@ -216,6 +216,7 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     execute_sql(connection, sql)
     return
 
+
 # Laskee kulutuksen
 def calculate_consumption(distance, weather_modifyer, plane_modifyer):
     calc = distance * weather_modifyer * plane_modifyer
@@ -245,8 +246,7 @@ def get_neighbouring_continents(_connection, current_airport):
     for i in range(1, 5):
         temp = get_from_database(_connection, "neighbour_" + str(i), "neighbour", "where id = '" +
                                  str(continent[0]) + "'")
-        if temp[0] != "None":
-            temp_neighbour.append(temp[0])
+        temp_neighbour.append(temp[0])
 
     return temp_neighbour
 
@@ -303,6 +303,7 @@ def get_random_weather(_connection, _type):
     weather = get_from_database(_connection, _type, "weather", "ORDER BY RAND() LIMIT 1")
     return weather[0]
 
+
 # Hake sään tietokannasta
 def get_weather(_connection, _type, weather):
     weather = get_from_database(_connection, _type, "weather", "where name = '" + weather + "'")
@@ -335,6 +336,7 @@ def get_plane(_distance, _type):
 def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
     calc = (travel_distance * 0.0018) * weather_modifier * plane_modifier
     return calc
+
 
 # FLIGHT GAME
 
@@ -382,7 +384,6 @@ def flight_game(starting_airport, player_index, connection):
         if choice == -1:
             break
         continent_choice = neighbours[int(choice)]
-
 
         # Luodaan lista, joka pitää sisällään kaiken tulostettavan datan lentoasemista
         airport_data = []
