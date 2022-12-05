@@ -51,6 +51,11 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     execute_sql(connection, sql)
     return
 
+def update_player(c, id, column, value):
+    sql = f'update player set {column} = "{value}" where id = "{id}"'
+    execute_sql(c, sql)
+    return
+
 # Suorittaa pelaajan valinnan
 def player_input(min_input, max_input):
     while True:

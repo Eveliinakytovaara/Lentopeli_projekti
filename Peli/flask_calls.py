@@ -5,6 +5,7 @@ import json
 from Peli.funktiot.main_menu_funktiot.main_menu_funktiot import *
 from Peli.funktiot.main_menu_funktiot.main_game_program import *
 
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -55,6 +56,7 @@ def updatePlayer(id, column, value):
     c = open_database()
     update_player(c, id, column, value)
     return "", 200
+
 
 @app.route("/randairport/<count>")
 def randairport(count):

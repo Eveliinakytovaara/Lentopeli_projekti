@@ -84,12 +84,15 @@ async function createAirportChoices(count) {
 
 window.onload = function() {
     createAirportChoices(5);
+    localStorage.clear();
 }
 document.getElementById('newgamemenu').addEventListener('submit', async function (evt) {
     evt.preventDefault();
+
     let sname = document.querySelector('input[name=screen_name]').value;
     let starting_airport = localStorage.currentairport;
-    if (sname != "" && starting_airport != "") {
+
+    if (sname != "" && starting_airport) {
         const playerData = await makeAFetchForData('/newplayer/' + sname + '/' + starting_airport);
         localStorage.currentplayer = playerData.id
     }
