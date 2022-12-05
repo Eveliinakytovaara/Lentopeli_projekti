@@ -36,9 +36,18 @@ def drink_service():
                 print("Here's some milk!")
             elif choice_3 == "sugar":
                 print("Here's some sugar!")
-            elif choice_3 == "both":
+            else:
                 print("Here's some of both!")
         elif choice_2 == "tea":
             print("Here's some tea!")
     elif choice_2 == "No":
         print("Ok, have a nice flight!")
+
+
+def turbulence():
+    print("Dear passengers, we are experiencing some turbulence, please remain seated and fasten your seatbelts.")
+    # tähän väliin tärisemistä
+    print("Dear passengers, we need to make an emergency landing to the closest airport")
+
+
+

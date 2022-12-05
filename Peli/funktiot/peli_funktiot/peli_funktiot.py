@@ -52,12 +52,6 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     return
 
 
-def update_player(connection, id, column, value):
-    sql = f'update player set {column} = "{value}" where indent = "{id}"'
-    execute_sql(connection, sql)
-    return
-
-
 # Laskee kulutuksen
 def calculate_consumption(distance, weather_modifyer, plane_modifyer):
     calc = distance * weather_modifyer * plane_modifyer
