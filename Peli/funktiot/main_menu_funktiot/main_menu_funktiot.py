@@ -1,12 +1,14 @@
 import mysql.connector
 from Peli.funktiot.main_menu_funktiot.main_game_program import *
+
+
 def open_database():
     _connection = mysql.connector.connect(
         host='localhost',
         port=3306,
         database='flight_game',
         user='root',
-        password='EggAkkAnn22',
+        password='Nevermindme',
         autocommit=True)
     return _connection
 
@@ -140,4 +142,3 @@ def show_games(games, _connection):
     else:
         print("No data found...")
     return
-
