@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ee971a2-1eed-4740-b06d-1573c28402f0" name="Changes" comment="funktiot muokattu">
-      <change afterPath="$PROJECT_DIR$/Peli/funktiot/game/start_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Peli/funktiot/yhteiset_funktiot/yhteiset_funktiot.py" beforeDir="false" />
+    <list default="true" id="4ee971a2-1eed-4740-b06d-1573c28402f0" name="Changes" comment="events">
+      <change beforePath="$PROJECT_DIR$/Peli/funktiot/peli_funktiot/events.py" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/funktiot/peli_funktiot/events.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +50,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\darri\My Documents" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ellen\PycharmProjects\Lentopeli_projekti\Peli\funktiot\peli_funktiot" />
     </key>
   </component>
   <component name="RunManager">
@@ -206,7 +207,13 @@
       <option name="project" value="LOCAL" />
       <updated>1670231735527</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL−00015" summary="events">
+      <created>1670232770550</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1670232770550</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,19 +237,20 @@
     <MESSAGE value="main menu update" />
     <MESSAGE value="show_the_high_score bug fixed" />
     <MESSAGE value="get_random_weather and get_weather added" />
-    <MESSAGE value="events" />
     <MESSAGE value="." />
     <MESSAGE value="funktio kansiot" />
     <MESSAGE value="funktiot tehty" />
     <MESSAGE value="funktiot muokattu" />
-    <option name="LAST_COMMIT_MESSAGE" value="funktiot muokattu" />
+    <MESSAGE value="events" />
+    <option name="LAST_COMMIT_MESSAGE" value="events" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_program.coverage" NAME="main_game_program Coverage Results" MODIFIED="1670231598088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game.coverage" NAME="main_game Coverage Results" MODIFIED="1669980181756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main.coverage" NAME="main Coverage Results" MODIFIED="1670231182862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$yhteiset_funktiot.coverage" NAME="yhteiset_funktiot Coverage Results" MODIFIED="1670231645288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/yhteiset_funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game.coverage" NAME="main_game Coverage Results" MODIFIED="1669975200515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$events.coverage" NAME="events Coverage Results" MODIFIED="1670233823256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/peli_funktiot" />
     <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_funktiot.coverage" NAME="main_game_funktiot Coverage Results" MODIFIED="1670004639018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_funktiot.coverage" NAME="main_funktiot Coverage Results" MODIFIED="1669979250501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main.coverage" NAME="main Coverage Results" MODIFIED="1670095481846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_funktiot.coverage" NAME="main_funktiot Coverage Results" MODIFIED="1670092069534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$yhteiset_funktiot.coverage" NAME="yhteiset_funktiot Coverage Results" MODIFIED="1670231645288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/yhteiset_funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_program.coverage" NAME="main_game_program Coverage Results" MODIFIED="1670231598088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot" />
   </component>
 </project>
