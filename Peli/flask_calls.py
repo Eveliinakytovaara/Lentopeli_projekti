@@ -20,10 +20,13 @@ def newplayer(name, airport):
     data = json.dumps(answer)
     return data
 
+
 @app.route("/cleardata")
 def cleardata():
     c = open_database()
     clear_player_data(c)
+    return '', 200
+
 
 
 @app.route('/getplayer/<id>')
@@ -111,7 +114,6 @@ def getcountry(ident):
     answer = {'name': name}
     jsondata = json.dumps(answer)
     return jsondata
-
 
 
 if __name__ == '__main__':

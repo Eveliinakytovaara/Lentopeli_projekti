@@ -9,19 +9,10 @@ function errorInSearch(type) {
 //Makes a fetch for data
 async function makeAFetch(search) {
     try {
-        const response = await fetch(hostAddress + search);
-        if (response.ok) {
-            const data = await response.json();
-            return data;
-        }
-        else {
-            errorInSearch('Error in fetch request');
-            return null;
-        }
+        await fetch(hostAddress + search);
     }
     catch (error) {
         errorInSearch('Error in connection: ' + error);
-        return null;
     }
 }
 
@@ -43,13 +34,15 @@ async function makeAFetchForData(search){
     }
 }
 
-async function getRandomAirports(count){
-    
+async function getRandomAirports(count, playerData){
+    let airports = {}
+    for(i = 0; i < count; i++){
+
+    }
 }
 
-async function createAirportChoices(count){
-    const playerData = makeAFetch('')
-    let airports = getRandomAirports(count)
+async function createAirportChoices(count, playerdata){
+    let airports = getRandomAirports(count, playerdata)
 
     const container = document.getElementById('airports');
     for(i = 0; i < count; i++){
@@ -81,9 +74,9 @@ async function createAirportChoices(count){
 document.getElementById('newgamemenu').addEventListener('submit', async function (evt) {
     evt.preventDefault();
     let sname = document.querySelector('input[name=screen_name]').value;
-    let starting_airport = 'efhk';
     if (sname != "" && starting_airport != "") {
-        const playerData = makeAFetch('/newplayer/' + sname + '/' + starting_airport);
+        const playerData = makeAFetchForData('/newplayer/' + sname + '/' + starting_airport);
+        let starting_airport = 'efhk';
         localStorage.currentplayer = playerData.id
     }
     else{
