@@ -51,13 +51,6 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     execute_sql(connection, sql)
     return
 
-
-# Laskee kulutuksen
-def calculate_consumption(distance, weather_modifyer, plane_modifyer):
-    calc = distance * weather_modifyer * plane_modifyer
-    return calc
-
-
 # Suorittaa pelaajan valinnan
 def player_input(min_input, max_input):
     while True:
@@ -147,29 +140,32 @@ def get_weather(_connection, _type, weather):
 
 # Hakee lentokoneen koon matkan perusteella ja palauttaa tietoa siitä
 def get_plane(_distance, _type):
-    min_distance = 3000
-    max_distance = 10000
+    min_distance = 0
+    mid_distance = 3300
+    max_distance = 9500
 
     if _distance <= min_distance:
         if _type == "name":
             return "Light"
         else:
-            return "0.75"
-    elif max_distance > _distance > min_distance:
+            return "1.13"
+    elif max_distance > mid_distance > _distance > min_distance:
         if _type == "name":
             return "Mid-size"
         else:
-            return "1"
+            return "3.7"
     else:
         if _type == "name":
             return "Jumbo"
         else:
-            return "1.5"
-
+            return "10.4"
 
 # Laskee lopullisen kulutuksen matkalta
+# 0.79 on kerroin litroista kilogrammaan
+# 2.3 kerroin on co2 per 1 kilo poltoainesta
+
 def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
-    calc = (travel_distance * 0.0018) * weather_modifier * plane_modifier
+    calc = (((travel_distance * plane_modifier) * weather_modifier) * 0.79) * 2.3
     return calc
 
 def end_screen(screen_name, co2_consumed, travel_distance, starting_location,
