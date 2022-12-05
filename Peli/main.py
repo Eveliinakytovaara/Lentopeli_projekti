@@ -1,5 +1,6 @@
 from Peli.funktiot.main_menu_funktiot.main_menu_funktiot import *
 
+
 def main_menu():
     connection = open_database()
     while True:

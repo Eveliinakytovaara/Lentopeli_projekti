@@ -89,7 +89,7 @@ def get_neighbouring_continents(_connection, current_airport):
 # Hakee maanosan koko nimen maakoodin mukaan
 def get_continent_name(_connection, continent):
     continent_name = get_from_database(_connection, "name", "neighbour", f"where id = '{continent}'")
-    return continent_name[0]
+    return continent_name
 
 
 # Hakee lentoasemia tai tietoa tietystä lentoasemasta, mutta palauttaa aina listan

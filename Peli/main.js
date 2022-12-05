@@ -37,7 +37,6 @@ async function makeAFetchForData(search){
 async function getRandomAirports(count, playerData){
     let airports = {}
     for(i = 0; i < count; i++){
-
     }
 }
 

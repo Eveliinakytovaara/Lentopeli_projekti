@@ -2,7 +2,10 @@ from flask import Flask
 from flask_cors import CORS
 import json
 
-from Peli.kokeiluja.flight_game_and_functions import *
+from Peli.funktiot.peli_funktiot.peli_funktiot import *
+from Peli.funktiot.yhteiset_funktiot.yhteiset_funktiot import *
+from Peli.funktiot.main_menu_funktiot.main_menu_funktiot import *
+from Peli.funktiot.main_menu_funktiot.main_game_program import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -26,7 +29,6 @@ def cleardata():
     c = open_database()
     clear_player_data(c)
     return '', 200
-
 
 
 @app.route('/getplayer/<id>')
