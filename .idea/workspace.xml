@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4ee971a2-1eed-4740-b06d-1573c28402f0" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2F4jDU6L1Lb2LQc1iAgaGqh9hCL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/darri/PycharmProjects/omat_tehtävät",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\darri\My Documents" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Lentopeli_projekti" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Peli" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Peli/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ee971a2-1eed-4740-b06d-1573c28402f0" name="Changes" comment="" />
+      <created>1663758132067</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663758132067</updated>
+      <workItem from="1663758133974" duration="126000" />
+      <workItem from="1663758429922" duration="442000" />
+      <workItem from="1663943081180" duration="27000" />
+      <workItem from="1664816679471" duration="605000" />
+      <workItem from="1664904113993" duration="471000" />
+      <workItem from="1664995603174" duration="172000" />
+      <workItem from="1664995967537" duration="211000" />
+      <workItem from="1664996182173" duration="302000" />
+      <workItem from="1664996579873" duration="118000" />
+      <workItem from="1665051441887" duration="3954000" />
+      <workItem from="1665158729656" duration="9379000" />
+      <workItem from="1665238975648" duration="12026000" />
+      <workItem from="1665498796709" duration="324000" />
+      <workItem from="1666116676756" duration="316000" />
+      <workItem from="1666117193574" duration="1207000" />
+      <workItem from="1666678480004" duration="17000" />
+      <workItem from="1666680351956" duration="60000" />
+      <workItem from="1667601635476" duration="1370000" />
+      <workItem from="1669716357402" duration="1091000" />
+      <workItem from="1669885683857" duration="10637000" />
+      <workItem from="1670175013120" duration="3331000" />
+    </task>
+    <task id="LOCAL-00001" summary=".">
+      <created>1663758161222</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663758161222</updated>
+    </task>
+    <task id="LOCAL-00002" summary="test">
+      <created>1663758440876</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663758440876</updated>
+    </task>
+    <task id="LOCAL-00003" summary="get_airport funktion optimointi">
+      <created>1665164014953</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665164014953</updated>
+    </task>
+    <task id="LOCAL-00004" summary="clear_player_data update, bug fixed">
+      <created>1665240409397</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665240409397</updated>
+    </task>
+    <task id="LOCAL-00005" summary="main menu update">
+      <created>1665384107211</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665384107211</updated>
+    </task>
+    <task id="LOCAL-00006" summary="show_the_high_score bug fixed">
+      <created>1665384267291</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665384267291</updated>
+    </task>
+    <task id="LOCAL-00007" summary="get_random_weather and get_weather added">
+      <created>1665394611394</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665394611394</updated>
+    </task>
+    <task id="LOCAL-00008" summary="events">
+      <created>1670175099729</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670175099729</updated>
+    </task>
+    <task id="LOCAL-00009" summary=".">
+      <created>1670175316934</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670175316934</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="get_airport funktion optimointi" />
+    <MESSAGE value="clear_player_data update, bug fixed" />
+    <MESSAGE value="main menu update" />
+    <MESSAGE value="show_the_high_score bug fixed" />
+    <MESSAGE value="get_random_weather and get_weather added" />
+    <MESSAGE value="events" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game.coverage" NAME="main_game Coverage Results" MODIFIED="1669980181756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main.coverage" NAME="main Coverage Results" MODIFIED="1670178088283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_funktiot.coverage" NAME="main_game_funktiot Coverage Results" MODIFIED="1670004639018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_funktiot.coverage" NAME="main_funktiot Coverage Results" MODIFIED="1669979250501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
+  </component>
+</project>
