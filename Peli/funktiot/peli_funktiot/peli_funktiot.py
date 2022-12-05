@@ -1,6 +1,6 @@
 from geopy import distance
 def execute_sql(connection, sql):
-    # print(f"execute: [{sql}]")
+    print(f"execute: [{sql}]")
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()

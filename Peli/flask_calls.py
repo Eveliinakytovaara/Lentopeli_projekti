@@ -60,24 +60,29 @@ def updatePlayer(id, column, value):
 @app.route('/gethighscores')
 def gethighscores():
     c = open_database()
-    complete_games = get_from_database(c, "screen_name, co2_consumed, travel_distance, "
+    complete_games = get_from_database(c, "id, screen_name, co2_consumed, travel_distance, "
                                           "number_of_flights, s_planes_used, m_planes_used,"
                                           " l_planes_used"
                                        , "player",
                                        "where CHAR_LENGTH(continents_visited) >= 14 "
                                        "ORDER BY co2_consumed ASC")
+
     answer = {}
     for i in range(len(complete_games)):
+        splitlist = complete_games[i].split()
+        name = get_from_database(c, 'screen_name', 'player', f'where id = {splitlist[0]}')[0]
+        print(name)
         entry = {
             'number': i,
-            'name': complete_games[i],
-            'co2_consumed': complete_games[i],
-            'travel_distance': complete_games[i],
-            'number_of_flights': complete_games[i],
-            's_planes_used': complete_games[i],
-            'm_planes_used': complete_games[i],
-            'l_planes_used': complete_games[i]
+            'name': name,
+            'co2_consumed': splitlist[2],
+            'travel_distance': splitlist[3],
+            'number_of_flights': splitlist[4],
+            's_planes_used': splitlist[5],
+            'm_planes_used': splitlist[6],
+            'l_planes_used': splitlist[7]
         }
+        print(entry)
         answer.update({
             i: entry
         })
