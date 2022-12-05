@@ -1,6 +1,7 @@
 import mysql.connector
-from Peli.funktiot.peli_funktiot.peli_funktiot import *
 from Peli.funktiot.main_menu_funktiot.main_game_program import *
+
+
 def open_database():
     _connection = mysql.connector.connect(
         host='localhost',
@@ -141,4 +142,3 @@ def show_games(games, _connection):
     else:
         print("No data found...")
     return
-

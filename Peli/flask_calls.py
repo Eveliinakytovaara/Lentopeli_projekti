@@ -2,8 +2,6 @@ from flask import Flask
 from flask_cors import CORS
 import json
 
-from Peli.funktiot.peli_funktiot.peli_funktiot import *
-from Peli.funktiot.yhteiset_funktiot.yhteiset_funktiot import *
 from Peli.funktiot.main_menu_funktiot.main_menu_funktiot import *
 from Peli.funktiot.main_menu_funktiot.main_game_program import *
 
@@ -52,6 +50,12 @@ def getplayer(id):
     return data
 
 
+@app.route('/updateplayer/<id>/<column>/<value>')
+def updatePlayer(id, column, value):
+    c = open_database()
+    update_player(c, id, column, value)
+    return "", 200
+
 @app.route("/randairport/<count>")
 def randairport(count):
     c = open_database()
@@ -65,7 +69,8 @@ def randairport(count):
             'lat': get_from_database(c, 'latitude_deg', 'airport', f'where ident = "{airports[i]}"')[0],
             'lon': get_from_database(c, 'longitude_deg', 'airport', f'where ident = "{airports[i]}"')[0],
             'continent': get_from_database(c, 'continent', 'airport', f'where ident = "{airports[i]}"')[0],
-            'country_code': get_from_database(c, 'iso_country', 'airport', f'where ident = "{airports[i]}"')[0]
+            'country_code': get_from_database(c, 'iso_country', 'airport', f'where ident = "{airports[i]}"')[0],
+            'country_name': get_country(c, airports[i])
         }
         answer.update({
             i: entry

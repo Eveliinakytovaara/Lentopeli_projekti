@@ -1,4 +1,6 @@
 from Peli.funktiot.peli_funktiot.peli_funktiot import *
+
+
 def flight_game(starting_airport, player_index, connection):
     # Tallenetaan aloitus lentokenttä muuttjaan (ident-arvo)
     current_airport = starting_airport
