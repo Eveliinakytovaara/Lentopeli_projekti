@@ -22,6 +22,8 @@ def newplayer(name, airport):
 
 @app.route("/cleardata")
 def cleardata():
+    c = open_database()
+    clear_player_data(c)
 
 
 @app.route('/getplayer/<id>')

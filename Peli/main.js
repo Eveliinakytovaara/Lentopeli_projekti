@@ -25,6 +25,24 @@ async function makeAFetch(search) {
     }
 }
 
+async function makeAFetchForData(search){
+    try {
+        const response = await fetch(hostAddress + search);
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        }
+        else {
+            errorInSearch('Error in fetch request');
+            return null;
+        }
+    }
+    catch (error) {
+        errorInSearch('Error in connection: ' + error);
+        return null;
+    }
+}
+
 async function getRandomAirports(count){
     
 }
