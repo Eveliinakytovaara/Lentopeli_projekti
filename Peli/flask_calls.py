@@ -5,7 +5,6 @@ import json
 from Peli.funktiot.main_menu_funktiot.main_menu_funktiot import *
 from Peli.funktiot.main_menu_funktiot.main_game_program import *
 
-
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -56,6 +55,34 @@ def updatePlayer(id, column, value):
     c = open_database()
     update_player(c, id, column, value)
     return "", 200
+
+
+@app.route('/gethighscores')
+def gethighscores():
+    c = open_database()
+    complete_games = get_from_database(c, "screen_name, co2_consumed, travel_distance, "
+                                          "number_of_flights, s_planes_used, m_planes_used,"
+                                          " l_planes_used"
+                                       , "player",
+                                       "where CHAR_LENGTH(continents_visited) >= 14 "
+                                       "ORDER BY co2_consumed ASC")
+    answer = {}
+    for i in range(len(complete_games)):
+        entry = {
+            'number': i,
+            'name': complete_games[i],
+            'co2_consumed': complete_games[i],
+            'travel_distance': complete_games[i],
+            'number_of_flights': complete_games[i],
+            's_planes_used': complete_games[i],
+            'm_planes_used': complete_games[i],
+            'l_planes_used': complete_games[i]
+        }
+        answer.update({
+            i: entry
+        })
+    data = json.dumps(answer)
+    return data
 
 
 @app.route("/randairport/<count>")
