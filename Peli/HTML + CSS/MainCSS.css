@@ -1,12 +1,21 @@
+.centered {
+    text-align: center;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', cursive;
+    font-size: xx-large;
+    color: #F2DAC4;
+}
 
-
-.container{
+.filename{
+    text-align: center;
     width: 100%;
     margin: auto;
     font-family: 'Bebas Neue', cursive;
+
 }
-
-
 header{
     font-size: xx-large;
     text-align: center;
@@ -36,3 +45,7 @@ li a{
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
 }
+img{
+    width: 100%;
+}
+

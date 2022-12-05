@@ -82,3 +82,7 @@ document.getElementById('newgamemenu').addEventListener('submit', async function
         console.log('no name');
     }
 });
+
+document.getElementById('continuegame')
+
+
