@@ -165,7 +165,7 @@ def end_screen(screen_name, co2_consumed, travel_distance, starting_location,
 
 # Suorittaa sql komennon
 def execute_sql(connection, sql):
-    # print(f"execute: [{sql}]")
+    print(f"execute: [{sql}]")
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()

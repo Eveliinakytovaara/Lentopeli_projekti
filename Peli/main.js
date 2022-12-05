@@ -3,7 +3,7 @@
 var hostAddress = 'http://127.0.0.1:5000';
 
 function errorInSearch(type) {
-    console.log(type);
+    throw new Error(type)
 }
 
 //Makes a fetch for data
@@ -12,17 +12,35 @@ async function makeAFetch(search) {
         const response = await fetch(hostAddress + search);
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
+            return data;
         }
         else {
             errorInSearch('Error in fetch request');
+            return null;
         }
     }
     catch (error) {
         errorInSearch('Error in connection: ' + error);
+        return null;
     }
 }
 
+async function getRandomAirports(count){
+    
+}
+
+async function createAirportChoices(count){
+    const playerData = makeAFetch('')
+    let airports = getRandomAirports(count)
+
+    const container = document.getElementById('airports');
+    for(i = 0; i < count; i++){
+        let listelement = document.createElement('li');
+        
+        let linkbutton = document.createElement('a');
+
+    }
+}
 
 
 // document.getElementById('continent').addEventListener('click', async function () {
@@ -47,8 +65,8 @@ document.getElementById('newgamemenu').addEventListener('submit', async function
     let sname = document.querySelector('input[name=screen_name]').value;
     let starting_airport = 'efhk';
     if (sname != "" && starting_airport != "") {
-        console.log(hostAddress + '/newplayer/' + sname + '/' + starting_airport);
-        makeAFetch('/newplayer/' + sname + '/' + starting_airport);
+        const playerData = makeAFetch('/newplayer/' + sname + '/' + starting_airport);
+        localStorage.currentplayer = playerData.id
     }
     else{
         console.log('no name');

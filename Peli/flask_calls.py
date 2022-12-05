@@ -14,7 +14,32 @@ def newplayer(name, airport):
     connection = open_database()
     create_player(connection, name, airport)
     answer = {
-        name: "created"
+        'name': name,
+        'id': get_from_database(connection, 'id', 'player', f'where screen_name = "{name}"')
+    }
+    data = json.dumps(answer)
+    return data
+
+@app.route("/cleardata")
+def cleardata():
+
+
+@app.route('/getplayer/<id>')
+def getplayer(id):
+    c = open_database()
+    getplayer(id)
+    answer = {
+        'id': id,
+        'name': get_from_database(c, 'screen_name', 'player', f'where name = "{id}"')[0],
+        'co2_consumed': get_from_database(c, 'co2_consumed', 'player', f'where name = "{id}"')[0],
+        'travel_distance': get_from_database(c, 'travel_distance', 'player', f'where name = "{id}"')[0],
+        'location': get_from_database(c, 'location', 'player', f'where name = "{id}"')[0],
+        'starting_location': get_from_database(c, 'starting_location', 'player', f'where name = "{id}"')[0],
+        'number_of_flights': get_from_database(c, 'number_of_flights', 'player', f'where name = "{id}"')[0],
+        's_planes_used': get_from_database(c, 's_planes_used', 'player', f'where name = "{id}"')[0],
+        'm_planes_used': get_from_database(c, 'm_planes_used', 'player', f'where name = "{id}"')[0],
+        'l_planes_used': get_from_database(c, 'l_planes_used', 'player', f'where name = "{id}"')[0],
+        'continents_visited': get_from_database(c, 'continents_visited', 'player', f'where name = "{id}"')[0]
     }
     data = json.dumps(answer)
     return data
@@ -84,6 +109,7 @@ def getcountry(ident):
     answer = {'name': name}
     jsondata = json.dumps(answer)
     return jsondata
+
 
 
 if __name__ == '__main__':
