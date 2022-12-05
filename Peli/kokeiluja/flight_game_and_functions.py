@@ -1,5 +1,4 @@
 import mysql.connector
-import random
 from geopy import distance
 
 
