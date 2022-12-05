@@ -1,5 +1,4 @@
 import mysql.connector
-from Peli.funktiot.peli_funktiot.peli_funktiot import *
 from Peli.funktiot.main_menu_funktiot.main_game_program import *
 def open_database():
     _connection = mysql.connector.connect(
@@ -7,7 +6,7 @@ def open_database():
         port=3306,
         database='flight_game',
         user='root',
-        password='Nevermindme',
+        password='EggAkkAnn22',
         autocommit=True)
     return _connection
 
