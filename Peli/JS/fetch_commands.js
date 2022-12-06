@@ -7,7 +7,7 @@ function errorInSearch(type) {
 }
 
 //Makes a fetch for data
-async function makeAFetch(search) {
+async function AlterDatabase(search) {
     try {
         await fetch(hostAddress + search);
     }
@@ -16,7 +16,7 @@ async function makeAFetch(search) {
     }
 }
 
-async function makeAFetchForData(search) {
+async function FetchFromDatabase(search) {
     try {
         const response = await fetch(hostAddress + search);
         if (response.ok) {

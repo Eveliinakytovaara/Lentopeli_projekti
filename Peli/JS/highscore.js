@@ -2,7 +2,7 @@
 
 
 async function createHighscores() {
-    let highscores = await makeAFetchForData('/gethighscores');
+    let highscores = await FetchFromDatabase('/gethighscores');
     let container = document.getElementById('score');
     for (let i = 0; i < Object.keys(highscores).length; i++) {
         let single_entry = document.createElement('div');

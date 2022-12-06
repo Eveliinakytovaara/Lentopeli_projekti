@@ -1,9 +1,12 @@
 from geopy import distance
+
+
 def execute_sql(connection, sql):
     print(f"execute: [{sql}]")
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
+    cursor.close()
     return values
 
 
@@ -51,10 +54,12 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
     execute_sql(connection, sql)
     return
 
+
 def update_player(c, id, column, value):
     sql = f'update player set {column} = "{value}" where id = "{id}"'
     execute_sql(c, sql)
     return
+
 
 # Suorittaa pelaajan valinnan
 def player_input(min_input, max_input):
@@ -87,7 +92,10 @@ def get_neighbouring_continents(_connection, current_airport):
 # Hakee maanosan koko nimen maakoodin mukaan
 def get_continent_name(_connection, continent):
     continent_name = get_from_database(_connection, "name", "neighbour", f"where id = '{continent}'")
-    return continent_name
+    if len(continent_name) > 0:
+        return continent_name[0]
+    else:
+        return ""
 
 
 # Hakee lentoasemia tai tietoa tietystä lentoasemasta, mutta palauttaa aina listan
@@ -165,6 +173,7 @@ def get_plane(_distance, _type):
         else:
             return "10.4"
 
+
 # Laskee lopullisen kulutuksen matkalta
 # 0.79 on kerroin litroista kilogrammaan
 # 2.3 kerroin on co2 per 1 kilo poltoainesta
@@ -172,6 +181,7 @@ def get_plane(_distance, _type):
 def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
     calc = (((travel_distance * plane_modifier) * weather_modifier) * 0.79) * 2.3
     return calc
+
 
 def end_screen(screen_name, co2_consumed, travel_distance, starting_location,
                s_planes_used, m_planes_used, l_planes_used):

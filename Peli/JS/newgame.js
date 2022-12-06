@@ -1,7 +1,7 @@
 'use strict';
 
 async function getRandomAirports(count) {
-    let airports = await makeAFetchForData('/randairport/' + count);
+    let airports = await FetchFromDatabase('/randairport/' + count);
     return airports;
 }
 
@@ -16,7 +16,7 @@ async function createAirportChoices(count) {
 
         let linkbutton = document.createElement('a');
         linkbutton.addEventListener('click', async function(){
-            localStorage.currentairport = airports[i].ident
+            sessionStorage.setItem('airport', airports[i].ident)
             console.log(localStorage.currentairport);
         })
         
@@ -31,42 +31,24 @@ async function createAirportChoices(count) {
     }
 }
 
-
-// document.getElementById('continent').addEventListener('click', async function () {
-//     makeAFetch('/getcontinent/efhk');
-// })
-
-// document.getElementById('airport').addEventListener('click', async function () {
-//     makeAFetch('/getairport/efhk');
-// })
-
-// document.getElementById('random').addEventListener('click', async function () {
-//     makeAFetch('/randairport/5');
-// })
-
-// document.getElementById('country').addEventListener('click', async function () {
-//     makeAFetch('/getcountry/efhk');
-// })
-
 window.onload = function() {
+    sessionStorage.removeItem('airport');
+    sessionStorage.removeItem('playerid');
     createAirportChoices(5);
-    localStorage.clear();
+
 }
 document.getElementById('newgamemenu').addEventListener('submit', async function (evt) {
     evt.preventDefault();
 
     let sname = document.querySelector('input[name=screen_name]').value;
-    let starting_airport = localStorage.currentairport;
+    let starting_airport = sessionStorage.getItem('airport')
 
     if (sname != "" && starting_airport) {
-        const playerData = await makeAFetchForData('/newplayer/' + sname + '/' + starting_airport);
-        localStorage.currentplayer = playerData.id
+        const playerData = await FetchFromDatabase('/newplayer/' + sname + '/' + starting_airport);
+        sessionStorage.setItem('playerid', playerData.id);
+        window.location.replace('../HTML + CSS/game.html');
     }
     else {
         console.log('no name');
     }
 });
-
-document.getElementById('continuegame')
-
-

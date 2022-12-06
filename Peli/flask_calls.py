@@ -32,19 +32,18 @@ def cleardata():
 @app.route('/getplayer/<id>')
 def getplayer(id):
     c = open_database()
-    getplayer(id)
     answer = {
         'id': id,
-        'name': get_from_database(c, 'screen_name', 'player', f'where name = "{id}"')[0],
-        'co2_consumed': get_from_database(c, 'co2_consumed', 'player', f'where name = "{id}"')[0],
-        'travel_distance': get_from_database(c, 'travel_distance', 'player', f'where name = "{id}"')[0],
-        'location': get_from_database(c, 'location', 'player', f'where name = "{id}"')[0],
-        'starting_location': get_from_database(c, 'starting_location', 'player', f'where name = "{id}"')[0],
-        'number_of_flights': get_from_database(c, 'number_of_flights', 'player', f'where name = "{id}"')[0],
-        's_planes_used': get_from_database(c, 's_planes_used', 'player', f'where name = "{id}"')[0],
-        'm_planes_used': get_from_database(c, 'm_planes_used', 'player', f'where name = "{id}"')[0],
-        'l_planes_used': get_from_database(c, 'l_planes_used', 'player', f'where name = "{id}"')[0],
-        'continents_visited': get_from_database(c, 'continents_visited', 'player', f'where name = "{id}"')[0]
+        'name': get_from_database(c, 'screen_name', 'player', f'where id = "{id}"')[0],
+        'co2_consumed': get_from_database(c, 'co2_consumed', 'player', f'where id = "{id}"')[0],
+        'travel_distance': get_from_database(c, 'travel_distance', 'player', f'where id = "{id}"')[0],
+        'location': get_from_database(c, 'location', 'player', f'where id = "{id}"')[0],
+        'starting_location': get_from_database(c, 'starting_location', 'player', f'where id = "{id}"')[0],
+        'number_of_flights': get_from_database(c, 'number_of_flights', 'player', f'where id = "{id}"')[0],
+        's_planes_used': get_from_database(c, 's_planes_used', 'player', f'where id = "{id}"')[0],
+        'm_planes_used': get_from_database(c, 'm_planes_used', 'player', f'where id = "{id}"')[0],
+        'l_planes_used': get_from_database(c, 'l_planes_used', 'player', f'where id = "{id}"')[0],
+        'continents_visited': get_from_database(c, 'continents_visited', 'player', f'where id = "{id}"')[0]
     }
     data = json.dumps(answer)
     return data
@@ -130,18 +129,32 @@ def getairport(ident):
 
 
 # TODO: fix continent searching to make more sense
-@app.route('/getcontinent/<code>')
-def getcontinent(code):
+@app.route('/getcontinent/<ident>')
+def getcontinent(ident):
     c = open_database()
-    c_code = get_from_database(c, 'continent', 'airport', f'where ident = "{code}"')[0]
-    neigbours = get_neighbouring_continents(c, code)
+    c_code = get_from_database(c, 'continent', 'airport', f'where ident = "{ident}"')[0]
+    neigbours = get_neighbouring_continents(c, ident)
     answer = {
-        'continent': c_code,
-        'neighbour_1': neigbours[0],
-        'neighbour_2': neigbours[1],
-        'neighbour_3': neigbours[2],
-        'neighbour_4': neigbours[3],
-        'name': get_continent_name(c, c_code)
+        'continent': {
+            'code': c_code,
+            'name': get_continent_name(c, c_code)
+        },
+        'n1': {
+            'code': neigbours[0],
+            'name': get_continent_name(c, neigbours[0])
+        },
+        'n2': {
+            'code': neigbours[1],
+            'name': get_continent_name(c, neigbours[1])
+        },
+        'n3': {
+            'code': neigbours[2],
+            'name': get_continent_name(c, neigbours[2])
+        },
+        'n4': {
+            'code': neigbours[3],
+            'name': get_continent_name(c, neigbours[3])
+        }
     }
     jsondata = json.dumps(answer)
     return jsondata
