@@ -90,9 +90,10 @@ def gethighscores():
 
 
 @app.route("/randairport/<count>")
-def randairport(count):
+@app.route("/randairport/<count>/<continent>")
+def randairport(count, continent=''):
     c = open_database()
-    airports = get_random_airports(c, '', 'ident', count)
+    airports = get_random_airports(c, continent, 'ident', count)
     answer = {}
     for i in range(int(count)):
         entry = {
@@ -122,7 +123,7 @@ def getairport(ident):
         'lat': get_from_database(c, 'latitude_deg', 'airport', f'where ident = "{ident}"')[0],
         'lon': get_from_database(c, 'longitude_deg', 'airport', f'where ident = "{ident}"')[0],
         'continent': get_from_database(c, 'continent', 'airport', f'where ident = "{ident}"')[0],
-        'country_code': get_from_database(c, 'iso_country', 'airport', f'where ident = "{ident}"')[0]
+        'country_code': get_from_database(c, 'iso_country', 'airport', f'where ident = "{ident}"')[0],
     }
     jsondata = json.dumps(answer)
     return jsondata
@@ -158,6 +159,16 @@ def getcontinent(ident):
     }
     jsondata = json.dumps(answer)
     return jsondata
+
+
+@app.route("/getdistance/<aAirport>/<bAirport>")
+def getdistance(aAirport, bAirport):
+    c = open_database()
+    answer = {
+        'distance': get_distance(c, aAirport, bAirport)
+    }
+    data = json.dumps(answer)
+    return data
 
 
 # TODO: currently returns only a name. Add more data if necessary or merge with other functions

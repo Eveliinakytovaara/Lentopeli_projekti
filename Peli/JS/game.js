@@ -1,14 +1,14 @@
 'use strict';
 
-async function selectContinent(data) {
+async function continentSelection(data) {
 
     let container = document.getElementById('game');
+    container.innerHTML = "";
     let youareat = document.createElement('p');
     let ul = document.createElement('ul');
 
     youareat.innerHTML = `Hellow ${data.player.name}!<br>You are currently at ${data.airport.name}, ${data.country}`;
     youareat.innerHTML += `<br>Choose which continent to fly next...`;
-
 
     let i = 0;
     let arraydata = []
@@ -28,15 +28,59 @@ async function selectContinent(data) {
             let a = document.createElement('a');
 
             txt.innerHTML = arraydata[i][1];
+            a.addEventListener('click', function () {
+                airportSelection(data, arraydata[i]);
+            })
 
             ul.appendChild(li);
-            li.appendChild(txt);
             li.appendChild(a);
+            a.appendChild(txt);
         }
 
     }
 
     container.appendChild(youareat);
+    container.appendChild(ul);
+}
+
+async function airportSelection(playerdata, continent) {
+
+    let container = document.getElementById('game');
+    container.innerHTML = "";
+    let ul = document.createElement('ul');
+
+    let text = document.createElement('p');
+    text.innerHTML = `Oh, you want to fly to ${continent[1]}!<br>Here are some flights that I could find:`;
+
+    const randAirport = await FetchFromDatabase(`/randairport/5/${continent[0]}`);
+
+    let arraydata = [];
+    for (let key in randAirport) {
+        let temp = [];
+        temp.push(randAirport[key].name)
+        temp.push(randAirport[key].country_name)
+        // TODO: weather
+        const distance = await FetchFromDatabase(`/getdistance/${playerdata.airport.ident}/${randAirport[key].ident}`)
+        temp.push(distance.distance)
+        // TODO: planes
+        arraydata.push(temp);
+    }
+
+    for (let i = 0; i < arraydata.length; i++) {
+
+        let li = document.createElement('li');
+        let txt = document.createElement('p');
+        let a = document.createElement('a');
+
+        for (let x = 0; x < arraydata[i].length; x++) {
+            txt.innerHTML += arraydata[i][x] + '<br>';
+        }
+
+        ul.appendChild(li);
+        li.appendChild(a);
+        a.appendChild(txt);
+    }
+    container.appendChild(text);
     container.appendChild(ul);
 }
 
@@ -56,7 +100,6 @@ async function getPlayerCurrentInfo() {
         'continent': continentdata
     };
 
-    console.log(currentData);
     return currentData;
 }
 
@@ -66,7 +109,7 @@ window.onload = async function () {
 
     if (sessionStorage.getItem('playerid')) {
         let currentData = await getPlayerCurrentInfo();
-        await selectContinent(currentData);
+        await continentSelection(currentData);
     }
     else {
         console.log('no player');
