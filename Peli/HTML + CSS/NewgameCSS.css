@@ -5,4 +5,38 @@ header{
     background-color:#1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
+    margin-bottom: 5px;
+}
+
+input {
+    text-align: center;
+    height: 30px;
+    width: 100%;
+    color: #F2DAC4;
+    background-color: #1D3240;
+
+}
+p{
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color:#1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    margin-bottom: -10px;
+    margin-left: -20px;
+    outline: #2C4859 solid 10px;
+}
+
+ul{
+    list-style-type: none;
+    text-align: center;
+    height: auto;
+    background-color:#1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    width: 100%;
+    border: 10px #658DA6;
+    padding: 1rem;
+    margin: fill;
 }

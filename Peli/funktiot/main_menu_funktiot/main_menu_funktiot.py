@@ -8,7 +8,7 @@ def open_database():
         port=3306,
         database='flight_game',
         user='root',
-        password='Nevermindme',
+        password='root',
         autocommit=True)
     return _connection
 

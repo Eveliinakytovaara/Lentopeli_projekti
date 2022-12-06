@@ -5,4 +5,34 @@ header{
     background-color:#1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
+    margin-bottom: -15px;
+}
+p {
+    font-size: large;
+    text-align: center;
+    padding: 3rem;
+    background-color: #1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    margin-bottom: -13px;
+}
+ul{
+    display: inline-list-item;
+    margin: fill;
+    list-style-type: none;
+    text-align: center;
+    background-color: #1D3240;
+    padding: 5rem;
+    color: #F2DAC4;
+    line-height: 3rem;
+    font-family: 'Bebas Neue', cursive;
+}
+li a:hover{
+    background-color: #658DA6;
+}
+li a{
+    font-size: x-large;
+    box-shadow: 5px 10px #2C4859;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
 }
