@@ -49,10 +49,12 @@ def getplayer(id):
     return data
 
 
-@app.route('/updateplayer/<id>/<column>/<value>')
-def updatePlayer(id, column, value):
+@app.route('/updateplayer/<id>/<co2_consumed>/<travel_distance>/<plane_type>/<continent>/<new_ident>')
+def updatePlayer(id, co2_consumed, travel_distance, plane_type, continent,
+                 new_ident):
     c = open_database()
-    update_player(c, id, column, value)
+    continents = compare_continents(c, continent, id)
+    update_player_data(c, id, co2_consumed, travel_distance, plane_type, continents, new_ident)
     return "", 200
 
 
@@ -161,11 +163,32 @@ def getcontinent(ident):
     return jsondata
 
 
-@app.route("/getdistance/<aAirport>/<bAirport>")
-def getdistance(aAirport, bAirport):
+@app.route('/getcontinentsvisited/<playerid>')
+def getcontinentsvisited(playerid):
     c = open_database()
+    continents = get_from_database(c, 'continents_visited', 'player', f'where id = "{playerid}"')
+
+    answer = {}
+    for i in range(0, len(continents[0]), 2):
+        entry = {
+            'code': continents[0][i:i + 2],
+            'name': get_continent_name(c, continents[0][i:i + 2])
+        }
+        answer.update({
+            i: entry
+        })
+
+    data = json.dumps(answer)
+    return data
+
+
+@app.route("/getdistance/<a_airport>/<b_airport>")
+def getdistance(a_airport, b_airport):
+    c = open_database()
+    travel_distance = get_distance(c, a_airport, b_airport)
     answer = {
-        'distance': get_distance(c, aAirport, bAirport)
+        'distance': travel_distance,
+        'plane': get_plane(travel_distance, 'name')
     }
     data = json.dumps(answer)
     return data
@@ -179,6 +202,41 @@ def getcountry(ident):
     answer = {'name': name}
     jsondata = json.dumps(answer)
     return jsondata
+
+
+@app.route('/make_flight/<player_ident>/<desti_ident>')
+def make_flight(player_ident, desti_ident):
+    c = open_database()
+    travel_distance = float(get_distance(c, player_ident, desti_ident))
+    plane_modifier = float(get_plane(travel_distance, "mod"))
+
+    answer = {
+        'distance': travel_distance,
+        'plane': get_plane(travel_distance, 'name'),
+        'co2_consumed': calculate_consumption(travel_distance, 1, plane_modifier),
+        'continent': get_from_database(c, 'continent', 'airport', f'where ident = "{desti_ident}"')
+    }
+    data = json.dumps(answer)
+    return data
+
+
+@app.route('/endgame/<player_id>')
+def endgame(player_id):
+    c = open_database()
+    starting_airport = get_from_database(c, "starting_location", "player", f"where id = '{player_id}'")[0]
+    last_airport = get_from_database(c, "location", "player", f"where id = '{player_id}'")[0]
+    answer = {
+        'name': get_from_database(c, "screen_name", "player", f"where id = '{player_id}'")[0],
+        'co2_consumed': get_from_database(c, "co2_consumed", "player", f"where id = '{player_id}'")[0],
+        'travel_distance': get_from_database(c, "travel_distance", "player", f"where id = '{player_id}'")[0],
+        'starting_location': get_from_database(c, "name", "airport", f"where ident = '{starting_airport}'")[0],
+        'last_location': get_from_database(c, "name", "airport", f"where ident = '{last_airport}'")[0],
+        's_planes_used': get_from_database(c, "s_planes_used", "player", f"where id = '{player_id}'")[0],
+        'm_planes_used': get_from_database(c, "m_planes_used", "player", f"where id = '{player_id}'")[0],
+        'l_planes_used': get_from_database(c, "l_planes_used", "player", f"where id = '{player_id}'")[0]
+    }
+    data = json.dumps(answer)
+    return data
 
 
 if __name__ == '__main__':

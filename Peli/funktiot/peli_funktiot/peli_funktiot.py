@@ -98,6 +98,23 @@ def get_continent_name(_connection, continent):
         return ""
 
 
+def compare_continents(_connection, continent, player_id):
+    continents_visited = set()
+    continent_sql = get_from_database(_connection, "continents_visited", "player",
+                                      f"where id = '{player_id}'")
+    for i in range(0, len(continent_sql[0]), 2):
+        continents_visited.add(continent_sql[0][i:i + 2])
+    continents_visited.discard("No")
+    continents_visited.discard("ne")
+    continents_visited.add(continent)
+
+    continent_str = ""
+    for i in continents_visited:
+        continent_str += i
+
+    return continent_str
+
+
 # Hakee lentoasemia tai tietoa tietystä lentoasemasta, mutta palauttaa aina listan
 def get_airport(_connection, airport_code, _type):
     temp_airport = get_from_database(_connection, _type, "airport", f"where ident = '{airport_code}'")

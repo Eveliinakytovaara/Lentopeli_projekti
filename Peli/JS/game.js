@@ -1,87 +1,112 @@
 'use strict';
 
-async function continentSelection(data) {
+async function continentSelection(playerData) {
 
     let container = document.getElementById('game');
     container.innerHTML = "";
     let youareat = document.createElement('p');
     let ul = document.createElement('ul');
 
-    youareat.innerHTML = `Hellow ${data.player.name}!<br>You are currently at ${data.airport.name}, ${data.country}`;
-    youareat.innerHTML += `<br>Choose which continent to fly next...`;
+    const continents_visited = await FetchFromDatabase(`/getcontinentsvisited/${sessionStorage.getItem('playerid')}`);
+    youareat.innerHTML = `Hellow <b>${playerData.player.name}</b>! <br>You are currently at <b>${playerData.airport.name}, ${playerData.country}</b><br>`;
+    youareat.innerHTML += `You have visited the following continents: <br><b>`;
+    for (let key in continents_visited) {
+        youareat.innerHTML += continents_visited[key].name + ', '
+    }
+    youareat.innerHTML += `</b><br>Choose a continent to fly to next...`;
 
     let i = 0;
-    let arraydata = []
-    for (let key in data.continent) {
-        if (i > 0) {
-            let temp = [data.continent[key].code, data.continent[key].name];
-            arraydata.push(temp);
-        }
-        i++;
-    }
+    for (let key in playerData.continent) {
+        if (i > 0 && playerData.continent[key].name != "") {
 
-    for (let i = 0; i < arraydata.length; i++) {
-
-        if (arraydata[i][1] != "") {
             let li = document.createElement('li');
-            let txt = document.createElement('p');
             let a = document.createElement('a');
+            let txt = document.createElement('p');
 
-            txt.innerHTML = arraydata[i][1];
+
+            txt.innerHTML += playerData.continent[key].name
             a.addEventListener('click', function () {
-                airportSelection(data, arraydata[i]);
+                airportSelection(playerData, playerData.continent[key].code, playerData.continent[key].name);
             })
 
             ul.appendChild(li);
             li.appendChild(a);
             a.appendChild(txt);
         }
-
+        i++;
     }
-
     container.appendChild(youareat);
     container.appendChild(ul);
 }
 
-async function airportSelection(playerdata, continent) {
+async function airportSelection(playerdata, continent_code, continent_name) {
 
     let container = document.getElementById('game');
     container.innerHTML = "";
     let ul = document.createElement('ul');
 
     let text = document.createElement('p');
-    text.innerHTML = `Oh, you want to fly to ${continent[1]}!<br>Here are some flights that I could find:`;
+    text.innerHTML = `Oh, you want to fly to ${continent_name}!<br>Here are some flights that I could find:`;
 
-    const randAirport = await FetchFromDatabase(`/randairport/5/${continent[0]}`);
+    const randAirport = await FetchFromDatabase(`/randairport/5/${continent_code}`);
 
-    let arraydata = [];
     for (let key in randAirport) {
-        let temp = [];
-        temp.push(randAirport[key].name)
-        temp.push(randAirport[key].country_name)
-        // TODO: weather
-        const distance = await FetchFromDatabase(`/getdistance/${playerdata.airport.ident}/${randAirport[key].ident}`)
-        temp.push(distance.distance)
-        // TODO: planes
-        arraydata.push(temp);
-    }
-
-    for (let i = 0; i < arraydata.length; i++) {
 
         let li = document.createElement('li');
         let txt = document.createElement('p');
         let a = document.createElement('a');
 
-        for (let x = 0; x < arraydata[i].length; x++) {
-            txt.innerHTML += arraydata[i][x] + '<br>';
+        let temp = [];
+        temp.push(randAirport[key].name);
+        temp.push(randAirport[key].country_name);
+        // TODO: weather
+        const distance = await FetchFromDatabase(`/getdistance/${playerdata.airport.ident}/${randAirport[key].ident}`);
+        temp.push(distance.distance);
+        temp.push(distance.plane);
+        // TODO: planes
+        for (let x = 0; x < temp.length; x++) {
+            txt.innerHTML += temp[x] + '<br>';
         }
+
+        a.addEventListener('click', async function () {
+            makeFlight(playerdata.player.location, randAirport[key].ident);
+        })
 
         ul.appendChild(li);
         li.appendChild(a);
         a.appendChild(txt);
     }
+
     container.appendChild(text);
     container.appendChild(ul);
+}
+
+
+async function makeFlight(current_airport, new_airport) {
+    //TODO: calculate consumption properly
+    const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}`);
+    await AlterDatabase(`/updateplayer/${sessionStorage.getItem('playerid')}
+    /${flight.co2_consumed}/${flight.distance}/${flight.plane}/${flight.continent}/${new_airport}`);
+
+    const continents_visited = await FetchFromDatabase(`/getcontinentsvisited/${sessionStorage.getItem('playerid')}`);
+
+    if (Object.keys(continents_visited).length >= 7) {
+        endGame();
+    }
+    else {
+        const playerdata = await getPlayerCurrentInfo();
+        continentSelection(playerdata);
+    }
+}
+
+async function endGame() {
+    let container = document.getElementById('game');
+    container.innerHTML = 'winner winner, chicken dinner!'
+    AlterDatabase(`/endgame/${sessionStorage.getItem('playerid')}`);
+    const playerdata = await FetchFromDatabase('/getplayer/' + sessionStorage.getItem('playerid'));
+    for(let key in playerdata){
+        container.innerHTML += '<br>' + playerdata[key];
+    }
 }
 
 // relevant info:
@@ -102,8 +127,6 @@ async function getPlayerCurrentInfo() {
 
     return currentData;
 }
-
-
 
 window.onload = async function () {
 
