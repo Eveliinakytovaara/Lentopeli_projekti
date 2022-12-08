@@ -29,3 +29,27 @@ h1{
     line-height: 4rem;
     font-size: x-large;
 }
+li a:hover{
+    background-color: #658DA6;
+    cursor: pointer;
+}
+li{
+    background-color: #1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    text-align: center;
+    list-style-type: none;
+    padding: 1rem;
+
+}
+p{
+    background-color: #1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    text-align: center;
+    font-size: larger;
+    margin-bottom: -15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
