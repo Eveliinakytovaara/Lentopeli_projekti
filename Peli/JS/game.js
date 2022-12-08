@@ -5,7 +5,10 @@ async function continentSelection(playerData) {
     let container = document.getElementById('game');
     container.innerHTML = "";
     let youareat = document.createElement('p');
+    youareat.classList.add('sijainti');
+
     let ul = document.createElement('ul');
+    ul.classList.add('maanosat')
 
     const continents_visited = await FetchFromDatabase(`/getcontinentsvisited/${sessionStorage.getItem('playerid')}`);
     youareat.innerHTML = `Hellow <b>${playerData.player.name}</b>! <br>You are currently at <b>${playerData.airport.name}, ${playerData.country}</b><br>`;
@@ -21,17 +24,16 @@ async function continentSelection(playerData) {
 
             let li = document.createElement('li');
             let a = document.createElement('a');
-            let txt = document.createElement('p');
 
 
-            txt.innerHTML += playerData.continent[key].name
+
+            a.innerHTML += playerData.continent[key].name
             a.addEventListener('click', function () {
                 airportSelection(playerData, playerData.continent[key].code, playerData.continent[key].name);
             })
 
             ul.appendChild(li);
             li.appendChild(a);
-            a.appendChild(txt);
         }
         i++;
     }
@@ -53,7 +55,6 @@ async function airportSelection(playerdata, continent_code, continent_name) {
     for (let key in randAirport) {
 
         let li = document.createElement('li');
-        let txt = document.createElement('p');
         let a = document.createElement('a');
 
         let temp = [];
@@ -65,7 +66,7 @@ async function airportSelection(playerdata, continent_code, continent_name) {
         temp.push(distance.plane);
         // TODO: planes
         for (let x = 0; x < temp.length; x++) {
-            txt.innerHTML += temp[x] + '<br>';
+            a.innerHTML += temp[x] + '<br>';
         }
 
         a.addEventListener('click', async function () {
@@ -74,7 +75,6 @@ async function airportSelection(playerdata, continent_code, continent_name) {
 
         ul.appendChild(li);
         li.appendChild(a);
-        a.appendChild(txt);
     }
 
     container.appendChild(text);

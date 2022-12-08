@@ -12,22 +12,24 @@ async function createAirportChoices(count) {
     for (let i = 0; i < count; i++) {
 
         let listelement = document.createElement('li');
-        listelement.classList.add('airportwindow')
+        listelement.classList.add('airportwindow');
 
+        // luodaan luokka, helpompi muokata css
         let linkbutton = document.createElement('a');
+        linkbutton.classList.add('linkki');
+
         linkbutton.addEventListener('click', async function(){
             sessionStorage.setItem('airport', airports[i].ident)
             console.log(localStorage.currentairport);
         })
         
-        let text = document.createElement('p');
-        text.innerHTML += airports[i].name;
-        text.innerHTML += ', '
-        text.innerHTML += airports[i].country_name;
+
+        linkbutton.innerHTML += airports[i].name;
+        linkbutton.innerHTML += ', '
+        linkbutton.innerHTML += airports[i].country_name;
 
         container.appendChild(listelement);
         listelement.appendChild(linkbutton);
-        linkbutton.appendChild(text);
     }
 }
 

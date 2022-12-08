@@ -5,7 +5,10 @@ header{
     background-color:#1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
-    margin-bottom: 5px;
+    margin-bottom: -9px;
+    width: 100%;
+    margin-left: -65px;
+    outline: #1D3240 solid 10px;
 }
 
 input {
@@ -13,7 +16,9 @@ input {
     height: 30px;
     width: 100%;
     color: #F2DAC4;
-    background-color: #1D3240;
+    background-color:#1D3240;
+    margin-top: 25px;
+
 
 }
 p{
@@ -23,20 +28,43 @@ p{
     background-color:#1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
-    margin-bottom: -10px;
+    margin-bottom: -25px;
     margin-left: -20px;
-    outline: #2C4859 solid 10px;
+    outline: #1D3240 solid 10px;
 }
 
 ul{
-    list-style-type: none;
-    text-align: center;
-    height: auto;
-    background-color:#1D3240;
-    color: #F2DAC4;
+
     font-family: 'Bebas Neue', cursive;
     width: 100%;
-    border: 10px #658DA6;
-    padding: 1rem;
     margin: fill;
+    background-color: #1D3240;
+    text-align: center;
+    padding: 1rem;
+    color: #F2DAC4;
+    margin-bottom: -28px;
+    margin-left: -20px;
+    outline: #1D3240 solid 10px;
+}
+.airportwindow{
+    padding: 1rem;
+    background-color:#1D3240;
+    color: #F2DAC4;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Bebas Neue', cursive;
+    list-style-type: none;
+}
+
+.linkki:hover {
+    background-color: #658DA6;
+    cursor: pointer;
+}
+.airportwindow:hover{
+    background-color: #658DA6;
+    cursor: pointer;
 }

@@ -1,15 +1,31 @@
-p{
+
+
+h1{
+    background-color: #1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: -17px;
+}
+
+.sijainti{
     background-color: #1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
     font-size: larger;
     margin-bottom: -20px;
+    text-align: center;
+    line-height: 3rem;
 }
-br{
+
+.maanosat{
     background-color: #1D3240;
+    color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
     list-style-type: none;
-}
-ul{
-
+    text-align: match-parent;
+    padding: 5rem;
+    line-height: 4rem;
+    font-size: x-large;
 }
