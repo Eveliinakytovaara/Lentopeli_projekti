@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 import json
 from Peli.funktiot.peli_funktiot.peli_funktiot import *
+from Peli.funktiot.peli_funktiot.events import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -177,7 +178,7 @@ def getdistance(a_airport, b_airport):
     travel_distance = get_distance(a_airport, b_airport)
     answer = {
         'distance': travel_distance,
-        'plane': get_plane(travel_distance, 'name', travel_distance)
+        'plane': get_plane(travel_distance, 'name')
     }
     data = json.dumps(answer)
     return data
@@ -196,11 +197,14 @@ def getcountry(ident):
 def make_flight(player_ident, desti_ident):
     travel_distance = float(get_distance(player_ident, desti_ident))
     plane_modifier = float(get_plane(travel_distance, "mod"))
+    consumption = calculate_consumption(travel_distance, 1, plane_modifier)
+    if chance_of_event() == "emission free flight":
+        consumption = emission_free_flight(consumption)
 
     answer = {
         'distance': travel_distance,
         'plane': get_plane(travel_distance, 'name'),
-        'co2_consumed': calculate_consumption(travel_distance, 1, plane_modifier),
+        'co2_consumed': consumption,
         'continent': get_from_database('continent', 'airport', f'where ident = "{desti_ident}"')
     }
     data = json.dumps(answer)
