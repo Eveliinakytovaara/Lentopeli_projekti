@@ -188,7 +188,7 @@ def getdistance(a_airport, b_airport):
     travel_distance = get_distance(c, a_airport, b_airport)
     answer = {
         'distance': travel_distance,
-        'plane': get_plane(travel_distance, 'name')
+        'plane': get_plane(travel_distance, 'name', travel_distance)
     }
     data = json.dumps(answer)
     return data

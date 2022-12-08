@@ -167,10 +167,13 @@ def get_weather(_connection, _type, weather):
     weather = get_from_database(_connection, _type, "weather", "where name = '" + weather + "'")
     return weather[0]
 
-def get_plane(_connection, _type, distance):
-    plane_class = get_from_database(_connection, _type, "plane_class", f"where min_distance > {distance} "
-                                                                       f"and max_distance <= {distance}")
+
+def get_plane(_connection, _type, _distance):
+    plane_class = get_from_database(_connection, _type, "plane_class", f"where min_distance > {_distance} "
+                                                                       f"and max_distance <= {_distance}")
+    print('osuu')
     return plane_class[0]
+
 
 """
 # Hakee lentokoneen koon matkan perusteella ja palauttaa tietoa siitä
@@ -194,7 +197,7 @@ def get_plane(_distance, _type):
             return "Jumbo"
         else:
             return "10.4"
-""" #old function
+"""  # old function
 
 
 # Laskee lopullisen kulutuksen matkalta
