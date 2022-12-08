@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>LeafletJS Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+</head>
+<body>
+  <div id="map" style="width: 600px; height: 400px;"></div>
+</body>
+<script>
+  var start = [55.75, 37.61]; // moscow
+var end = [51.5074, 0.1278]; // london
+
+// coor markers with moving line
+var points = [];
+for (var i = 0; i <= 1; i += 0.01) {
+points.push([
+start[0] + (end[0] - start[0]) * i,
+start[1] + (end[1] - start[1]) * i
+]);
+}
+
+var index = 0;
+
+// map initialization
+var map = L.map('map').setView([55.75, 37.61], 5);
+
+// create object and 0 coor
+var line = L.polyline([start]).addTo(map);
+
+  // add map OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // start animation
+setInterval(function() {
+
+// new line coor
+line.setLatLngs(points.slice(0, ++index));
+map.setZoom(index / points.length * 10 + 5);
+
+// if line reach end, stop animation
+if (index === points.length) {
+clearInterval(this);
+}
+}, 20);
+</script>
