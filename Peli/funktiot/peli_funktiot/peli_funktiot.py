@@ -1,8 +1,21 @@
 from geopy import distance
+import mysql.connector
 
 
-def execute_sql(connection, sql):
+def open_database():
+    _connection = mysql.connector.connect(
+        host='localhost',
+        port=3306,
+        database='flight_game',
+        user='root',
+        password='EggAkkAnn22',
+        autocommit=True
+    )
+    return _connection
+
+def execute_sql(sql):
     print(f"execute: [{sql}]")
+    connection = open_database()
     cursor = connection.cursor()
     cursor.execute(sql)
     values = cursor.fetchall()
@@ -11,9 +24,9 @@ def execute_sql(connection, sql):
 
 
 # Hakee tietokannasta
-def get_from_database(connection, column, table, where):
+def get_from_database(column, table, where):
     sql = "SELECT " + column + " FROM " + table + " " + where
-    values = execute_sql(connection, sql)
+    values = execute_sql(sql)
     values = remove_pointless(values)
     return values
 
@@ -36,9 +49,26 @@ def check_if_int(value):
         return True
     return False
 
+def create_player(screen_name, starting_airport):
+    sql = "Insert Into player (screen_name, co2_consumed, travel_distance, location, starting_location, " \
+          "number_of_flights, s_planes_used, m_planes_used, l_planes_used, continents_visited)"
 
+    starting_continent = get_from_database('continent', 'airport', f'where ident = "{starting_airport}"')
+
+    sqll = f" VALUES ('{screen_name}', 0, 0, '{starting_airport}', '{starting_airport}', 0, 0, 0, 0, " \
+           f"'{starting_continent[0]}');"
+    execute_sql(sql + sqll)
+    return
+
+
+def clear_player_data():
+    sql = "delete from player"
+    sqql = "ALTER TABLE player AUTO_INCREMENT = 1"
+    execute_sql(sql)
+    execute_sql(sqql)
+    return
 # Päivittää pelaajan tietoja tietokantaan
-def update_player_data(connection, player_index, co2_consumed, travel_distance, plane_type, continents_visited,
+def update_player_data(player_index, co2_consumed, travel_distance, plane_type, continents_visited,
                        location):
     if plane_type == "Light":
         plane = "s_planes_used"
@@ -51,7 +81,7 @@ def update_player_data(connection, player_index, co2_consumed, travel_distance, 
           str(co2_consumed) + ", travel_distance = travel_distance + " + str(travel_distance) + \
           ", " + plane + " = " + plane + " + 1, continents_visited = '" + str(continents_visited) + \
           "', location = '" + location + "', number_of_flights = number_of_flights + 1 WHERE id = " + str(player_index)
-    execute_sql(connection, sql)
+    execute_sql(sql)
     return
 
 
@@ -77,12 +107,12 @@ def player_input(min_input, max_input):
 
 
 # Hakee maanosan naapurit
-def get_neighbouring_continents(_connection, current_airport):
-    continent = get_from_database(_connection, "distinct continent", "airport",
+def get_neighbouring_continents(current_airport):
+    continent = get_from_database("distinct continent", "airport",
                                   "where ident = '" + current_airport + "'")
     temp_neighbour = []
     for i in range(1, 5):
-        temp = get_from_database(_connection, "neighbour_" + str(i), "neighbour", "where id = '" +
+        temp = get_from_database("neighbour_" + str(i), "neighbour", "where id = '" +
                                  str(continent[0]) + "'")
         temp_neighbour.append(temp[0])
 
@@ -90,17 +120,17 @@ def get_neighbouring_continents(_connection, current_airport):
 
 
 # Hakee maanosan koko nimen maakoodin mukaan
-def get_continent_name(_connection, continent):
-    continent_name = get_from_database(_connection, "name", "neighbour", f"where id = '{continent}'")
+def get_continent_name(continent):
+    continent_name = get_from_database("name", "neighbour", f"where id = '{continent}'")
     if len(continent_name) > 0:
         return continent_name[0]
     else:
         return ""
 
 
-def compare_continents(_connection, continent, player_id):
+def compare_continents(continent, player_id):
     continents_visited = set()
-    continent_sql = get_from_database(_connection, "continents_visited", "player",
+    continent_sql = get_from_database("continents_visited", "player",
                                       f"where id = '{player_id}'")
     for i in range(0, len(continent_sql[0]), 2):
         continents_visited.add(continent_sql[0][i:i + 2])
@@ -116,60 +146,60 @@ def compare_continents(_connection, continent, player_id):
 
 
 # Hakee lentoasemia tai tietoa tietystä lentoasemasta, mutta palauttaa aina listan
-def get_airport(_connection, airport_code, _type):
-    temp_airport = get_from_database(_connection, _type, "airport", f"where ident = '{airport_code}'")
+def get_airport(airport_code, _type):
+    temp_airport = get_from_database(_type, "airport", f"where ident = '{airport_code}'")
     return temp_airport[0]
 
 
 # Hakee random lentokentän
-def get_random_airports(_connection, continent_code, _type, count):
+def get_random_airports(continent_code, _type, count):
     is_continent = ''
     if continent_code != '':
         is_continent = f"and continent = '{continent_code}'"
 
-    temp_airports = get_from_database(_connection, _type, "airport",
+    temp_airports = get_from_database(_type, "airport",
                                       f"where type != 'heliport' and type != 'closed' {is_continent}"
                                       f" ORDER BY RAND() LIMIT {count}")
     return temp_airports
 
 
 # Hakee lentoaseman maan nimen ja palauttaa yhden str muutujan
-def get_country(_connection, current_airport):
-    country_name = get_from_database(_connection, "country.name", "country, airport",
+def get_country(current_airport):
+    country_name = get_from_database("country.name", "country, airport",
                                      f"where airport.iso_country = country.iso_country and "
                                      f"airport.ident = '{current_airport}'")
     return country_name[0]
 
 
 # hakee tietokannasta lentoaseman koordinaatit
-def calculate_distance(connection, airport_code):
-    response = get_from_database(connection, "latitude_deg, longitude_deg", "airport",
+def calculate_distance(airport_code):
+    response = get_from_database("latitude_deg, longitude_deg", "airport",
                                  "where ident = '" + airport_code + "'")
     return response
 
 
 # Laskee kahden lentoaseman välisen matkan kilometereinä
-def get_distance(connection, current_airport, airport_choice):
-    loc1 = calculate_distance(connection, current_airport)
-    loc2 = calculate_distance(connection, airport_choice)
+def get_distance(current_airport, airport_choice):
+    loc1 = calculate_distance(current_airport)
+    loc2 = calculate_distance(airport_choice)
     gap = distance.distance(loc1, loc2).km
     return round(gap)
 
 
 # Hakee satunnaisen säätilan tai tietoa tietystä säätilasta
-def get_random_weather(_connection, _type):
-    weather = get_from_database(_connection, _type, "weather", "ORDER BY RAND() LIMIT 1")
+def get_random_weather(_type):
+    weather = get_from_database(_type, "weather", "ORDER BY RAND() LIMIT 1")
     return weather[0]
 
 
 # Hake sään tietokannasta
-def get_weather(_connection, _type, weather):
-    weather = get_from_database(_connection, _type, "weather", "where name = '" + weather + "'")
+def get_weather(_type, weather):
+    weather = get_from_database(_type, "weather", "where name = '" + weather + "'")
     return weather[0]
 
 
-def get_plane(_connection, _type, _distance):
-    plane_class = get_from_database(_connection, _type, "plane_class", f"where min_distance > {_distance} "
+def get_plane(_type, _distance):
+    plane_class = get_from_database(_type, "plane_class", f"where min_distance > {_distance} "
                                                                        f"and max_distance <= {_distance}")
     print('osuu')
     return plane_class[0]

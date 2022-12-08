@@ -1,37 +1,4 @@
-import mysql.connector
 from Peli.funktiot.main_menu_funktiot.main_game_program import *
-
-
-def open_database():
-    _connection = mysql.connector.connect(
-        host='localhost',
-        port=3306,
-        database='flight_game',
-        user='root',
-        password='Nevermindme',
-        autocommit=True)
-    return _connection
-
-
-def create_player(connection, screen_name, starting_airport):
-    sql = "Insert Into player (screen_name, co2_consumed, travel_distance, location, starting_location, " \
-          "number_of_flights, s_planes_used, m_planes_used, l_planes_used, continents_visited)"
-
-    starting_continent = get_from_database(connection, 'continent', 'airport', f'where ident = "{starting_airport}"')
-
-    sqll = f" VALUES ('{screen_name}', 0, 0, '{starting_airport}', '{starting_airport}', 0, 0, 0, 0, " \
-           f"'{starting_continent[0]}');"
-    execute_sql(connection, sql + sqll)
-    return
-
-
-def clear_player_data(_connection):
-    sql = "delete from player"
-    sqql = "ALTER TABLE player AUTO_INCREMENT = 1"
-    execute_sql(_connection, sql)
-    execute_sql(_connection, sqql)
-    return
-
 
 def start_a_new_game(connection):
     screen_name = input("Enter your name: ")
