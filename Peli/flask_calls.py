@@ -11,7 +11,6 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/newplayer/<name>/<airport>")
 def newplayer(name, airport):
-    connection = open_database()
     create_player(name, airport)
     answer = {
         'name': name,
@@ -196,7 +195,7 @@ def getcountry(ident):
 @app.route('/make_flight/<player_ident>/<desti_ident>')
 def make_flight(player_ident, desti_ident):
     travel_distance = float(get_distance(player_ident, desti_ident))
-    plane_modifier = float(get_plane(travel_distance, "mod"))
+    plane_modifier = float(get_plane(travel_distance, "modifier"))
     consumption = calculate_consumption(travel_distance, 1, plane_modifier)
     if chance_of_event() == "emission free flight":
         consumption = emission_free_flight(consumption)

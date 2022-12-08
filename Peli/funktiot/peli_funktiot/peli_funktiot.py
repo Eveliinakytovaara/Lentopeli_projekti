@@ -8,10 +8,11 @@ def open_database():
         port=3306,
         database='flight_game',
         user='root',
-        password='ellenonerva',
+        password='Nevermindme',
         autocommit=True
     )
     return _connection
+
 
 def execute_sql(sql):
     print(f"execute: [{sql}]")
@@ -49,6 +50,7 @@ def check_if_int(value):
         return True
     return False
 
+
 def create_player(screen_name, starting_airport):
     sql = "Insert Into player (screen_name, co2_consumed, travel_distance, location, starting_location, " \
           "number_of_flights, s_planes_used, m_planes_used, l_planes_used, continents_visited)"
@@ -67,6 +69,8 @@ def clear_player_data():
     execute_sql(sql)
     execute_sql(sqql)
     return
+
+
 # Päivittää pelaajan tietoja tietokantaan
 def update_player_data(player_index, co2_consumed, travel_distance, plane_type, continents_visited,
                        location):
@@ -198,10 +202,9 @@ def get_weather(_type, weather):
     return weather[0]
 
 
-def get_plane(_type, _distance):
-    plane_class = get_from_database(_type, "plane_class", f"where min_distance > {_distance} "
-                                                                       f"and max_distance <= {_distance}")
-    print('osuu')
+def get_plane(_distance, _type):
+    plane_class = get_from_database(_type, "planes", f"where min_distance < {str(_distance)} and max_distance >= {str(_distance)}")
+
     return plane_class[0]
 
 
@@ -242,7 +245,6 @@ def calculate_consumption(travel_distance, weather_modifier, plane_modifier):
 def end_screen(screen_name, co2_consumed, travel_distance, starting_location,
                s_planes_used, m_planes_used, l_planes_used):
     # TODO näytä vanhat tiedot
-    screen_name
     print(f"Name: {screen_name}.")
     print(f"Consumed co2 {float(co2_consumed):.2f} ton.")
     print(f"Player {screen_name} travelled {travel_distance}km.")
