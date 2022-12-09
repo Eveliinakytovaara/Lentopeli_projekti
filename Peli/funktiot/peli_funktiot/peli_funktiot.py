@@ -175,7 +175,7 @@ def get_weather(airport_code):
     data = response.json()
     name = data['weather'][0]['main']
     modifier = get_from_database("modifier", "weather", f"where name='{name}'")[0]
-    result = data['weather'][0]
+    result = data['weather'][0], modifier
     return result
 
 
