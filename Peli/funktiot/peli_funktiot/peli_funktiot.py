@@ -1,17 +1,18 @@
 from geopy import distance
 import mysql.connector
 import requests
+
+
 def get_weather(airport_code):
-    lat = get_from_database("latitude_deg", "airport", f"where ident='{airport_code}'")
-    lon = get_from_database("longitude_deg", "airport", f"where ident='{airport_code}'")
+    lat = get_from_database("latitude_deg", "airport", f"where ident='{airport_code}'")[0]
+    lon = get_from_database("longitude_deg", "airport", f"where ident='{airport_code}'")[0]
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=c9dca395b68f0f13b3cb7f4eedc59865"
+    print(lon)
+    print(lat)
     response = requests.get(url)
     data = response.json()
-    print(data)
-    return data
-    #kelvin = data['main']['temp']
-    #celsius = kelvin - 273.15
-    #print('The temperature is', round(celsius), 'degrees')
+    result = data['weather'][0]
+    return result
 
 
 def open_database():
@@ -20,7 +21,7 @@ def open_database():
         port=3306,
         database='flight_game',
         user='root',
-        password='Nevermindme',
+        password='EggAkkAnn22',
         autocommit=True
     )
     return _connection
