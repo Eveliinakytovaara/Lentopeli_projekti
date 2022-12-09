@@ -66,9 +66,11 @@ async function airportSelection(playerdata, continent_code, continent_name) {
         temp.push(distance.plane);
         temp.push(randAirport[key].weather[0]);
 
-        for (let x = 0; x < temp.length; x++) {
-            a.innerHTML += temp[x] + '<br>';
-        }
+        a.innerHTML+= 'Airport name:' + temp[0] + '<br>';
+        a.innerHTML+= 'Country:' + temp[1] + '<br>';
+        a.innerHTML+= 'Distance: ' + temp[2] + '<br>';
+        a.innerHTML+= 'Plane size:' + temp[3] +'<br>';
+        a.innerHTML+= 'Weather:' +temp[4] +'<br>';
 
         a.addEventListener('click', async function () {
             makeFlight(playerdata.player.location, randAirport[key].ident);
