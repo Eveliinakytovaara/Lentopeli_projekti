@@ -60,12 +60,12 @@ async function airportSelection(playerdata, continent_code, continent_name) {
         let temp = [];
         temp.push(randAirport[key].name);
         temp.push(randAirport[key].country_name);
-        // TODO: weather
+
         const distance = await FetchFromDatabase(`/getdistance/${playerdata.airport.ident}/${randAirport[key].ident}`);
         temp.push(distance.distance);
         temp.push(distance.plane);
-        temp.push(randAirport[key].weather[0].main);
-        // TODO: planes
+        temp.push(randAirport[key].weather[0]);
+
         for (let x = 0; x < temp.length; x++) {
             a.innerHTML += temp[x] + '<br>';
         }
@@ -73,8 +73,6 @@ async function airportSelection(playerdata, continent_code, continent_name) {
         a.addEventListener('click', async function () {
             makeFlight(playerdata.player.location, randAirport[key].ident);
         })
-
-        console.log(randAirport[key])
 
         ul.appendChild(li);
         li.appendChild(a);
