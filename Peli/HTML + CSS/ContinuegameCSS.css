@@ -36,3 +36,19 @@ li a{
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
 }
+.centered{
+    text-align: center;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    bottom: 70%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', cursive;
+    font-size: xxx-large;
+    color: #F2DAC4;
+}
+img{
+    height: 600px;
+    width: 100%;
+    margin-bottom: -20px;
+}
