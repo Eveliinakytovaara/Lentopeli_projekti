@@ -1,8 +1,8 @@
 'use strict';
 
 
-async function createHighscores() {
-    let highscores = await FetchFromDatabase('/gethighscores');
+async function createGames(url) {
+    let highscores = await FetchFromDatabase(url);
     let container = document.getElementById('score');
     for (let i = 0; i < Object.keys(highscores).length; i++) {
         let single_entry = document.createElement('div');
@@ -21,8 +21,4 @@ async function createHighscores() {
         single_entry.appendChild(txt);
         console.log(highscores[i]);
     }
-}
-
-window.onload = async function () {
-    createHighscores();
 }

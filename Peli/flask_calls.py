@@ -52,14 +52,17 @@ def updatePlayer(id, co2_consumed, travel_distance, plane_type, continent,
     return "", 200
 
 
-@app.route('/gethighscores')
-def gethighscores():
+@app.route('/getGames/<type>')
+def getGames(type):
+
     complete_games = get_from_database("id, screen_name, co2_consumed, travel_distance, "
                                           "number_of_flights, s_planes_used, m_planes_used,"
                                           " l_planes_used"
                                        , "player",
-                                       "where CHAR_LENGTH(continents_visited) >= 14 "
+                                       f"where CHAR_LENGTH(continents_visited) {type} 14 "
                                        "ORDER BY co2_consumed ASC")
+
+
 
     answer = {}
     for i in range(len(complete_games)):
