@@ -59,7 +59,7 @@
       <recent name="C:\Users\ellen\PycharmProjects\Lentopeli_projekti\Peli\funktiot\peli_funktiot" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.flask_calls">
+  <component name="RunManager">
     <configuration name="flask_calls" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Lentopeli_projekti" />
       <option name="INTERPRETER_OPTIONS" value="" />
