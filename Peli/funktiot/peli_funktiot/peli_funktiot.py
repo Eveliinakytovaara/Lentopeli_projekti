@@ -1,5 +1,17 @@
 from geopy import distance
 import mysql.connector
+import requests
+def get_weather(airport_code):
+    lat = get_from_database("latitude_deg", "airport", f"where ident='{airport_code}'")
+    lon = get_from_database("longitude_deg", "airport", f"where ident='{airport_code}'")
+    url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=c9dca395b68f0f13b3cb7f4eedc59865"
+    response = requests.get(url)
+    data = response.json()
+    print(data)
+    return data
+    #kelvin = data['main']['temp']
+    #celsius = kelvin - 273.15
+    #print('The temperature is', round(celsius), 'degrees')
 
 
 def open_database():
@@ -8,7 +20,7 @@ def open_database():
         port=3306,
         database='flight_game',
         user='root',
-        password='root',
+        password='EggAkkAnn22',
         autocommit=True
     )
     return _connection
@@ -89,9 +101,9 @@ def update_player_data(player_index, co2_consumed, travel_distance, plane_type, 
     return
 
 
-def update_player(c, id, column, value):
+def update_player(id, column, value):
     sql = f'update player set {column} = "{value}" where id = "{id}"'
-    execute_sql(c, sql)
+    execute_sql(sql)
     return
 
 

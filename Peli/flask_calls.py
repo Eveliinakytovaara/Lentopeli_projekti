@@ -8,7 +8,6 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
 @app.route("/newplayer/<name>/<airport>")
 def newplayer(name, airport):
     create_player(name, airport)
@@ -99,7 +98,8 @@ def randairport(count, continent=''):
             'lon': get_from_database('longitude_deg', 'airport', f'where ident = "{airports[i]}"')[0],
             'continent': get_from_database('continent', 'airport', f'where ident = "{airports[i]}"')[0],
             'country_code': get_from_database('iso_country', 'airport', f'where ident = "{airports[i]}"')[0],
-            'country_name': get_country(airports[i])
+            'country_name': get_country(airports[i]),
+            'weather': get_weather(airports[i])
         }
         answer.update({
             i: entry
@@ -229,4 +229,4 @@ def endgame(player_id):
 
 
 if __name__ == '__main__':
-    app.run(use_reloader=True, host='127.0.0.1', port=2000)
+    app.run(use_reloader=True, host='127.0.0.1', port=3000)
