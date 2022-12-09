@@ -8,7 +8,7 @@ def open_database():
         port=3306,
         database='flight_game',
         user='root',
-        password='EggAkkAnn22',
+        password='root',
         autocommit=True
     )
     return _connection
@@ -175,7 +175,7 @@ def get_weather(airport_code):
     data = response.json()
     name = data['weather'][0]['main']
     modifier = get_from_database("modifier", "weather", f"where name='{name}'")[0]
-    result = data['weather'][0], modifier
+    result = name, modifier
     return result
 
 

@@ -195,11 +195,12 @@ def getcountry(ident):
     return jsondata
 
 
-@app.route('/make_flight/<player_ident>/<desti_ident>')
-def make_flight(player_ident, desti_ident):
+@app.route('/make_flight/<player_ident>/<desti_ident>/<weather_mod>')
+def make_flight(player_ident, desti_ident, weather_mod):
+    weather_mod = float(get_from_database("modifier", "weather", f"where name={weather_mod}")[0])
     travel_distance = float(get_distance(player_ident, desti_ident))
     plane_modifier = float(get_plane(travel_distance, "modifier"))
-    consumption = calculate_consumption(travel_distance, 1, plane_modifier)
+    consumption = calculate_consumption(travel_distance, weather_mod, plane_modifier)
     if chance_of_event() == "emission free flight":
         consumption = emission_free_flight(consumption)
 
