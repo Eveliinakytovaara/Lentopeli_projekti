@@ -60,6 +60,7 @@ ul{
     list-style-type: none;
 }
 
+
 .linkki:hover {
     background-color: #658DA6;
     cursor: pointer;
@@ -68,3 +69,4 @@ ul{
     background-color: #658DA6;
     cursor: pointer;
 }
+//* linkit niin, että pystyy klikkaamaan mistä kohdasta vain, eikä pelkän tekstin kohdalta
