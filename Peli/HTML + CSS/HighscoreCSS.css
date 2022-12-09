@@ -22,11 +22,16 @@ ul{
     list-style-type: none;
     text-align: center;
     background-color: #1D3240;
-    padding: 5rem;
+    padding: 2rem;
     color: #F2DAC4;
-    line-height: 3rem;
+    line-height: 2rem;
     font-family: 'Bebas Neue', cursive;
 }
+
+div{
+    line-height: 25px;
+}
+
 li a:hover{
     background-color: #658DA6;
 }
