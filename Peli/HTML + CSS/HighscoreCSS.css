@@ -7,20 +7,21 @@ header{
     margin-bottom: -15px;
     font-family: 'Bebas Neue', cursive;
 }
-a{
+h1{
     font-size: x-large;
     text-align: center;
-    padding: 3rem;
+    padding: 2rem;
     background-color: #1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
-    margin-bottom: -45px;
+    margin-bottom: -20px;
+
 
 }
 p {
     font-size: larger;
     text-align: center;
-    padding: 3rem;
+    padding: 2rem;
     background-color: #1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
@@ -37,7 +38,7 @@ ul{
     line-height: 2rem;
     font-family: 'Bebas Neue', cursive;
     font-size: large;
-    margin-bottom: -18px;
+    margin-bottom: -5px;
 
 }
 
@@ -53,4 +54,5 @@ li a{
     box-shadow: 5px 10px #2C4859;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
+
 }
