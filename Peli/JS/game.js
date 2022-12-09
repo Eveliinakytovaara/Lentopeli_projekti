@@ -68,7 +68,7 @@ async function airportSelection(playerdata, continent_code, continent_name) {
         }
 
         a.addEventListener('click', async function () {
-            makeFlight(playerdata.player.location, randAirport[key].ident);
+            makeFlight(playerdata.player.location, randAirport[key].ident, randAirport[key].weather[0].main);
         })
 
         ul.appendChild(li);
@@ -80,9 +80,9 @@ async function airportSelection(playerdata, continent_code, continent_name) {
 }
 
 
-async function makeFlight(current_airport, new_airport) {
+async function makeFlight(current_airport, new_airport, weather_name) {
     //TODO: calculate consumption properly
-    const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}`);
+    const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}/${weather_name}`);
     await AlterDatabase(`/updateplayer/${sessionStorage.getItem('playerid')}
     /${flight.co2_consumed}/${flight.distance}/${flight.plane}/${flight.continent}/${new_airport}`);
 
