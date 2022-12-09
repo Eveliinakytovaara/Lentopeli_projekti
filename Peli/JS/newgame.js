@@ -21,7 +21,6 @@ async function createAirportChoices(count) {
 
         linkbutton.addEventListener('click', async function(){
             sessionStorage.setItem('airport', airports[i].ident)
-            console.log(localStorage.currentairport);
         })
         
 

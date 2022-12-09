@@ -19,6 +19,5 @@ async function createGames(url) {
 
         container.appendChild(single_entry);
         single_entry.appendChild(txt);
-        console.log(highscores[i]);
     }
 }

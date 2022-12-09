@@ -25,8 +25,6 @@ async function continentSelection(playerData) {
             let li = document.createElement('li');
             let a = document.createElement('a');
 
-
-
             a.innerHTML += playerData.continent[key].name
             a.addEventListener('click', function () {
                 airportSelection(playerData, playerData.continent[key].code, playerData.continent[key].name);
