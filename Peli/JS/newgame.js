@@ -2,6 +2,7 @@
 
 async function getRandomAirports(count) {
     let airports = await FetchFromDatabase('/randairport/' + count);
+    console.log(airports);
     return airports;
 }
 
