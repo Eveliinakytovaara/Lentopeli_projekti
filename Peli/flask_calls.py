@@ -52,8 +52,8 @@ def updatePlayer(id, co2_consumed, travel_distance, plane_type, continent,
     return "", 200
 
 
-@app.route('/gethighscores/<type>')
-def gethighscores(type):
+@app.route('/getGames/<type>')
+def getGames(type):
 
     complete_games = get_from_database("id, screen_name, co2_consumed, travel_distance, "
                                           "number_of_flights, s_planes_used, m_planes_used,"
