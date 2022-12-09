@@ -2,19 +2,6 @@ from geopy import distance
 import mysql.connector
 import requests
 
-
-def get_weather(airport_code):
-    lat = get_from_database("latitude_deg", "airport", f"where ident='{airport_code}'")[0]
-    lon = get_from_database("longitude_deg", "airport", f"where ident='{airport_code}'")[0]
-    url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=c9dca395b68f0f13b3cb7f4eedc59865"
-    print(lon)
-    print(lat)
-    response = requests.get(url)
-    data = response.json()
-    result = data['weather'][0]
-    return result
-
-
 def open_database():
     _connection = mysql.connector.connect(
         host='localhost',
@@ -178,6 +165,18 @@ def get_random_airports(continent_code, _type, count):
                                       f"where type != 'heliport' and type != 'closed' {is_continent}"
                                       f" ORDER BY RAND() LIMIT {count}")
     return temp_airports
+def get_weather(airport_code):
+    lat = get_from_database("latitude_deg", "airport", f"where ident='{airport_code}'")[0]
+    lon = get_from_database("longitude_deg", "airport", f"where ident='{airport_code}'")[0]
+    url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=c9dca395b68f0f13b3cb7f4eedc59865"
+    print(lon)
+    print(lat)
+    response = requests.get(url)
+    data = response.json()
+    name = data['weather'][0]['main']
+    modifier = get_from_database("modifier", "weather", f"where name='{name}'")[0]
+    result = data['weather'][0]
+    return result
 
 
 # Hakee lentoaseman maan nimen ja palauttaa yhden str muutujan
@@ -201,12 +200,6 @@ def get_distance(current_airport, airport_choice):
     loc2 = calculate_distance(airport_choice)
     gap = distance.distance(loc1, loc2).km
     return round(gap)
-
-
-# Hakee satunnaisen säätilan tai tietoa tietystä säätilasta
-def get_random_weather(_type):
-    weather = get_from_database(_type, "weather", "ORDER BY RAND() LIMIT 1")
-    return weather[0]
 
 def get_plane(_distance, _type):
     plane_class = get_from_database(_type, "planes", f"where min_distance < {str(_distance)} and max_distance >= {str(_distance)}")
