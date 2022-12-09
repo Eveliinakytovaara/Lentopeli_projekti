@@ -7,8 +7,18 @@ header{
     margin-bottom: -15px;
     font-family: 'Bebas Neue', cursive;
 }
+a{
+    font-size: x-large;
+    text-align: center;
+    padding: 3rem;
+    background-color: #1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    margin-bottom: -45px;
+
+}
 p {
-    font-size: large;
+    font-size: larger;
     text-align: center;
     padding: 3rem;
     background-color: #1D3240;
@@ -26,6 +36,9 @@ ul{
     color: #F2DAC4;
     line-height: 2rem;
     font-family: 'Bebas Neue', cursive;
+    font-size: large;
+    margin-bottom: -18px;
+
 }
 
 div{

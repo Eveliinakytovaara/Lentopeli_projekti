@@ -1,12 +1,3 @@
-header{
-    font-size: xxx-large;
-    text-align: center;
-    padding: 4rem;
-    background-color:#1D3240;
-    color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
-    margin-bottom: -15px;
-}
 p {
     font-size: large;
     text-align: center;
@@ -36,16 +27,31 @@ li a{
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
 }
+.container{
+    position: relative;
+}
 .centered{
-    text-align: center;
+    text-align: left;
     position: absolute;
-    top: 35%;
-    left: 50%;
-    bottom: 70%;
-    transform: translate(-50%, -50%);
+    bottom: 65px;
+    left: 16px;
     font-family: 'Bebas Neue', cursive;
     font-size: xxx-large;
-    color: #F2DAC4;
+    color: #1D3240;
+    background-color: #F2DAC4;
+}
+
+.choose{
+    text-align: left;
+    position: absolute;
+
+    bottom: 30px;
+    left: 16px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: larger;
+    color: #1D3240;
+    background-color: #F2DAC4;
+
 }
 img{
     height: 600px;
