@@ -25,6 +25,8 @@ async function continentSelection(playerData) {
             let li = document.createElement('li');
             let a = document.createElement('a');
 
+
+
             a.innerHTML += playerData.continent[key].name
             a.addEventListener('click', function () {
                 airportSelection(playerData, playerData.continent[key].code, playerData.continent[key].name);
@@ -68,7 +70,7 @@ async function airportSelection(playerdata, continent_code, continent_name) {
         }
 
         a.addEventListener('click', async function () {
-            makeFlight(playerdata.player.location, randAirport[key].ident, randAirport[key].weather[0].main);
+            makeFlight(playerdata.player.location, randAirport[key].ident);
         })
 
         ul.appendChild(li);
@@ -80,9 +82,9 @@ async function airportSelection(playerdata, continent_code, continent_name) {
 }
 
 
-async function makeFlight(current_airport, new_airport, weather_name) {
+async function makeFlight(current_airport, new_airport) {
     //TODO: calculate consumption properly
-    const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}/${weather_name}`);
+    const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}`);
     await AlterDatabase(`/updateplayer/${sessionStorage.getItem('playerid')}
     /${flight.co2_consumed}/${flight.distance}/${flight.plane}/${flight.continent}/${new_airport}`);
 
