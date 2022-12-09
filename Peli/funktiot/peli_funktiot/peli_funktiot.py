@@ -20,7 +20,7 @@ def open_database():
         port=3306,
         database='flight_game',
         user='root',
-        password='EggAkkAnn22',
+        password='Nevermindme',
         autocommit=True
     )
     return _connection
@@ -206,13 +206,6 @@ def get_distance(current_airport, airport_choice):
 def get_random_weather(_type):
     weather = get_from_database(_type, "weather", "ORDER BY RAND() LIMIT 1")
     return weather[0]
-
-
-# Hake sään tietokannasta
-def get_weather(_type, weather):
-    weather = get_from_database(_type, "weather", "where name = '" + weather + "'")
-    return weather[0]
-
 
 def get_plane(_distance, _type):
     plane_class = get_from_database(_type, "planes", f"where min_distance < {str(_distance)} and max_distance >= {str(_distance)}")
