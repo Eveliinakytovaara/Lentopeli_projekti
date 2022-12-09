@@ -17,7 +17,7 @@ async function createGames(url) {
         txt.innerHTML += 'medium planes used: ' + highscores[i].m_planes_used + ' <br>';
         txt.innerHTML += 'large planes used: ' + highscores[i].l_planes_used + ' <br>';
 
-        container.appendChild(single_entry);
         single_entry.appendChild(txt);
+        container.appendChild(single_entry);
     }
 }
