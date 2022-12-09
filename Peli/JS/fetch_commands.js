@@ -1,6 +1,6 @@
 'use strict';
 
-var hostAddress = 'http://127.0.0.1:2000';
+var hostAddress = 'http://127.0.0.1:3000';
 
 function errorInSearch(type) {
     throw new Error(type)

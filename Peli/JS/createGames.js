@@ -4,6 +4,7 @@
 async function createGames(url) {
     let highscores = await FetchFromDatabase(url);
     let container = document.getElementById('score');
+    console.log(highscores);
     for (let i = 0; i < Object.keys(highscores).length; i++) {
         let single_entry = document.createElement('div');
         let txt = document.createElement('p');
