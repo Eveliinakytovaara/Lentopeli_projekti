@@ -53,3 +53,23 @@ p{
     justify-content: center;
     align-items: center;
 }
+.endscreen{
+    padding: 10rem;
+    background-color:#1D3240;
+    color: #F2DAC4;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Bebas Neue', cursive;
+    list-style-type: none;
+}
+div{
+    padding: 2rem;
+    background-color: #1D3240;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;
+    font-size: larger;
+    text-align: center;
+}
