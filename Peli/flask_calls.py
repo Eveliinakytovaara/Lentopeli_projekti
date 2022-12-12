@@ -106,6 +106,7 @@ def getfirstairports(count):
     jsondata = json.dumps(answer)
     return jsondata
 
+
 @app.route("/randairport/<count>/<continent>")
 def randairport(count, continent=''):
     airports = get_random_airports(continent, 'ident', count)
@@ -215,12 +216,12 @@ def getcountry(ident):
 
 @app.route('/make_flight/<player_ident>/<desti_ident>/<weather_mod>')
 def make_flight(player_ident, desti_ident, weather_mod):
-    weather_mod = float(get_from_database("modifier", "weather", f"where name={weather_mod}")[0])
+    weather_mod = float(get_from_database("modifier", "weather", f"where name = '{weather_mod}'")[0])
     travel_distance = float(get_distance(player_ident, desti_ident))
     plane_modifier = float(get_plane(travel_distance, "modifier"))
     consumption = calculate_consumption(travel_distance, weather_mod, plane_modifier)
-    if chance_of_event() == "emission free flight":
-        consumption = emission_free_flight(consumption)
+    # if chance_of_event() == "emission free flight":
+    #    consumption = emission_free_flight(consumption)
 
     answer = {
         'distance': travel_distance,

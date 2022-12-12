@@ -88,7 +88,7 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
 
         //add function to 'a' so that it makes the flight when clicked 
         a.addEventListener('click', async function () {
-            makeFlight(playerIdent, randAirport[key].ident);
+            makeFlight(playerIdent, randAirport[key].ident, randAirport[key].weather[0]);
         })
 
         //Append to ul
@@ -102,10 +102,11 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
 }
 
 //Calculates nessesary flight info, updates player data and then opens continent choices
-async function makeFlight(current_airport, new_airport) {
+async function makeFlight(current_airport, new_airport, weather) {
+
     //Fetch flight details
     //TODO: calculate consumption properly
-    const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}`);
+    const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}/${weather}`);
 
     //Update player data
     //TODO: make a flight and updating can be done in python
