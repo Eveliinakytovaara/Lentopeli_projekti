@@ -88,6 +88,26 @@ def getGames(type):
 
 
 @app.route("/randairport/<count>")
+def getfirstairports(count):
+    airports = get_random_airports('ident', count)
+    answer = {}
+    for i in range(int(count)):
+        entry = {
+            'ident': airports[i],
+            'name': get_from_database('name', 'airport', f'where ident = "{airports[i]}"')[0],
+            'region': get_from_database('iso_region', 'airport', f'where ident = "{airports[i]}"')[0],
+            'lat': get_from_database('latitude_deg', 'airport', f'where ident = "{airports[i]}"')[0],
+            'lon': get_from_database('longitude_deg', 'airport', f'where ident = "{airports[i]}"')[0],
+            'continent': get_from_database('continent', 'airport', f'where ident = "{airports[i]}"')[0],
+            'country_code': get_from_database('iso_country', 'airport', f'where ident = "{airports[i]}"')[0],
+            'country_name': get_country(airports[i]),
+        }
+        answer.update({
+            i: entry
+        })
+    jsondata = json.dumps(answer)
+    return jsondata
+
 @app.route("/randairport/<count>/<continent>")
 def randairport(count, continent=''):
     airports = get_random_airports(continent, 'ident', count)
