@@ -41,6 +41,7 @@ li{
     list-style-type: none;
     padding: 1rem;
     margin-left: 10px;
+    justify-content: center;
 }
 p{
     background-color: #1D3240;
@@ -50,7 +51,7 @@ p{
     font-size: larger;
     margin-bottom: -15px;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
 }
 .endscreen{
