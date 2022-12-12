@@ -24,12 +24,13 @@ function animateCamera(startPoint, endPoint, map, numSteps, timePerStep) {
 
     // Set up the paper plane
     // const paperPlane = document.getElementById("paper-plane");
+    let container = document.getElementById('game');
     let paperPlane = document.createElement('div');
     paperPlane.id = 'paper-plane';
     paperPlane.classList.add('paper-plane');
     let mapObj = document.createElement('div');
     mapObj.id = 'map';
-
+    container.appendChild(mapObj);
 
     function animateCamera() {
         // Calculate the new position of the camera
