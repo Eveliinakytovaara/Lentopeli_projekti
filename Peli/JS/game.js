@@ -87,9 +87,11 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
 
         //loop thorugh temporary list and display inner html
         //TODO: temporary list in unnessesary. Innerhtml can be added straight
-        for (let x = 0; x < temp.length; x++) {
-            a.innerHTML += temp[x] + '<br>';
-        }
+        a.innerHTML+= 'Airport name:' + temp[0] + '<br>';
+        a.innerHTML+= 'Airport name: ' + temp[0] + '<br>';
+        a.innerHTML+= 'Country:' + temp[1] + '<br>';
+        a.innerHTML+= 'Distance: ' + temp[2] + '<br>';
+        a.innerHTML+= 'Plane size:' + temp[3] +'<br>';
 
         //add function to 'a' so that it makes the flight when clicked 
         a.addEventListener('click', async function () {
