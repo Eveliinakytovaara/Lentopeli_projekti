@@ -8,6 +8,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+
 @app.route("/newplayer/<name>/<airport>")
 def newplayer(name, airport):
     create_player(name, airport)
@@ -54,15 +55,12 @@ def updatePlayer(id, co2_consumed, travel_distance, plane_type, continent,
 
 @app.route('/getGames/<type>')
 def getGames(type):
-
     complete_games = get_from_database("id, screen_name, co2_consumed, travel_distance, "
-                                          "number_of_flights, s_planes_used, m_planes_used,"
-                                          " l_planes_used"
+                                       "number_of_flights, s_planes_used, m_planes_used,"
+                                       " l_planes_used"
                                        , "player",
                                        f"where CHAR_LENGTH(continents_visited) {type} 14 "
                                        "ORDER BY co2_consumed ASC")
-
-
 
     answer = {}
     for i in range(len(complete_games)):
