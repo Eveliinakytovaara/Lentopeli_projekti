@@ -4,7 +4,7 @@
 //Fetch random airports to start with and display them in html
 async function createAirportChoices(count) {
     //Fetch
-    let airports = await FetchFromDatabase('/randairport/' + count);
+    let airports = await FetchFromDatabase('/getfirstairports/' + count);
 
     //Get container
     let container = document.getElementById('airports');

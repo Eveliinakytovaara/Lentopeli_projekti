@@ -87,7 +87,7 @@ def getGames(type):
 
 @app.route("/randairport/<count>")
 def getfirstairports(count):
-    airports = get_random_airports('ident', count)
+    airports = get_random_airports('', 'ident', count)
     answer = {}
     for i in range(int(count)):
         entry = {
@@ -251,4 +251,4 @@ def endgame(player_id):
 
 
 if __name__ == '__main__':
-    app.run(use_reloader=True, host='127.0.0.1', port=2000)
+    app.run(use_reloader=True, host='127.0.0.1', port=3000)
