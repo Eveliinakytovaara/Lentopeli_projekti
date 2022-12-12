@@ -75,23 +75,16 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
         let li = document.createElement('li');
         let a = document.createElement('a');
 
-        //Add all relevant data to a temporary list
-        let temp = [];
-        temp.push(randAirport[key].name);
-        temp.push(randAirport[key].country_name);
         //Fetch distance from current location and this airport
         const distance = await FetchFromDatabase(`/getdistance/${playerIdent}/${randAirport[key].ident}`);
-        temp.push(distance.distance);
-        temp.push(distance.plane);
-        temp.push(randAirport[key].weather[0]);
 
         //loop thorugh temporary list and display inner html
         //TODO: temporary list in unnessesary. Innerhtml can be added straight
-        a.innerHTML+= 'Airport name:' + temp[0] + '<br>';
-        a.innerHTML+= 'Airport name: ' + temp[0] + '<br>';
-        a.innerHTML+= 'Country:' + temp[1] + '<br>';
-        a.innerHTML+= 'Distance: ' + temp[2] + '<br>';
-        a.innerHTML+= 'Plane size:' + temp[3] +'<br>';
+        a.innerHTML+= 'Airport name: ' + randAirport[key].name + '<br>';
+        a.innerHTML+= 'Country: ' + randAirport[key].country_name + '<br>';
+        a.innerHTML+= 'Distance: ' + distance.distance + ' km' + '<br>';
+        a.innerHTML+= 'Plane size: ' + distance.plane +'<br>';
+        a.innerHTML+= 'Weather: ' + randAirport[key].weather[0] + '<br>'
 
         //add function to 'a' so that it makes the flight when clicked 
         a.addEventListener('click', async function () {
