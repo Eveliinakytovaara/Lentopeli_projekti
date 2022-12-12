@@ -74,3 +74,40 @@ div{
     font-size: larger;
     text-align: center;
 }
+
+#map {
+  width: 100vw;
+  height: 100vh;
+}
+
+.paper-plane {
+  width: 30px;
+  height: 20px;
+  position: absolute;
+  background: white;
+  border: 2px solid black;
+  border-radius: 2px;
+  z-index: 9999;
+}
+.paper-plane:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.paper-plane:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  bottom: -5px;
+  left: 20px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
