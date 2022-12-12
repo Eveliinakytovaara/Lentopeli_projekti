@@ -39,7 +39,6 @@ def getplayer(id):
         's_planes_used': get_from_database('s_planes_used', 'player', f'where id = "{id}"')[0],
         'm_planes_used': get_from_database('m_planes_used', 'player', f'where id = "{id}"')[0],
         'l_planes_used': get_from_database('l_planes_used', 'player', f'where id = "{id}"')[0],
-        'continents_visited': get_from_database('continents_visited', 'player', f'where id = "{id}"')[0]
     }
     data = json.dumps(answer)
     return data
@@ -240,12 +239,13 @@ def endgame(player_id):
     answer = {
         'name': get_from_database("screen_name", "player", f"where id = '{player_id}'")[0],
         'co2_consumed': get_from_database("co2_consumed", "player", f"where id = '{player_id}'")[0],
-        'travel_distance': get_from_database("travel_distance", "player", f"where id = '{player_id}'")[0],
+        'travel_distance': get_from_database("travel_distance", "player", f"where id = '{player_id}'"),
         'starting_location': get_from_database("name", "airport", f"where ident = '{starting_airport}'")[0],
         'last_location': get_from_database("name", "airport", f"where ident = '{last_airport}'")[0],
         's_planes_used': get_from_database("s_planes_used", "player", f"where id = '{player_id}'")[0],
         'm_planes_used': get_from_database("m_planes_used", "player", f"where id = '{player_id}'")[0],
-        'l_planes_used': get_from_database("l_planes_used", "player", f"where id = '{player_id}'")[0]
+        'l_planes_used': get_from_database("l_planes_used", "player", f"where id = '{player_id}'")[0],
+        'number_of_flights': get_from_database("number_of_flights", "player", f"where id = '{player_id}'")[0]
     }
     data = json.dumps(answer)
     return data

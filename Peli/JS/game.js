@@ -133,17 +133,17 @@ async function endGame() {
     let p = document.createElement('p');
     p.classList.add('endscreen');
     AlterDatabase(`/endgame/${sessionStorage.getItem('playerid')}`);
-    const playerdata = await FetchFromDatabase('/getplayer/' + sessionStorage.getItem('playerid'));
+    const playerdata = await FetchFromDatabase('/endgame/' + sessionStorage.getItem('playerid'));
     p.innerHTML += 'name: ' + playerdata.name + '<br>';
     p.innerHTML += 'co2 consumed: ' + playerdata.co2_consumed + '<br>';
-    p.innerHTML += 'tarvel distanse:' + playerdata.travel_distance + '<br>';
-    p.innerHTML += 'current location:' + playerdata.location + '<br>';
-    p.innerHTML += 'starting location:' + playerdata.starting_location + '<br>';
-    p.innerHTML += 'number of flights:' + playerdata.number_of_flights + '<br>';
-    p.innerHTML += 'small planes used:' + playerdata.s_planes_used + '<br>';
-    p.innerHTML += 'medium planes used:' + playerdata.m_planes_used + '<br>';
-    p.innerHTML += 'large planes used:' + playerdata.l_planes_used + '<br>';
-    p.innerHTML += 'continents visited:' + playerdata.continents_visited + '<br>';
+    p.innerHTML += 'travel distance: ' + playerdata.travel_distance + ' km' + '<br>';
+    p.innerHTML += 'current location: ' + playerdata.last_location + '<br>';
+    p.innerHTML += 'starting location: ' + playerdata.starting_location + '<br>';
+    p.innerHTML += 'number of flights: ' + playerdata.number_of_flights + '<br>';
+    p.innerHTML += 'small planes used: ' + playerdata.s_planes_used + '<br>';
+    p.innerHTML += 'medium planes used: ' + playerdata.m_planes_used + '<br>';
+    p.innerHTML += 'large planes used: ' + playerdata.l_planes_used + '<br>';
+    p.innerHTML += 'thank you for travelling with us!' + '<br>'
     container.appendChild(p)
 }
 
