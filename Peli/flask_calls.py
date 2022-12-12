@@ -85,7 +85,7 @@ def getGames(type):
     return data
 
 
-@app.route("/randairport/<count>")
+@app.route("/getfirstairports/<count>")
 def getfirstairports(count):
     airports = get_random_airports('', 'ident', count)
     answer = {}

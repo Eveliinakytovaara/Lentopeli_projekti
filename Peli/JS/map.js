@@ -23,8 +23,13 @@ function animateCamera(startPoint, endPoint, map, numSteps, timePerStep) {
     const interval = setInterval(animateCamera, timePerStep);
 
     // Set up the paper plane
-    const paperPlane = document.getElementById("paper-plane");
-    
+    // const paperPlane = document.getElementById("paper-plane");
+    let paperPlane = document.createElement('div');
+    paperPlane.id = 'paper-plane';
+    paperPlane.classList.add('paper-plane');
+    let mapObj = document.createElement('div');
+    mapObj.id = 'map';
+
 
     function animateCamera() {
         // Calculate the new position of the camera
