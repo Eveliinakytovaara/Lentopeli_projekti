@@ -14,6 +14,7 @@ h1 {
   font-size: larger;
   margin-bottom: -20px;
   text-align: center;
+  padding-left: 3rem;
   line-height: 3rem;
 }
 
@@ -22,10 +23,13 @@ h1 {
   color: #F2DAC4;
   font-family: 'Bebas Neue', cursive;
   list-style-type: none;
-  text-align: match-parent;
-  padding: 1rem 4rem 1rem;
+  text-align: center;
+  padding-left: 1rem;
+  /*padding: 1rem 1rem 1rem;*/
   line-height: 4rem;
   font-size: x-large;
+  margin-bottom: 0.8rem;
+  margin-top: 0;
 }
 
 li a:hover {
@@ -83,8 +87,9 @@ ul {
 
 #map {
   width: 48vw;
-  height: 90vh;
+  height: 70vh;
   float: right;
+  margin: 1rem 1rem 3rem;
 }
 
 .paper-plane {
@@ -118,8 +123,8 @@ ul {
 }
 
 ol {
-  margin: auto;
-  padding: 0 3rem 3rem;
+  margin-top: 0;
+  padding: 1.5rem 3rem 4rem;
   display: inline-list-item;
   list-style-type: none;
   text-align: center;
