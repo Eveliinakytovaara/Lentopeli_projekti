@@ -7,33 +7,57 @@
 // const marker1 = L.marker([51.5074, 0.1278]).addTo(map); // London
 // const marker2 = L.marker([40.7128, -74.006]).addTo(map); // New York
 var map;
+var markers = [];
+var markerGroup;
+
 var marker1;
 var marker2;
-var markers = [];
 
-function setStartingPoint(startPoint) {
+function setStartingPoint(startPoint, info) {
     map = L.map("map").setView(startPoint, 5); // London
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
     }).addTo(map);
-    marker1 = L.marker(startPoint).addTo(map);
+    markerGroup = L.layerGroup().addTo(map);
+    setMarker(startPoint, info, "hue-rotate(0deg)");
 }
 
-function setMarker(pos) {
-    markers.push(L.marker(pos).addTo(map));
+function setMarker(pos, info, rot) {
+    let m = L.marker(pos).addTo(markerGroup);
+    m._icon.style.filter = rot;
+    m.bindPopup(info);
+    markers.push(m);
 }
 function clearMarkers() {
-    markers.splice(0, markers.length)
+    markerGroup.clearLayers();
 }
 function zoomToMarkers() {
     let group = new L.featureGroup(markers);
     map.fitBounds(group.getBounds());
 }
+function calculateShortestTrip(startpoint, endpoint) {
+    let endPlus = [endpoint[0] + 360, endpoint[1]];
+    let endMinus = [endpoint[0] - 360, endpoint[1]]
+    let array = [endpoint, endPlus, endMinus];
+    let travel_distance = Math.sqrt(((endpoint[0] - startpoint[0])**2) + ((endpoint[1] - startpoint[1])**2));
+    for(let i = 0; i < array.length; i++){
 
-function animateCamera(startPoint, endPoint, numSteps, timePerStep) {
+        
+    }
+}
+
+function animateCamera(flight, numSteps, timePerStep) {
+
+    const startPoint = [flight.starting_location.lat, flight.starting_location.lon];
+    const endPoint = [flight.ending_location.lat, flight.ending_location.lon];
     // Set up the map and the markers
     clearMarkers();
     marker1 = L.marker(startPoint).addTo(map);
+    marker1._icon.style.filter = 'hue-rotate(90deg)';
+
+    if (map.hasLayer(marker2)) {
+        map.removeLayer(marker2);
+    }
     marker2 = L.marker(endPoint).addTo(map);
 
     // Set up the line
@@ -85,12 +109,14 @@ function animateCamera(startPoint, endPoint, numSteps, timePerStep) {
         if (step >= numSteps) {
             clearInterval(interval);
             paperPlane.remove();
+            map.removeLayer(marker1);
+            finnishFlight(flight);
         }
     }
 }
 
 
-function animateFlying(startPoint, endPoint) {
+function animateFlying(flight) {
     // example: animateCamera([51.5074, 0.1278], [40.7128, -74.006], map, 1000, 10);    
-    animateCamera(startPoint, endPoint, 800, 5);
+    animateCamera(flight, 250, 5);
 }

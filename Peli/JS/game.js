@@ -1,11 +1,16 @@
 'use strict';
 
+function resetContainer(){
+    let container = document.getElementById('game');
+    container.innerHTML = "";
+    return container;
+}
+
 //Fetches continent choices based on player data and then displays them
 async function continentSelection(playerData) {
 
     //Get reference to container and clear old html
-    let container = document.getElementById('game');
-    container.innerHTML = "";
+    let container = resetContainer();
 
     //Create ul for continent choices
     let ul = document.createElement('ul');
@@ -57,8 +62,7 @@ async function continentSelection(playerData) {
 async function airportSelection(playerIdent, continent_code, continent_name) {
 
     //Get container reference and clear old html
-    let container = document.getElementById('game');
-    container.innerHTML = "";
+    let container = resetContainer();
 
     //Create ul and p
     let ul = document.createElement('ul');
@@ -87,7 +91,7 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
         a.innerHTML+= 'Plane size: ' + distance.plane +'<br>';
         a.innerHTML+= 'Weather: ' + randAirport[key].weather[0] + '<br>';
 
-        setMarker([randAirport[key].lat, randAirport[key].lon]);
+        setMarker([randAirport[key].lat, randAirport[key].lon], a.innerHTML, "hue-rotate(120deg)");
 
         //add function to 'a' so that it makes the flight when clicked 
         a.addEventListener('click', async function () {
@@ -111,12 +115,17 @@ async function makeFlight(current_airport, new_airport, weather) {
     //TODO: calculate consumption properly
     const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}/${weather}`);
 
-    animateFlying([flight.starting_location.lat, flight.starting_location.lon], [flight.ending_location.lat, flight.ending_location.lon]);
+    //Animate flying and on finnish show next location
+    animateFlying(flight);
+    resetContainer();
+}
+
+async function finnishFlight(flight){
 
     //Update player data
     //TODO: make a flight and updating can be done in python
     await AlterDatabase(`/updateplayer/${sessionStorage.getItem('playerid')}
-    /${flight.co2_consumed}/${flight.distance}/${flight.plane}/${flight.continent}/${new_airport}`);
+    /${flight.co2_consumed}/${flight.distance}/${flight.plane}/${flight.continent}/${flight.ending_location.ident}`);
 
     //Get continents visited
     const continents_visited = await FetchFromDatabase(`/getcontinentsvisited/${sessionStorage.getItem('playerid')}`);

@@ -228,10 +228,12 @@ def make_flight(player_ident, desti_ident, weather_mod):
         'co2_consumed': consumption,
         'continent': get_from_database('continent', 'airport', f'where ident = "{desti_ident}"'),
         'starting_location': {
+            'ident': player_ident,
             'lat': float(get_from_database('latitude_deg', 'airport', f'where ident = "{player_ident}"')[0]),
             'lon': float(get_from_database('longitude_deg', 'airport', f'where ident = "{player_ident}"')[0])
         },
         'ending_location': {
+            'ident': desti_ident,
             'lat': float(get_from_database('latitude_deg', 'airport', f'where ident = "{desti_ident}"')[0]),
             'lon': float(get_from_database('longitude_deg', 'airport', f'where ident = "{desti_ident}"')[0])
         },
