@@ -6,31 +6,52 @@
 // }).addTo(map);
 // const marker1 = L.marker([51.5074, 0.1278]).addTo(map); // London
 // const marker2 = L.marker([40.7128, -74.006]).addTo(map); // New York
+var map;
+var marker1;
+var marker2;
+var markers = [];
 
-function animateCamera(startPoint, endPoint, map, numSteps, timePerStep) {
+function setStartingPoint(startPoint) {
+    map = L.map("map").setView(startPoint, 5); // London
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    marker1 = L.marker(startPoint).addTo(map);
+}
+
+function setMarker(pos) {
+    markers.push(L.marker(pos).addTo(map));
+}
+function clearMarkers() {
+    markers.splice(0, markers.length)
+}
+function zoomToMarkers() {
+    let group = new L.featureGroup(markers);
+    map.fitBounds(group.getBounds());
+}
+
+function animateCamera(startPoint, endPoint, numSteps, timePerStep) {
     // Set up the map and the markers
-
-    const marker1 = L.marker(startPoint).addTo(map);
-    const marker2 = L.marker(endPoint).addTo(map);
+    clearMarkers();
+    marker1 = L.marker(startPoint).addTo(map);
+    marker2 = L.marker(endPoint).addTo(map);
 
     // Set up the line
     const line = L.polyline([marker1.getLatLng(), marker2.getLatLng()], {
         color: "red",
     }).addTo(map);
 
-    // Set up the animation
-    let step = 0;
-    const interval = setInterval(animateCamera, timePerStep);
-
     // Set up the paper plane
     // const paperPlane = document.getElementById("paper-plane");
-    let container = document.getElementById('game');
+    let container = document.getElementById('map');
     let paperPlane = document.createElement('div');
     paperPlane.id = 'paper-plane';
     paperPlane.classList.add('paper-plane');
-    let mapObj = document.createElement('div');
-    mapObj.id = 'map';
-    container.appendChild(mapObj);
+    container.appendChild(paperPlane);
+
+    // Set up the animation
+    let step = 0;
+    const interval = setInterval(animateCamera, timePerStep);
 
     function animateCamera() {
         // Calculate the new position of the camera
@@ -63,19 +84,13 @@ function animateCamera(startPoint, endPoint, map, numSteps, timePerStep) {
         // Stop the animation if we've reached the end
         if (step >= numSteps) {
             clearInterval(interval);
+            paperPlane.remove();
         }
     }
 }
 
 
 function animateFlying(startPoint, endPoint) {
-    const map = L.map("map").setView([51.5074, 0.1278], 5); // London
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
     // example: animateCamera([51.5074, 0.1278], [40.7128, -74.006], map, 1000, 10);    
-    animateCamera(startPoint, endPoint, map, 1000, 10);
+    animateCamera(startPoint, endPoint, 800, 5);
 }
-
-

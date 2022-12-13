@@ -11,10 +11,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/newplayer/<name>/<airport>")
 def newplayer(name, airport):
-    create_player(name, airport)
+    playerid = create_player(name, airport)
     answer = {
         'name': name,
-        'id': get_from_database('id', 'player', f'where screen_name = "{name}"')
+        'id': playerid
     }
     data = json.dumps(answer)
     return data
@@ -227,7 +227,15 @@ def make_flight(player_ident, desti_ident, weather_mod):
         'distance': travel_distance,
         'plane': get_plane(travel_distance, 'name'),
         'co2_consumed': consumption,
-        'continent': get_from_database('continent', 'airport', f'where ident = "{desti_ident}"')
+        'continent': get_from_database('continent', 'airport', f'where ident = "{desti_ident}"'),
+        'starting_location': {
+            'lat': float(get_from_database('latitude_deg', 'airport', f'where ident = "{player_ident}"')[0]),
+            'lon': float(get_from_database('longitude_deg', 'airport', f'where ident = "{player_ident}"')[0])
+        },
+        'ending_location': {
+            'lat': float(get_from_database('latitude_deg', 'airport', f'where ident = "{desti_ident}"')[0]),
+            'lon': float(get_from_database('longitude_deg', 'airport', f'where ident = "{desti_ident}"')[0])
+        },
     }
     data = json.dumps(answer)
     return data

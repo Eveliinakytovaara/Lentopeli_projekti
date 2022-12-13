@@ -16,7 +16,7 @@ def open_database():
 
 
 def execute_sql(sql):
-    print(f"execute: [{sql}]")
+    # print(f"execute: [{sql}]")
     connection = open_database()
     cursor = connection.cursor()
     cursor.execute(sql)
@@ -61,7 +61,8 @@ def create_player(screen_name, starting_airport):
     sqll = f" VALUES ('{screen_name}', 0, 0, '{starting_airport}', '{starting_airport}', 0, 0, 0, 0, " \
            f"'{starting_continent[0]}');"
     execute_sql(sql + sqll)
-    return
+    last_player_id = execute_sql('SELECT max(id) FROM player')
+    return last_player_id
 
 
 def clear_player_data():

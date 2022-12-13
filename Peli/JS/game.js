@@ -64,6 +64,7 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
     let ul = document.createElement('ul');
     let text = document.createElement('p');
     text.innerHTML = `Oh, you want to fly to ${continent_name}!<br>Here are some flights that I could find:`;
+    container.appendChild(text);
 
     //Fetch random airports
     const randAirport = await FetchFromDatabase(`/randairport/5/${continent_code}`);
@@ -84,7 +85,9 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
         a.innerHTML+= 'Country: ' + randAirport[key].country_name + '<br>';
         a.innerHTML+= 'Distance: ' + distance.distance + ' km' + '<br>';
         a.innerHTML+= 'Plane size: ' + distance.plane +'<br>';
-        a.innerHTML+= 'Weather: ' + randAirport[key].weather[0] + '<br>'
+        a.innerHTML+= 'Weather: ' + randAirport[key].weather[0] + '<br>';
+
+        setMarker([randAirport[key].lat, randAirport[key].lon]);
 
         //add function to 'a' so that it makes the flight when clicked 
         a.addEventListener('click', async function () {
@@ -97,8 +100,8 @@ async function airportSelection(playerIdent, continent_code, continent_name) {
     }
 
     //Append to container
-    container.appendChild(text);
     container.appendChild(ul);
+    zoomToMarkers();
 }
 
 //Calculates nessesary flight info, updates player data and then opens continent choices
@@ -107,6 +110,8 @@ async function makeFlight(current_airport, new_airport, weather) {
     //Fetch flight details
     //TODO: calculate consumption properly
     const flight = await FetchFromDatabase(`/make_flight/${current_airport}/${new_airport}/${weather}`);
+
+    animateFlying([flight.starting_location.lat, flight.starting_location.lon], [flight.ending_location.lat, flight.ending_location.lon]);
 
     //Update player data
     //TODO: make a flight and updating can be done in python
@@ -162,7 +167,6 @@ async function getPlayerCurrentInfo() {
         'country': countryname.name,
         'continent': continentdata
     };
-    console.log(currentData);
     return currentData;
 }
 
@@ -172,6 +176,7 @@ window.onload = async function () {
     if (sessionStorage.getItem('playerid')) {
         let currentData = await getPlayerCurrentInfo();
         await continentSelection(currentData);
+        setStartingPoint([currentData.airport.lat, currentData.airport.lon]);
     }
     else {
         console.log('no player');
