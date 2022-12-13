@@ -25,11 +25,11 @@ h1{
     font-family: 'Bebas Neue', cursive;
     list-style-type: none;
     text-align: match-parent;
-    padding: 5rem;
+    padding: 1rem 4rem 1rem;
     line-height: 4rem;
     font-size: x-large;
 }
-li a:hover{
+li a:hover {
     background-color: #658DA6;
     cursor: pointer;
 }
@@ -41,6 +41,7 @@ li{
     list-style-type: none;
     padding: 1rem;
     margin-left: 10px;
+    justify-content: center;
 }
 p{
     background-color: #1D3240;
@@ -50,7 +51,7 @@ p{
     font-size: larger;
     margin-bottom: -15px;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
 }
 .endscreen{
@@ -65,27 +66,69 @@ p{
     font-family: 'Bebas Neue', cursive;
     list-style-type: none;
 }
-/* div{
+div{
     padding: 2rem;
     background-color: #1D3240;
     color: #F2DAC4;
     font-family: 'Bebas Neue', cursive;
     font-size: larger;
     text-align: center;
-} */
-
+}
+ul {
+    padding: 0;
+}
 #map {
-  width: 50vw;
-  height: 98vh;
-  float: right;
+  width: 100vw;
+  height: 100vh;
 }
 
 .paper-plane {
   width: 30px;
-  height: 30px;
+  height: 20px;
   position: absolute;
   background: white;
   border: 2px solid black;
   border-radius: 2px;
   z-index: 9999;
 }
+.paper-plane:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.paper-plane:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  bottom: -5px;
+  left: 20px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+ol{
+    margin:auto;
+    padding: 0 3rem 3rem;
+    display: inline-list-item;
+    list-style-type: none;
+    text-align: center;
+    background-color: #1D3240;
+    color: #F2DAC4;
+    line-height: 3rem;
+    font-family: 'Bebas Neue', cursive;
+}
+li2 a:hover{
+    background-color: #658DA6;
+}
+li2 a{
+    font-size: x-large;
+    box-shadow: 5px 10px #2C4859;
+    color: #F2DAC4;
+    font-family: 'Bebas Neue', cursive;}
