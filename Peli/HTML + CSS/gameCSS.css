@@ -82,17 +82,8 @@ p {
   list-style-type: none;
 }
 
-/* div{
-    padding: 2rem;
-    background-color: #1D3240;
-    color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
-    font-size: larger;
-    text-align: center;
-} */
 ul {
   padding: 0;
-
 }
 
 #map {
@@ -106,7 +97,7 @@ ul {
   width: 30px;
   height: 30px;
   position: absolute;
-  background: white;
+  background-image: url("Kuvat/plane.png");
   border: 2px solid black;
   border-radius: 2px;
   z-index: 9999;
