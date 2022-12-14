@@ -94,7 +94,6 @@ ul {
   margin: 1rem 1rem 3rem;
 }
 
-
 .paper-plane {
   width: 30px;
   height: 30px;
@@ -128,4 +127,12 @@ li2 a {
   box-shadow: 5px 10px #2C4859;
   color: #F2DAC4;
   font-family: 'Playfair Display', serif;
+}
+
+#drink_question {
+  height: 5vh;
+}
+
+#drink_pic{
+  width: 50vw;
 }
