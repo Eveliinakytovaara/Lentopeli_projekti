@@ -39,25 +39,25 @@ def firstclass_ticket():
 
 def drink_service():
     answer = {
+        "question" : { "text": "Would you like something to drink?",
+        'drink' : '',
+        'yes': 'yes',
+        'no': 'no'
+          },
         'blueberry_juice' : {
             'drink' : 'blueberry_juice',
-            'option' : 'none'
         },
         'coffee' : {
             'drink' : 'coffee',
-            'option' : 'none'
         },
-        'coffee with milk' : {
+        'coffee_with_milk' : {
             'drink' : 'coffee',
-            'option' : 'milk'
         },
-        'coffee with sugar' : {
+        'coffee_with_sugar' : {
             'drink' : 'coffee',
-            'option' : 'sugar'
         },
         'tea' : {
             'drink' : 'tea',
-            'option' : 'none'
         }
     }
     return answer
