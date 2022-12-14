@@ -39,25 +39,25 @@ def firstclass_ticket():
 
 def drink_service():
     answer = {
-        'blueberry juice' : {
-            'drink' : 'blueberry juice',
-            'option' : 'none'
+        "question" : { "text": "Would you like something to drink?",
+        'drink' : '',
+        'yes': 'yes',
+        'no': 'no'
+          },
+        'blueberry_juice' : {
+            'drink' : 'blueberry_juice',
         },
         'coffee' : {
             'drink' : 'coffee',
-            'option' : 'none'
         },
-        'coffee with milk' : {
+        'coffee_with_milk' : {
             'drink' : 'coffee',
-            'option' : 'milk'
         },
-        'coffee with sugar' : {
+        'coffee_with_sugar' : {
             'drink' : 'coffee',
-            'option' : 'sugar'
         },
         'tea' : {
             'drink' : 'tea',
-            'option' : 'none'
         }
     }
     return answer
@@ -70,12 +70,6 @@ def drink_question():
         'no' : 'no'
     }
     return answer
-
-
-def turbulence():
-    print("Dear passengers, we are experiencing some turbulence, please remain seated and fasten your seatbelts.")
-    # tähän väliin tärisemistä
-    print("Dear passengers, we need to make an emergency landing to the closest airport")
 
 
 def emission_free_flight(consumption):
