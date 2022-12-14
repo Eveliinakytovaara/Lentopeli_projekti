@@ -39,26 +39,12 @@ function zoomToMarkers() {
     let group = new L.featureGroup(markers);
     map.fitBounds(group.getBounds());
 }
-function calculateShortestTrip(startpoint, endpoint) {
-    let endPlus = [endpoint[0] + 360, endpoint[1]];
-    let endMinus = [endpoint[0] - 360, endpoint[1]];
-    let array = [endpoint, endPlus, endMinus];
-    let shortest = 0;
-    for(let i = 0; i < array.length; i++){
-        let travel_distance = Math.sqrt(((array[i][0] - startpoint[0])**2) + ((array[i][1] - startpoint[1])**2));
-        console.log(travel_distance);
-        if(shortest = 0 || travel_distance < shortest){
-            shortest = travel_distance;
-            console.log('the shortest is updated');
-        }
-    }
-}
 
 function animateCamera(flight, numSteps, timePerStep) {
 
     const startPoint = [flight.starting_location.lat, flight.starting_location.lon];
     const endPoint = [flight.ending_location.lat, flight.ending_location.lon];
-    calculateShortestTrip(startPoint, endPoint);
+    
     // Set up the map and the markers
     clearMarkers();
     marker1 = L.marker(startPoint).addTo(map);
