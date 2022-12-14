@@ -1,5 +1,6 @@
 'use strict';
 
+var buttons=[];
 
 //Fetch random airports to start with and display them in html
 async function createAirportChoices(count) {
@@ -18,10 +19,15 @@ async function createAirportChoices(count) {
         //Create a
         let linkbutton = document.createElement('a');
         linkbutton.classList.add('linkki');
+        buttons.push(linkbutton)
 
         //On click, save this airport in session storage
         linkbutton.addEventListener('click', async function(){
-            sessionStorage.setItem('airport', airports[i].ident)
+            sessionStorage.setItem('airport', airports[i].ident);
+            for(let x = 0; x < buttons.length; x++){
+                buttons[x].style.background='#1D3240'
+            }
+            linkbutton.style.background ='#658DA6'
         })
 
         //Display airport name and country

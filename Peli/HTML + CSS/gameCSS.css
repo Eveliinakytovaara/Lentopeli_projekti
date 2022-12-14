@@ -1,7 +1,7 @@
 h1 {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Playfair Display', serif;
   font-size: xx-large;
   text-align: center;
   margin-bottom: -17px;
@@ -10,7 +10,7 @@ h1 {
 .sijainti {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Playfair Display', serif;
   font-size: larger;
   margin-bottom: -20px;
   text-align: center;
@@ -21,7 +21,7 @@ h1 {
 .maanosat {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Playfair Display', serif;
   list-style-type: none;
   text-align: center;
   padding-left: 1rem;
@@ -40,18 +40,19 @@ li a:hover {
 li {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Bebas Neue', cursive;
-  text-align: center;
+  font-family: 'Playfair Display', serif;
+  text-align: left;
   list-style-type: none;
   padding: 1rem;
-  margin-left: 10px;
+
   justify-content: center;
+  margin-bottom: -15px;
 }
 
 p {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Playfair Display', serif;
   text-align: center;
   font-size: larger;
   margin-bottom: -15px;
@@ -69,7 +70,7 @@ p {
   align-items: center;
   text-align: center;
   margin-bottom: 20px;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Playfair Display', serif;
   list-style-type: none;
 }
 
@@ -83,6 +84,7 @@ p {
 } */
 ul {
   padding: 0;
+
 }
 
 #map {
@@ -114,7 +116,7 @@ ol {
   background-color: #1D3240;
   color: #F2DAC4;
   line-height: 3rem;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Playfair Display', serif;
 }
 
 li2 a:hover {
@@ -125,5 +127,5 @@ li2 a {
   font-size: x-large;
   box-shadow: 5px 10px #2C4859;
   color: #F2DAC4;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Playfair Display', serif;
 }

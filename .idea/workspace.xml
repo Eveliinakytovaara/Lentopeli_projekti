@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ee971a2-1eed-4740-b06d-1573c28402f0" name="Changes" comment="added new c02 calculation">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_12_2022_12_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_12_2022_12_02__Changes_.xml" afterDir="false" />
+    <list default="true" id="4ee971a2-1eed-4740-b06d-1573c28402f0" name="Changes" comment="game js muokattu">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_12_2022_12_02_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_12_2022_12_02__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/Continuegame.html" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/Continuegame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/ContinuegameCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/ContinuegameCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/Highscore.html" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/Highscore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/HighscoreCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/HighscoreCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/Howtoplay.html" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/Howtoplay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/HowtoplayCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/HowtoplayCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/MAIN.html" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/MAIN.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/MainCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/MainCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/New game.html" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/New game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/NewgameCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/NewgameCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/HTML + CSS/gameCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/HTML + CSS/gameCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peli/JS/fetch_commands.js" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/JS/fetch_commands.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Peli/flask_calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/flask_calls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot/main_menu_funktiot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot/main_menu_funktiot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Peli/funktiot/peli_funktiot/peli_funktiot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Peli/funktiot/peli_funktiot/peli_funktiot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +63,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/darri/PycharmProjects/omat_tehtävät&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
   }
 }</component>
@@ -208,6 +226,14 @@
       <workItem from="1669716357402" duration="1091000" />
       <workItem from="1669885683857" duration="10637000" />
       <workItem from="1670175013120" duration="6878000" />
+      <workItem from="1670785209988" duration="10000" />
+      <workItem from="1670790726308" duration="1075000" />
+      <workItem from="1670959575708" duration="12000" />
+      <workItem from="1670964603808" duration="1000" />
+      <workItem from="1670968870620" duration="6000" />
+      <workItem from="1671005246076" duration="2000" />
+      <workItem from="1671005499247" duration="652000" />
+      <workItem from="1671011930590" duration="2873000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1663758161222</created>
@@ -320,7 +346,49 @@
       <option name="project" value="LOCAL" />
       <updated>1670236994092</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="highscore css nyt valmis">
+      <created>1670585258444</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1670585258444</updated>
+    </task>
+    <task id="LOCAL-00018" summary="highscore css nyt valmis">
+      <created>1670585285644</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1670585285644</updated>
+    </task>
+    <task id="LOCAL-00019" summary="game js ja css muokkauksia">
+      <created>1670587662724</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1670587662724</updated>
+    </task>
+    <task id="LOCAL-00020" summary="game js ja css muokkauksia">
+      <created>1670588236802</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1670588236802</updated>
+    </task>
+    <task id="LOCAL-00021" summary="game js muokattu">
+      <created>1670588676228</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1670588676228</updated>
+    </task>
+    <task id="LOCAL-00022" summary="game js muokattu">
+      <created>1670589042062</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1670589042062</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,19 +418,22 @@
     <MESSAGE value="events" />
     <MESSAGE value="funktiot tehty" />
     <MESSAGE value="added new c02 calculation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new c02 calculation" />
+    <MESSAGE value="highscore css nyt valmis" />
+    <MESSAGE value="game js ja css muokkauksia" />
+    <MESSAGE value="game js muokattu" />
+    <option name="LAST_COMMIT_MESSAGE" value="game js muokattu" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_program.coverage" NAME="main_game_program Coverage Results" MODIFIED="1670231598088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_program.coverage" NAME="main_game_program Coverage Results" MODIFIED="1670236505013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$flask_calls.coverage" NAME="flask_calls Coverage Results" MODIFIED="1671011953788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
     <SUITE FILE_PATH="coverage/Lentopeli_projekti$events.coverage" NAME="events Coverage Results" MODIFIED="1670233823256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/peli_funktiot" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$flask_calls.coverage" NAME="flask_calls Coverage Results" MODIFIED="1670499312784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$start_game.coverage" NAME="start_game Coverage Results" MODIFIED="1670236466146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/game" />
     <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game.coverage" NAME="main_game Coverage Results" MODIFIED="1669980181756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main.coverage" NAME="main Coverage Results" MODIFIED="1670231182862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_funktiot.coverage" NAME="main_game_funktiot Coverage Results" MODIFIED="1670004639018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
     <SUITE FILE_PATH="coverage/Lentopeli_projekti$yhteiset_funktiot.coverage" NAME="yhteiset_funktiot Coverage Results" MODIFIED="1670231645288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/yhteiset_funktiot" />
     <SUITE FILE_PATH="coverage/Lentopeli_projekti$peli_funktiot.coverage" NAME="peli_funktiot Coverage Results" MODIFIED="1670233599344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/peli_funktiot" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$start_game.coverage" NAME="start_game Coverage Results" MODIFIED="1670236466146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/game" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_game_funktiot.coverage" NAME="main_game_funktiot Coverage Results" MODIFIED="1670004639018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
     <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_funktiot.coverage" NAME="main_funktiot Coverage Results" MODIFIED="1669979250501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot" />
-    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_menu_funktiot.coverage" NAME="main_menu_funktiot Coverage Results" MODIFIED="1670236512728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main_menu_funktiot.coverage" NAME="main_menu_funktiot Coverage Results" MODIFIED="1670350351253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli/funktiot/main_menu_funktiot" />
+    <SUITE FILE_PATH="coverage/Lentopeli_projekti$main.coverage" NAME="main Coverage Results" MODIFIED="1670577830049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Peli" />
   </component>
 </project>
