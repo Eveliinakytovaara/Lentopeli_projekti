@@ -1,7 +1,7 @@
 h1 {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bebas Neue', cursive;
   font-size: xx-large;
   text-align: center;
   margin-bottom: -17px;
@@ -10,22 +10,26 @@ h1 {
 .sijainti {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bebas Neue', cursive;
   font-size: larger;
   margin-bottom: -20px;
   text-align: center;
+  padding-left: 3rem;
   line-height: 3rem;
 }
 
 .maanosat {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bebas Neue', cursive;
   list-style-type: none;
-  text-align: match-parent;
-  padding: 1rem 4rem 1rem;
-  line-height: 3rem;
-  font-size: larger;
+  text-align: center;
+  padding-left: 1rem;
+  /*padding: 1rem 1rem 1rem;*/
+  line-height: 4rem;
+  font-size: x-large;
+  margin-bottom: 0.8rem;
+  margin-top: 0;
 }
 
 li a:hover {
@@ -36,8 +40,8 @@ li a:hover {
 li {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Playfair Display', serif;
-  text-align: left;
+  font-family: 'Bebas Neue', cursive;
+  text-align: center;
   list-style-type: none;
   padding: 1rem;
   margin-left: 10px;
@@ -47,56 +51,53 @@ li {
 p {
   background-color: #1D3240;
   color: #F2DAC4;
-  font-family: 'Playfair Display', serif;
-  text-align: left;
-  font-size: large;
+  font-family: 'Bebas Neue', cursive;
+  text-align: center;
+  font-size: larger;
   margin-bottom: -15px;
   flex-direction: column;
 
-
-  align-items: normal;
+  align-items: center;
 }
 
 .endscreen {
-  padding: 4rem;
+  padding: 10rem;
   background-color: #1D3240;
   color: #F2DAC4;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: left;
+  text-align: center;
   margin-bottom: 20px;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bebas Neue', cursive;
   list-style-type: none;
-  float: left;
-  width: 30vw;
 }
 
-#game{
+/* div{
     padding: 2rem;
     background-color: #1D3240;
     color: #F2DAC4;
-    font-family: 'Playfair Display', serif;
-    font-size: medium;
-    text-align: left;
-}
+    font-family: 'Bebas Neue', cursive;
+    font-size: larger;
+    text-align: center;
+} */
 ul {
   padding: 0;
 }
 
 #map {
   width: 48vw;
-  height: 90vh;
+  height: 70vh;
   float: right;
+  margin: 1rem 1rem 3rem;
 }
+
 
 .paper-plane {
   width: 30px;
   height: 30px;
   position: absolute;
-  background: white;
-  border: 2px solid black;
-  border-radius: 2px;
+  background-image: url;
   z-index: 9999;
 }
 
@@ -121,15 +122,15 @@ ul {
 }
 
 ol {
-  margin: auto;
-  padding: 0 3rem 3rem;
+  margin-top: 0;
+  padding: 1.5rem 3rem 4rem;
   display: inline-list-item;
   list-style-type: none;
   text-align: center;
   background-color: #1D3240;
   color: #F2DAC4;
   line-height: 3rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bebas Neue', cursive;
 }
 
 li2 a:hover {
@@ -140,5 +141,5 @@ li2 a {
   font-size: x-large;
   box-shadow: 5px 10px #2C4859;
   color: #F2DAC4;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bebas Neue', cursive;
 }
