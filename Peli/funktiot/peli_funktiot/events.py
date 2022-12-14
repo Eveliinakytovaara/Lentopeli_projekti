@@ -11,7 +11,7 @@ def chance_of_event():
     elif chance == 4:
         return emission_free_flight()
     else:
-        return " "
+        return ""
 
 def first_class_flight():
     answer = {
