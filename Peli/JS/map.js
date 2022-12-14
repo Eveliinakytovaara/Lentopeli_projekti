@@ -13,8 +13,9 @@ var markerGroup;
 var marker1;
 var marker2;
 
+//Create map and starting point
 function setStartingPoint(startPoint, info) {
-    map = L.map("map").setView(startPoint, 5); // London
+    map = L.map("map").setView(startPoint, 5);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
     }).addTo(map);
@@ -22,27 +23,34 @@ function setStartingPoint(startPoint, info) {
     setMarker(startPoint, info, "hue-rotate(0deg)");
 }
 
+//Create map marker at position
 function setMarker(pos, info, rot) {
     let m = L.marker(pos).addTo(markerGroup);
     m._icon.style.filter = rot;
     m.bindPopup(info);
     markers.push(m);
 }
+//Clear markers created for contries
 function clearMarkers() {
     markerGroup.clearLayers();
 }
+//Zoom to markers
 function zoomToMarkers() {
     let group = new L.featureGroup(markers);
     map.fitBounds(group.getBounds());
 }
 function calculateShortestTrip(startpoint, endpoint) {
     let endPlus = [endpoint[0] + 360, endpoint[1]];
-    let endMinus = [endpoint[0] - 360, endpoint[1]]
+    let endMinus = [endpoint[0] - 360, endpoint[1]];
     let array = [endpoint, endPlus, endMinus];
-    let travel_distance = Math.sqrt(((endpoint[0] - startpoint[0])**2) + ((endpoint[1] - startpoint[1])**2));
+    let shortest = 0;
     for(let i = 0; i < array.length; i++){
-
-        
+        let travel_distance = Math.sqrt(((array[i][0] - startpoint[0])**2) + ((array[i][1] - startpoint[1])**2));
+        console.log(travel_distance);
+        if(shortest = 0 || travel_distance < shortest){
+            shortest = travel_distance;
+            console.log('the shortest is updated');
+        }
     }
 }
 
@@ -50,6 +58,7 @@ function animateCamera(flight, numSteps, timePerStep) {
 
     const startPoint = [flight.starting_location.lat, flight.starting_location.lon];
     const endPoint = [flight.ending_location.lat, flight.ending_location.lon];
+    calculateShortestTrip(startPoint, endPoint);
     // Set up the map and the markers
     clearMarkers();
     marker1 = L.marker(startPoint).addTo(map);
@@ -65,8 +74,7 @@ function animateCamera(flight, numSteps, timePerStep) {
         color: "red",
     }).addTo(map);
 
-    // Set up the paper plane
-    // const paperPlane = document.getElementById("paper-plane");
+    // Create map and plane html
     let container = document.getElementById('map');
     let paperPlane = document.createElement('div');
     paperPlane.id = 'paper-plane';
