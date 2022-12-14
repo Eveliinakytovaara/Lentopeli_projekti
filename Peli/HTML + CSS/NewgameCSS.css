@@ -89,6 +89,7 @@ ul{
     width: 100%;
     font-size: 30px;
     font-family: 'Playfair Display', serif;
+    margin-bottom: -45px;
 
 }
 #button:hover{
@@ -97,5 +98,23 @@ ul{
     box-shadow: 0 12px 16px 0 #2C4859, 0 17px 50px 0 #2C4859;
 }
 
+#moi{
+    margin-top: 17px;
+    background-color: #658DA6;
+    border: none;
+    color: #F2DAC4;
+    height: 10vh;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    font-size: 30px;
+    font-family: 'Playfair Display', serif;
+    margin-left: -30px;
+    margin-bottom: -20px;
 }
-/* linkit niin, että pystyy klikkaamaan mistä kohdasta vain, eikä pelkän tekstin kohdalta
+#moi:hover{
+    cursor: pointer;
+    box-shadow: 0 12px 16px 0 #2C4859, 0 17px 50px 0 #2C4859;
+}
+
