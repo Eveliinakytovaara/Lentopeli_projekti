@@ -25,8 +25,11 @@ async function createGames(url, isGameComplete) {
         txt.innerHTML += 'medium planes used: ' + games[i].m_planes_used + ' <br>';
         txt.innerHTML += 'large planes used: ' + games[i].l_planes_used + ' <br>';
 
-        if (isGameComplete) {
+
+        if (!isGameComplete) {
             txt.addEventListener('click', async function () {
+                sessionStorage.setItem('playerid', games[i].id);
+                window.location.replace('../HTML + CSS/game.html');
             })
         }
         //Append div and p to container to display them
