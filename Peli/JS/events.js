@@ -35,5 +35,20 @@ async function FetchFromDatabase(search) {
 }
 
 async function flight_events() {
-    const response = await FetchFromDatabase()
+    const response = await FetchFromDatabase('/events/');
+    let dialog = document.getElementById('drink_service');
+    let p = document.getElementById('drink_question');
+    let img = document.getElementById('drink_pic');
+    let ul = document.getElementById('drink_choices');
+    p.innerHTML = response.question.text;
+    img.src = '../Kuvat/flight-attendant-cart-drink-service-never-order.jpg';
+    for (let key in response) {
+          let li = document.createElement('li');
+              li.innerHTML = response[key].drink
+        ul.appendChild(li);
+    }
+    dialog.appendChild(p);
+    dialog.appendChild(img);
+    dialog.appendChild(ul);
+    dialog.showModal();
 }

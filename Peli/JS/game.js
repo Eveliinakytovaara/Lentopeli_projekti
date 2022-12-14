@@ -122,6 +122,7 @@ async function makeFlight(current_airport, new_airport, weather) {
 
 async function finnishFlight(flight){
 
+    flight_events();
     //Update player data
     //TODO: make a flight and updating can be done in python
     await AlterDatabase(`/updateplayer/${sessionStorage.getItem('playerid')}
