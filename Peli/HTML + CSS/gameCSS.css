@@ -6,12 +6,19 @@ h1 {
   text-align: center;
   margin-bottom: -17px;
 }
+#game{
+  background-color: #1D3240;
+  color: #F2DAC4;
+  padding: 1rem;
+  font-size: larger;
+  font-family: 'Playfair Display', serif;
 
+}
 .sijainti {
   background-color: #1D3240;
   color: #F2DAC4;
   font-family: 'Playfair Display', serif;
-  font-size: larger;
+  font-size: large;
   margin-bottom: -20px;
   text-align: center;
   padding-left: 3rem;
@@ -62,13 +69,14 @@ p {
 }
 
 .endscreen {
-  padding: 10rem;
+  padding: 3rem;
   background-color: #1D3240;
   color: #F2DAC4;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
+  font-size: large;
   margin-bottom: 20px;
   font-family: 'Playfair Display', serif;
   list-style-type: none;
@@ -131,6 +139,7 @@ li2 a {
 
 #drink_question {
   height: 5vh;
+  background-color: #1D3240;
 }
 
 #drink_pic{
