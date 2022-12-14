@@ -7,6 +7,7 @@ header{
     margin-bottom: -15px;
     font-family: 'Playfair Display', serif;
 }
+
 h1{
     font-size: x-large;
     text-align: center;
@@ -15,9 +16,8 @@ h1{
     color: #F2DAC4;
     font-family: 'Playfair Display', serif;
     margin-bottom: -20px;
-
-
 }
+
 p {
     font-size: larger;
     text-align: center;
@@ -27,6 +27,7 @@ p {
     font-family: 'Playfair Display', serif;
     margin-bottom: -45px;
 }
+
 ul{
     display: inline-list-item;
     margin: fill;
@@ -39,7 +40,6 @@ ul{
     font-family: 'Playfair Display', serif;
     font-size: large;
     margin-bottom: 5px;
-
 }
 
 div{
@@ -49,13 +49,16 @@ div{
 li a:hover{
     background-color: #658DA6;
 }
+
 li a{
     font-size: x-large;
-    box-shadow: 5px 10px #2C4859;
     color: #F2DAC4;
     font-family: 'Playfair Display', serif;
-
+    background-color: #2C4859;
+    text-decoration: none;
+    display: block;
 }
+
 #hs{
     margin: fill;
     text-align: center;
@@ -67,8 +70,8 @@ li a{
     font-size: medium;
     position: absolute;
     margin-left: -20px;
-
 }
+
 #hs:hover{
     background-color: #658DA6;
     cursor: pointer;

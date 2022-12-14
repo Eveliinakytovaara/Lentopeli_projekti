@@ -19,7 +19,6 @@ input {
     margin-top: 25px;
     font-family: 'Playfair Display', serif;
     font-size: 15px;
-
 }
 
 p{
@@ -35,7 +34,6 @@ p{
 }
 
 ul{
-
     font-family: 'Playfair Display', serif;
     width: 100%;
     margin: fill;
@@ -47,6 +45,7 @@ ul{
     margin-left: -20px;
     outline: #1D3240 solid 10px;
 }
+
 .airportwindow{
     padding: 1rem;
     background-color:#1D3240;
@@ -59,6 +58,7 @@ ul{
     font-family: 'Playfair Display', serif;
     list-style-type: none;
 }
+
 .linkki{
     margin-top: 20px;
     padding: 1rem;
@@ -81,7 +81,7 @@ ul{
 
 #button{
     margin-top: 17px;
-    background-color: #658DA6;
+    background-color: #2C4859;
     border: none;
     color: #F2DAC4;
     height: 10vh;
@@ -91,35 +91,35 @@ ul{
     width: 100%;
     font-size: 30px;
     font-family: 'Playfair Display', serif;
-    margin-bottom: -50px;
+    margin-bottom: -10px;
 
 }
 #button:hover{
     width: 100%;
     cursor: pointer;
-    box-shadow: 0 12px 16px 0 #2C4859, 0 17px 50px 0 #2C4859;
-
+    background-color: #658DA6;
+    box-shadow: 0 12px 16px 0 #1D3240, 0 17px 50px 0 #1D3240;
 }
 
 #moi{
-    background-color: #658DA6;
     border: none;
     color: #F2DAC4;
     height: 10vh;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     width: 100vw;
     font-size: 30px;
     font-family: 'Playfair Display', serif;
     margin-left: -45px;
-    margin-bottom: -20px;
+    margin-bottom:20px;
     margin-top: 5px;
-
+    background-color: #2C4859;
+    display: block;
 }
+
 #moi:hover{
     cursor: pointer;
-    box-shadow: 0 12px 16px 0 #2C4859, 0 17px 50px 0 #2C4859;
-    background-color: #2C4859;
+    box-shadow: 0 12px 16px 0 #1D3240, 0 17px 50px 0 #1D3240;
+    background-color: #658DA6;
 }
 
