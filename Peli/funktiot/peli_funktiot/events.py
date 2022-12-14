@@ -10,8 +10,6 @@ def chance_of_event():
     elif chance == 3:
         "drink service"
     elif chance == 4:
-        "turbulence"
-    elif chance == 5:
         "emission free flight"
     else:
         return " "
@@ -34,40 +32,30 @@ def ticket_check(airport_data):
 
 
 def firstclass_ticket():
-    print("You've found 100 euros under your seat! Congratulations! Your next flight will be first class")
+    'You've found 100 euros under your seat! Congratulations! Your next flight will be first class'
 
 
 def drink_service():
     answer = {
-        "question" : { "text": "Would you like something to drink?",
+        "question" : { "txt": "Would you like something to drink?",
         'drink' : '',
-        'yes': 'yes',
-        'no': 'no'
-          },
+        'url' : 'Kuvat/flight-attendant-cart-drink-service-never-order.jpg',
+        },
         'blueberry_juice' : {
-            'drink' : 'blueberry_juice',
+            'drink' : 'blueberry juice',
         },
         'coffee' : {
-            'drink' : 'coffee',
+            'drink' : 'coffee ',
         },
         'coffee_with_milk' : {
-            'drink' : 'coffee',
+            'drink' : 'coffee with milk',
         },
         'coffee_with_sugar' : {
-            'drink' : 'coffee',
+            'drink' : 'coffee with sugar',
         },
         'tea' : {
             'drink' : 'tea',
         }
-    }
-    return answer
-
-
-def drink_question():
-    answer = {
-        "question": "Would you like something to drink?",
-        'yes' : 'yes',
-        'no' : 'no'
     }
     return answer
 

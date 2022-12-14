@@ -143,3 +143,11 @@ li2 a {
   color: #F2DAC4;
   font-family: 'Bebas Neue', cursive;
 }
+
+#drink_pic {
+  width: 50vw;
+}
+
+#drink_question {
+  font-size: 5vh;
+}
