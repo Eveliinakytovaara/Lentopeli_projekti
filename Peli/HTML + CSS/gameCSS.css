@@ -92,13 +92,12 @@ ul {
   margin: 1rem 1rem 3rem;
 }
 
+
 .paper-plane {
   width: 30px;
   height: 30px;
   position: absolute;
-  background: white;
-  border: 2px solid black;
-  border-radius: 2px;
+  background-image: url;
   z-index: 9999;
 }
 
