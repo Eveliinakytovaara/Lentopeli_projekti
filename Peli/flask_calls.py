@@ -263,7 +263,7 @@ def endgame(player_id):
 
 @app.route('/events/')
 def events():
-    event = drink_service()
+    event = chance_of_event()
     data = json.dumps(event)
     return data
 

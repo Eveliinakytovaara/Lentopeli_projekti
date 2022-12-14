@@ -129,10 +129,11 @@ li2 a {
   font-family: 'Playfair Display', serif;
 }
 
-#drink_question {
+
+#question {
   height: 5vh;
 }
 
-#drink_pic{
+#pic {
   width: 50vw;
 }
