@@ -89,7 +89,7 @@ ul{
     width: 100%;
     font-size: 30px;
     font-family: 'Playfair Display', serif;
-    margin-bottom: -45px;
+    margin-bottom: -50px;
 
 }
 #button:hover{
@@ -99,7 +99,6 @@ ul{
 }
 
 #moi{
-    margin-top: 17px;
     background-color: #658DA6;
     border: none;
     color: #F2DAC4;
@@ -110,8 +109,9 @@ ul{
     width: 100%;
     font-size: 30px;
     font-family: 'Playfair Display', serif;
-    margin-left: -30px;
+    margin-left: -20px;
     margin-bottom: -20px;
+    margin-top: 5px;
 }
 #moi:hover{
     cursor: pointer;
