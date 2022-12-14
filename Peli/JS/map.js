@@ -95,7 +95,7 @@ function animateCamera(flight, numSteps, timePerStep) {
         paperPlane.style.left = planePoint.x + "px";
         paperPlane.style.top = planePoint.y + "px";
         paperPlane.style.transform = "rotate(" + angle + "deg)";
-        L.imagaOverlay
+        L.imageOverlay('../Kuvat/plane.png', [[lat * .9, lng * .9], [lat * 1.1, lng * 1.1]])
 
         // Increment the step
         step++;
