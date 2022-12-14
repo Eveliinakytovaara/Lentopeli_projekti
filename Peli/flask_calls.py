@@ -260,6 +260,7 @@ def endgame(player_id):
     data = json.dumps(answer)
     return data
 
+
 @app.route('/events/')
 def events():
     event = drink_service()
@@ -269,4 +270,3 @@ def events():
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=3000)
-

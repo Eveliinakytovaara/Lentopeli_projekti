@@ -31,10 +31,6 @@ def ticket_check(airport_data):
         print("Where would you like to fly?")
 
 
-def firstclass_ticket():
-    'You've found 100 euros under your seat! Congratulations! Your next flight will be first class'
-
-
 def drink_service():
     answer = {
         "question" : { "txt": "Would you like something to drink?",
