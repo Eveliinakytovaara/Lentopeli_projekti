@@ -158,8 +158,8 @@ async function endGame() {
     p.innerHTML += 'small planes used: ' + playerdata.s_planes_used + '<br>';
     p.innerHTML += 'medium planes used: ' + playerdata.m_planes_used + '<br>';
     p.innerHTML += 'large planes used: ' + playerdata.l_planes_used + '<br>';
-    p.innerHTML += 'thank you for travelling with us!' + '<br>'
-    container.appendChild(p)
+    p.innerHTML += 'thank you for travelling with us!' + '<br>';
+    container.appendChild(p);
 }
 
 

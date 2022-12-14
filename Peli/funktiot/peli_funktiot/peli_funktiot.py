@@ -16,7 +16,7 @@ def open_database():
 
 
 def execute_sql(sql):
-    print(f"execute: [{sql}]")
+    # print(f"execute: [{sql}]")
     connection = open_database()
     cursor = connection.cursor()
     cursor.execute(sql)
