@@ -67,6 +67,7 @@ def getGames(type):
         name = get_from_database('screen_name', 'player', f'where id = {splitlist[0]}')[0]
         print(name)
         entry = {
+            'id': splitlist[0],
             'number': i,
             'name': name,
             'co2_consumed': splitlist[2],
@@ -266,6 +267,12 @@ def events():
     event = chance_of_event()
     data = json.dumps(event)
     return data
+
+
+@app.route('/clear_player_data/')
+def reset_data():
+    clear_player_data()
+    return "", 200
 
 
 if __name__ == '__main__':

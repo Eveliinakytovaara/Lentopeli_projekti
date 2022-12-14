@@ -4,7 +4,7 @@
 
 //Fetches games and displays them on the screen (both continuegame.js and highscore.js uses this function with different url)
 //TODO: Make continuing games possible
-async function createGames(url) {
+async function createGames(url, isGameComplete) {
     //Fetch game data
     let games = await FetchFromDatabase(url);
     //Get reference to container
@@ -17,7 +17,7 @@ async function createGames(url) {
         let txt = document.createElement('p');
 
         //Add text to p
-        txt.innerHTML += 'player: ' +  games[i].name + ' <br>';
+        txt.innerHTML += 'player: ' + games[i].name + ' <br>';
         txt.innerHTML += 'co2 consumed: ' + games[i].co2_consumed + ' <br>';
         txt.innerHTML += 'travel distance: ' + games[i].travel_distance + ' <br>';
         txt.innerHTML += 'number of flights: ' + games[i].number_of_flights + ' <br>';
@@ -25,6 +25,13 @@ async function createGames(url) {
         txt.innerHTML += 'medium planes used: ' + games[i].m_planes_used + ' <br>';
         txt.innerHTML += 'large planes used: ' + games[i].l_planes_used + ' <br>';
 
+
+        if (!isGameComplete) {
+            txt.addEventListener('click', async function () {
+                sessionStorage.setItem('playerid', games[i].id);
+                window.location.replace('../HTML + CSS/game.html');
+            })
+        }
         //Append div and p to container to display them
         single_entry.appendChild(txt);
         container.appendChild(single_entry);
