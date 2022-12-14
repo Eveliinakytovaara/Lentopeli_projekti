@@ -4,7 +4,7 @@ header{
     padding: 8px;
     background-color:#1D3240;
     color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
     margin-bottom: -9px;
     width: 100%;
     outline: #1D3240 solid 10px;
@@ -25,22 +25,22 @@ p{
     padding: 1rem;
     background-color:#1D3240;
     color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
-    margin-bottom: -25px;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: -20px;
     margin-left: -20px;
     outline: #1D3240 solid 10px;
 }
 
 ul{
 
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
     width: 100%;
     margin: fill;
     background-color: #1D3240;
     text-align: center;
     padding: 1rem;
     color: #F2DAC4;
-    margin-bottom: -28px;
+    margin-bottom: -20px;
     margin-left: -20px;
     outline: #1D3240 solid 10px;
 }
@@ -51,21 +51,47 @@ ul{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 10vh;
     text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Bebas Neue', cursive;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
     list-style-type: none;
 }
-
+.linkki{
+    margin-top: 20px;
+    padding: 1rem;
+    background-color:#1D3240;
+    color: #F2DAC4;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Playfair Display', serif;
+    list-style-type: none;
+}
 
 .linkki:hover {
     background-color: #658DA6;
     cursor: pointer;
 }
-.airportwindow:hover{
+#button{
+    margin-top: 17px;
     background-color: #658DA6;
-    cursor: pointer;
-}
+    border: none;
+    color: #F2DAC4;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    font-size: medium;
+    font-family: 'Playfair Display', serif;
 
+}
+#button:hover{
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 12px 16px 0 #2C4859, 0 17px 50px 0 #2C4859;
+}
 /* linkit niin, että pystyy klikkaamaan mistä kohdasta vain, eikä pelkän tekstin kohdalta

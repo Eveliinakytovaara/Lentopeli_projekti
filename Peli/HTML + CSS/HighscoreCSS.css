@@ -5,7 +5,7 @@ header{
     background-color:#1D3240;
     color: #F2DAC4;
     margin-bottom: -15px;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
 }
 h1{
     font-size: x-large;
@@ -13,7 +13,7 @@ h1{
     padding: 2rem;
     background-color: #1D3240;
     color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
     margin-bottom: -20px;
 
 
@@ -24,7 +24,7 @@ p {
     padding: 2rem;
     background-color: #1D3240;
     color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
     margin-bottom: -45px;
 }
 ul{
@@ -36,7 +36,7 @@ ul{
     padding: 2rem;
     color: #F2DAC4;
     line-height: 2rem;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
     font-size: large;
     margin-bottom: -5px;
 
@@ -53,6 +53,6 @@ li a{
     font-size: x-large;
     box-shadow: 5px 10px #2C4859;
     color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
 
 }

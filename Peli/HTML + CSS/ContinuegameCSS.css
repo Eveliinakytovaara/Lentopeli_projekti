@@ -16,7 +16,7 @@ ul{
     padding: 5rem;
     color: #F2DAC4;
     line-height: 3rem;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
 }
 li a:hover{
     background-color: #658DA6;
@@ -25,7 +25,7 @@ li a{
     font-size: x-large;
     box-shadow: 5px 10px #2C4859;
     color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
 }
 .container{
     position: relative;
@@ -35,7 +35,7 @@ li a{
     position: absolute;
     bottom: 65px;
     left: 16px;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
     font-size: xxx-large;
     color: #1D3240;
     background-color: #F2DAC4;
@@ -47,7 +47,7 @@ li a{
 
     bottom: 30px;
     left: 16px;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
     font-size: larger;
     color: #1D3240;
     background-color: #F2DAC4;

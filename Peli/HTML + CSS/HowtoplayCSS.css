@@ -5,7 +5,7 @@ header{
     background-color:#1D3240;
     color: #F2DAC4;
     margin-bottom: -27px;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
 }
 
 .container{
@@ -16,7 +16,7 @@ header{
     margin: auto;
     line-height: 4rem;
     font-size: 30px;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
 
 }
 ul{
@@ -45,7 +45,7 @@ ol{
     background-color: #1D3240;
     color: #F2DAC4;
     line-height: 3rem;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Playfair Display', serif;
 }
 li2 a:hover{
     background-color: #658DA6;
@@ -54,4 +54,5 @@ li2 a{
     font-size: x-large;
     box-shadow: 5px 10px #2C4859;
     color: #F2DAC4;
-    font-family: 'Bebas Neue', cursive;}
+    font-family: 'Playfair Display', serif;
+}
