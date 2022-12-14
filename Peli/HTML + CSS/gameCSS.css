@@ -124,11 +124,12 @@ li2 a {
   font-family: 'Playfair Display', serif;
 }
 
-#drink_question {
+
+#question {
   height: 5vh;
   background-color: #1D3240;
 }
 
-#drink_pic{
+#pic {
   width: 50vw;
 }

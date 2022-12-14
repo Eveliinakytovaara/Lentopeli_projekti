@@ -2,64 +2,99 @@ import random
 
 def chance_of_event():
     chance = random.randint(1, 15)
-    print(chance)
     if chance == 1:
-        "ticket check"
+        return duty_free_shopping()
     elif chance == 2:
-        "first class flight"
+        return first_class_flight()
     elif chance == 3:
-        "drink service"
+        return drink_service()
     elif chance == 4:
-        "emission free flight"
+        return emission_free_flight()
     else:
-        return " "
+        return ""
 
-
-def ticket_check(airport_data):
-    check = input('Do you have a ticket? ')
-    if check == 'Yes':
-        print('Have a pleasant journey!')
-    elif check == 'No':
-        print('You cannot travel now! Go back to the airport and buy a ticket')
-        print('Where would you like to fly?')
-        i = 0
-        for x in range(len(airport_data)):
-            i += 1
-            print(f"{i}.")
-            for o in airport_data[x]:
-                print(o)
-        print("Where would you like to fly?")
-
-
-def drink_service():
+def first_class_flight():
     answer = {
-        "question" : { "txt": "Would you like something to drink?",
-        'drink' : '',
-        'url' : 'Kuvat/flight-attendant-cart-drink-service-never-order.jpg',
-        },
-        'blueberry_juice' : {
-            'drink' : 'blueberry juice',
-        },
-        'coffee' : {
-            'drink' : 'coffee ',
-        },
-        'coffee_with_milk' : {
-            'drink' : 'coffee with milk',
-        },
-        'coffee_with_sugar' : {
-            'drink' : 'coffee with sugar',
-        },
-        'tea' : {
-            'drink' : 'tea',
+        "question" : "Congratulations! You have found 100 euros under you seat "
+                     "and your flight will be in first class! "
+                     "Would you like a complimentary first class item?",
+                        
+        'url': 'Kuvat/ey-1.jpg',
+
+        'options' : {
+
+        'option1' : 'champange',
+
+        'option2' : 'headphones',
+
+        'option3' : 'neckpillow',
+
+        'option4' : 'candies',
+
+        'option5' : 'no, thank you'
         }
     }
     return answer
 
 
-def emission_free_flight(consumption):
-    print("You have won an emission free flight!")
-    consumption = 0
-    return consumption
+def duty_free_shopping():
+    answer = {
+        'question' : 'You have a long layover and have time to go duty free shopping! '
+                     'Which item would you like to purchase?',
+        
+        'url' : 'Kuvat/dutyfree.jpg',
+
+        'options' : {
+
+            'option1' : 'chocolate',
+
+            'option2' : 'perfume',
+
+            'option3' : 'alcohol',
+
+            'option4' : 'ugly souvenir',
+
+            'option5' : 'make-up'
+        }
+    }
+    return answer
+
+
+def drink_service():
+    answer = {
+        "question": "Would you like something to drink?",
+
+        'url' : 'Kuvat/flight-attendant-cart-drink-service-never-order.jpg',
+
+        "options" : {
+
+        'option1' : "blueberry juice",
+
+        'option2' : 'coffee ',
+
+        'option3' : 'coffee with milk',
+
+        'option4' : 'coffee with sugar',
+
+        'option5' : 'tea'
+        }
+    }
+    return answer
+
+
+def emission_free_flight():
+    answer = {
+        "question" : "Congratulations! You have won an emission free flight! The CO2 emissions from this flight "
+                     "will not affect your score.",
+        
+        "url" : "Kuvat/emissionfree.jpg",
+
+        "options" : {
+
+        "option1" : "OK!"
+        }
+    }
+    return answer
 
 
 
