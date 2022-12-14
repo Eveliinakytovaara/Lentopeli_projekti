@@ -1,5 +1,5 @@
 "use strict";
 
 window.onload = async function () {
-    createGames("/getGames/<")
+    createGames("/getGames/<", false)
 }
