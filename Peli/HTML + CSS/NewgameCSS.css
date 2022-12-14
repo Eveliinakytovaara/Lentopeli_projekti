@@ -18,6 +18,8 @@ input {
     background-color:#1D3240;
     margin-top: 25px;
     font-family: 'Playfair Display', serif;
+    font-size: 15px;
+
 }
 
 p{
@@ -27,7 +29,7 @@ p{
     background-color:#1D3240;
     color: #F2DAC4;
     font-family: 'Playfair Display', serif;
-    margin-bottom: -20px;
+    margin-bottom: -10px;
     margin-left: -20px;
     outline: #1D3240 solid 10px;
 }
