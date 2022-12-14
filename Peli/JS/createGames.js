@@ -14,7 +14,7 @@ async function createGames(url, isGameComplete) {
     for (let i = 0; i < Object.keys(games).length; i++) {
         //Create html elements (div and p)
         let single_entry = document.createElement('div');
-        let txt = document.createElement('a');
+        let txt = document.createElement('p');
 
         //Add text to p
         txt.innerHTML += 'player: ' + games[i].name + ' <br>';
