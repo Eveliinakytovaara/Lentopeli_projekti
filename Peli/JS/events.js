@@ -20,7 +20,6 @@ async function flight_events() {
             link.innerHTML = response.options[key];
             link.addEventListener('click', function () {
                 dialog.close();
-                console.log('moi')
             })
             li.appendChild(link)
             ul.appendChild(li);

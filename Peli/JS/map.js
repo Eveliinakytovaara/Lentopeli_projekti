@@ -44,7 +44,7 @@ function animateCamera(flight, numSteps, timePerStep) {
 
     const startPoint = [flight.starting_location.lat, flight.starting_location.lon];
     const endPoint = [flight.ending_location.lat, flight.ending_location.lon];
-    
+
     // Set up the map and the markers
     clearMarkers();
     marker1 = L.marker(startPoint).addTo(map);
@@ -63,12 +63,12 @@ function animateCamera(flight, numSteps, timePerStep) {
     // Create map and plane html
     let container = document.getElementById('map');
     let paperPlane = document.createElement('div');
-    paperPlane.id = 'paper-plane';
     paperPlane.classList.add('paper-plane');
-    container.appendChild(paperPlane);
+    //container.appendChild(paperPlane);
 
     // Set up the animation
     let step = 0;
+    let planeimg = L.imageOverlay('Kuvat/plane.png', [[0, 0], [0, 0]]).addTo(map);
     const interval = setInterval(animateCamera, timePerStep);
 
     function animateCamera() {
@@ -88,13 +88,19 @@ function animateCamera(flight, numSteps, timePerStep) {
         // Calculate the angle of the line at the new position
         const point1 = map.latLngToContainerPoint(latlng1);
         const point2 = map.latLngToContainerPoint(newPosition);
-        const angle = (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI;
+        //const angle = (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI;
 
         // Update the position and rotation of the paper plane
-        const planePoint = map.latLngToContainerPoint(newPosition);
-        paperPlane.style.left = planePoint.x + "px";
-        paperPlane.style.top = planePoint.y + "px";
-        paperPlane.style.transform = "rotate(" + angle + "deg)";
+        // const planePoint = map.latLngToContainerPoint(newPosition);
+        // paperPlane.style.left = planePoint.x + "px";
+        // paperPlane.style.top = planePoint.y + "px";
+        // paperPlane.style.transform = "rotate(" + angle + "deg)";
+
+        if(step % 3 == 0){
+            planeimg.setBounds([[lat + 10, lng + 10], [lat - 10,  lng - 10]]);
+
+           //planeimg.style.transform = 'rotate(' + angle + 'deg)';
+        }
 
         // Increment the step
         step++;
@@ -105,6 +111,7 @@ function animateCamera(flight, numSteps, timePerStep) {
             paperPlane.remove();
             map.removeLayer(marker1);
             finnishFlight(flight);
+            planeimg.remove();
         }
     }
 }
