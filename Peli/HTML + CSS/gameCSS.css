@@ -86,9 +86,9 @@ ul {
 
 #map {
   width: 48vw;
-  height: 95vh;
+  height: 75vh;
   float: right;
-  margin: 1rem 1rem 3rem;
+  margin: 1rem 1.5rem 1rem;
 }
 
 .paper-plane {
