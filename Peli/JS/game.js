@@ -150,7 +150,7 @@ async function endGame() {
     AlterDatabase(`/endgame/${sessionStorage.getItem('playerid')}`);
     const playerdata = await FetchFromDatabase('/endgame/' + sessionStorage.getItem('playerid'));
     p.innerHTML += 'name: ' + playerdata.name + '<br>';
-    p.innerHTML += 'co2 consumed: ' + playerdata.co2_consumed + 'co2/kg <br>';
+    p.innerHTML += 'co2 consumed: ' + playerdata.co2_consumed + ' kg co2 <br>';
     p.innerHTML += 'travel distance: ' + playerdata.travel_distance + ' km' + '<br>';
     p.innerHTML += 'current location: ' + playerdata.last_location + '<br>';
     p.innerHTML += 'starting location: ' + playerdata.starting_location + '<br>';
