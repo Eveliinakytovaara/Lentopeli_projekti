@@ -7,7 +7,7 @@ h1 {
   margin-bottom: -17px;
 }
 
-#game{
+#game {
   background-color: #1D3240;
   color: #F2DAC4;
   padding: 1rem;
@@ -86,19 +86,43 @@ ul {
 
 #map {
   width: 48vw;
-  height: 70vh;
+  height: 95vh;
   float: right;
   margin: 1rem 1rem 3rem;
 }
 
 .paper-plane {
   width: 30px;
-  height: 30px;
+  height: 20px;
   position: absolute;
   background: white;
   border: 2px solid black;
   border-radius: 2px;
   z-index: 9999;
+}
+
+.paper-plane:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.paper-plane:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  bottom: -5px;
+  left: 20px;
+  border-radius: 2px;
+  transform: rotate(45deg);
 }
 
 ol {

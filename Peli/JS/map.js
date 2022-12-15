@@ -64,7 +64,7 @@ function animateCamera(flight, numSteps, timePerStep) {
     let container = document.getElementById('map');
     let paperPlane = document.createElement('div');
     paperPlane.classList.add('paper-plane');
-    //container.appendChild(paperPlane);
+    container.appendChild(paperPlane);
 
     // Set up the animation
     let step = 0;
@@ -88,19 +88,17 @@ function animateCamera(flight, numSteps, timePerStep) {
         // Calculate the angle of the line at the new position
         const point1 = map.latLngToContainerPoint(latlng1);
         const point2 = map.latLngToContainerPoint(newPosition);
-        //const angle = (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI;
+        const angle = (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI;
 
         // Update the position and rotation of the paper plane
-        // const planePoint = map.latLngToContainerPoint(newPosition);
-        // paperPlane.style.left = planePoint.x + "px";
-        // paperPlane.style.top = planePoint.y + "px";
-        // paperPlane.style.transform = "rotate(" + angle + "deg)";
+        const planePoint = map.latLngToContainerPoint(newPosition);
+        paperPlane.style.left = planePoint.x + "px";
+        paperPlane.style.top = planePoint.y + "px";
+        paperPlane.style.transform = "rotate(" + angle + "deg)";
 
-        if(step % 3 == 0){
-            planeimg.setBounds([[lat + 10, lng + 10], [lat - 10,  lng - 10]]);
-
-           //planeimg.style.transform = 'rotate(' + angle + 'deg)';
-        }
+        // if(step % 3 == 0){
+        //     planeimg.setBounds([[lat + 10, lng + 10], [lat - 10,  lng - 10]]);
+        // }
 
         // Increment the step
         step++;
